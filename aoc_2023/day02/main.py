@@ -1,9 +1,10 @@
-from functools import reduce
-from attr import field
-from aoc_2023 import utils
-from attrs import define
 from enum import Enum
-import sys
+from functools import reduce
+
+from attr import field
+from attrs import define
+
+from aoc_2023 import utils
 
 
 class Color(Enum):
