@@ -1,5 +1,6 @@
 def get_lines(filename: str) -> list[str]:
-    """Parses the lines of a text file.
+    """
+    Parses the lines of a text file.
 
     Args:
         filename (str): Path to the file for which to return the lines.
