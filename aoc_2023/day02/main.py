@@ -56,14 +56,17 @@ class CubeSet:
         return cube_drafts_res
 
     def satisfies(self, configuration) -> bool:
-        self_totals = self.count_totals()
-        totals_limit = configuration.count_totals()
-
-        print(self.cubes)
-        totals = f'{self_totals}'
-        print(f'{totals.ljust(15)} {totals_limit}')
-
-        return all(other >= my for my, other in zip(self_totals, totals_limit))
+        limit_reds, limit_greens, limit_blues = configuration.count_totals()
+        for cube_draft in self.cubes:
+            for cube in cube_draft:
+                match cube.color:
+                    case Color.RED:
+                        if cube.amount > limit_reds: return False
+                    case Color.GREEN:
+                        if cube.amount > limit_greens: return False
+                    case Color.BLUE:
+                        if cube.amount > limit_blues: return False
+        return True
 
 
 @define
@@ -98,14 +101,8 @@ def part1(filename: str) -> int:
 
     res = 0
     for game in games:
-        print(game.id)
         if game.is_possible(cs_check):
-            print('Possible.')
             res += game.id
-        else:
-            print('Impossible.')
-        print('\n')
-
     return res
 
 
@@ -115,11 +112,7 @@ def part2(filename: str) -> int:
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day02/sample.txt")}')
-
-    with open('outputs.txt', 'w') as f:
-        sys.stdout = f
-        print(f'Part 1, Input: {part1("aoc_2023/day02/input.txt")}')
-    # 204 => too low
+    print(f'Part 1, Input: {part1("aoc_2023/day02/input.txt")}')
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day02/sample.txt")}')
     # print(f'Part 2, Input: {part2("aoc_2023/day02/input.txt")}')
