@@ -19,15 +19,24 @@ def part1(filename: str) -> int:
 
 
 def part2(filename: str) -> int:
-    return 42
+    cards = utils.get_lines(filename)
+    card_copies = [1] * len(cards)
+
+    for i, card in enumerate(cards):
+        num_new_card_copies = get_number_winning_numbers(card)
+        for _ in range(card_copies[i]):
+            for j in range(1, num_new_card_copies + 1):
+                card_copies[i + j] += 1
+
+    return sum(card_copies)
 
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day04/sample.txt")}')
     print(f'Part 1, Input: {part1("aoc_2023/day04/input.txt")}')
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day04/sample.txt")}')
-    # print(f'Part 2, Input: {part2("aoc_2023/day04/input.txt")}')
+    print(f'Part 2, Sample: {part2("aoc_2023/day04/sample.txt")}')
+    print(f'Part 2, Input: {part2("aoc_2023/day04/input.txt")}')
 
 
 if __name__ == '__main__':
