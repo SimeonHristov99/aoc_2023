@@ -1,13 +1,6 @@
 from __future__ import annotations
 
-from typing import Sequence
-from typing import TypeVar
-
-T = TypeVar('T')
-
-
-def valid_coords(i: int, j: int, schematic: Sequence[Sequence[T]]) -> bool:
-    return 0 <= i < len(schematic) and 0 <= j < len(schematic[0])
+from aoc_2023 import utils
 
 
 def extract_number(
@@ -18,7 +11,10 @@ def extract_number(
         i = coords[0]
         j = coords[1] if direction == -1 else coords[1] + 1
         number_part = ''
-        while valid_coords(i, j, schematic) and schematic[i][j].isnumeric():
+        while (
+            utils.valid_coords(i, j, schematic)
+            and schematic[i][j].isnumeric()
+        ):
             number_part += schematic[i][j]
             visited.add((i, j))
             j += direction
@@ -34,8 +30,7 @@ def extract_number(
 
 
 def part1(filename: str) -> int:
-    with open(filename) as f:
-        schematic = f.read().splitlines()
+    schematic = utils.get_lines(filename)
 
     n_rows = len(schematic)
     n_cols = len(schematic[0])
@@ -50,7 +45,7 @@ def part1(filename: str) -> int:
                     for jj in range(-1, 2):
                         coords = (i + ii, j + jj)
                         if (
-                            valid_coords(i + ii, j + jj, schematic)
+                            utils.valid_coords(i + ii, j + jj, schematic)
                             and schematic[i + ii][j + jj].isnumeric()
                             and coords not in visited
                         ):
@@ -68,7 +63,7 @@ def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day03/sample.txt")}')
     print(f'Part 1, Input: {part1("aoc_2023/day03/input.txt")}')
 
-    valid_coords(0, 1, [[1, 2, 3]])
+    utils.valid_coords(0, 1, [[1, 2, 3]])
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day03/sample.txt")}')
     # print(f'Part 2, Input: {part2("aoc_2023/day03/input.txt")}')
