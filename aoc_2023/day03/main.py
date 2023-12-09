@@ -1,7 +1,12 @@
 from __future__ import annotations
 
+from typing import Sequence
+from typing import TypeVar
 
-def valid_coords(i: int, j: int, schematic: list[str]) -> bool:
+T = TypeVar('T')
+
+
+def valid_coords(i: int, j: int, schematic: Sequence[Sequence[T]]) -> bool:
     return 0 <= i < len(schematic) and 0 <= j < len(schematic[0])
 
 
@@ -60,11 +65,13 @@ def part2(filename: str) -> int:
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("sample.txt")}')
-    print(f'Part 1, Input: {part1("input.txt")}')
+    print(f'Part 1, Sample: {part1("aoc_2023/day03/sample.txt")}')
+    print(f'Part 1, Input: {part1("aoc_2023/day03/input.txt")}')
 
-    # print(f'Part 2, Sample: {part2("sample.txt")}')
-    # print(f'Part 2, Input: {part2("input.txt")}')
+    valid_coords(0, 1, [[1, 2, 3]])
+
+    # print(f'Part 2, Sample: {part2("aoc_2023/day03/sample.txt")}')
+    # print(f'Part 2, Input: {part2("aoc_2023/day03/input.txt")}')
 
 
 if __name__ == '__main__':
