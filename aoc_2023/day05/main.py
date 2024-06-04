@@ -9,8 +9,7 @@ def parse_numbers(inp: str) -> list[int]:
     return [int(n) for n in inp.split()]
 
 
-def get_seeds_mappings(lines: list[str]) \
-        -> tuple[list[int], dict[str, list[tuple[int, int, int]]]]:
+def get_seeds_mappings(lines: list[str]) -> tuple[list[int], defaultdict]:
     seeds = parse_numbers(lines[0].split(': ')[-1])
 
     mappings = defaultdict(list)
@@ -33,18 +32,18 @@ def map_value(mappings: list[tuple[int, int, int]], seed: int) -> int:
     return seed
 
 
+def get_location(mappings: defaultdict, seed: int):
+    for _, maps in mappings.items():
+        seed = map_value(maps, seed)
+    return seed
+
+
 def part1(filename: str) -> int:
-    locations = []
+    min_loc = float('inf')
     seeds, mappings = get_seeds_mappings(utils.get_lines(filename))
     for seed in seeds:
-        for _, maps in mappings.items():
-            seed = map_value(maps, seed)
-        locations.append(seed)
-    return min(locations) if len(locations) else 0
-
-
-def part2(filename: str) -> int:
-    return 42
+        min_loc = min(min_loc, get_location(mappings, seed))
+    return int(min_loc)
 
 
 def main() -> None:
