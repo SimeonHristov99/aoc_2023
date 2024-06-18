@@ -80,26 +80,26 @@ def step(to_process, line_start, line_end):
         # interval contains source line
         done = (to_process[0] + diff, to_process[1] + diff)
         to_process = []
-        return ([done], to_process)
+        return (done, to_process)
 
     if line_start[0] <= to_process[0]:
         # interval contains left part of source line, but not end
         done = (to_process[0] + diff, line_start[1] + diff)
         to_process = (line_start[1] + 1, to_process[1])
-        return ([done], to_process)
+        return (done, to_process)
 
     if line_start[0] <= to_process[1]:
         # interval contains right part of source line, but not start
         done = (line_start[0] + diff, to_process[1] + diff)
         to_process = (to_process[0], line_start[0] - 1)
-        return ([done], to_process)
+        return (done, to_process)
 
     if to_process[0] <= line_start[0] < line_start[1] <= to_process[1]:
         # interval is contained in source line
-        done_before = (to_process[0], line_start[0] - 1)
+        to_process_before = (to_process[0], line_start[0] - 1)
         done_on_line = (line_start[0] + diff, line_start[1] + diff)
-        to_process = (line_start[1] + 1, to_process[1])
-        return ([done_before, done_on_line], to_process)
+        to_process_after = (line_start[1] + 1, to_process[1])
+        return (done_on_line, [to_process_before, to_process_after])
 
     # interval does not contained any part of source line
     return [], [to_process]
@@ -114,18 +114,22 @@ def part2(filename: str) -> int:
     for start, length in ranges:
         end = start + length - 1
 
-        dones = []
-        to_process = (start, end)
+        dones = [(start, end)]
         for c_map in maps:
             items = list(c_map.items())
-            for c_map_range, (dest_start, dest_len) in items:
-                line_start = (c_map_range, c_map_range + dest_len - 1)
-                line_end = (dest_start, dest_start + dest_len - 1)
-                done, to_process = step(to_process, line_start, line_end)
-                dones.extend(done)
-        dones.extend(to_process)
+            dones_new = []
+            for done in dones:
+                for c_map_range, (dest_start, dest_len) in items:
+                    line_start = (c_map_range, c_map_range + dest_len - 1)
+                    line_end = (dest_start, dest_start + dest_len - 1)
+                    done_new, to_pr_new = step(done, line_start, line_end)
+                    if isinstance(done_new, tuple):
+                        dones_new.append(done_new)
+            dones = dones_new
 
-    return 42
+        min_loc = min([done[0] for done in dones if len(done) > 0])
+
+    return min_loc
 
 
 def main() -> None:
