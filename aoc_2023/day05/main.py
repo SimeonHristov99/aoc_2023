@@ -102,7 +102,7 @@ def step(to_process, line_start, line_end):
         return (done_on_line, [to_process_before, to_process_after])
 
     # interval does not contained any part of source line
-    return [], [to_process]
+    return (None, [to_process])
 
 
 def part2(filename: str) -> int:
@@ -117,7 +117,12 @@ def part2(filename: str) -> int:
             dones = []
 
             for dest_start, (source_start, length) in map.items():
-                ...
+                to_process_new = []
+                for to_process_current in to_process:
+                    done, to_pr = step(to_process_current, source_start, source_start + length - 1)
+                    to_process_new.append(to_pr)
+                    if done:
+                        dones.append(done)
             
             to_process.extend(dones)
 
