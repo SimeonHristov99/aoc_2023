@@ -69,23 +69,22 @@ def part1(filename: str) -> int:
 
 def part2(filename: str) -> int:
     seed_ranges, maps = get_seeds_and_maps(get_lines(filename))
+    it = iter(seed_ranges)
+    ranges = list(zip(it, it))
 
-    ranges = [tuple(seed_ranges[i:i+2]) for i in range(0, len(seed_ranges), 2)]
+    for range in ranges:
+        to_process = [range]
 
-    locations = []
-    
-    for seed, range_length in ranges:
-        seed_to = seed
-        for c_map in maps:
-            seed_from = seed_to
-            seed_to = get(c_map, seed_from)
-        locations.append(seed_to)
-        
-        for _ in range(range_length - 1):
-            seed_from += 1
-            locations.append(get(c_map, seed_from))
+        for map in maps:
+            dones = []
 
-    return min(locations)
+            for dest_start, (source_start, length) in map.items():
+                ...
+            
+            to_process.extend(dones)
+
+
+    return 42
 
 
 def main() -> None:
