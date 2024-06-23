@@ -87,6 +87,32 @@ class TestStringMethods(unittest.TestCase):
             f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
+    def test_mapping_overlap_right_edge(self):
+        """
+        If there is an overlap at the right-most element, only it should get mapped.
+        """
+        # Arrange
+        expected_done = (52, 55)
+        expected_leftover = [(1, 6)]
+
+        line = (1, 10)
+        map_ = (7, 10)
+        destination = (52, 55)
+
+        # Act
+        actual_done, actual_leftover = move(destination, map_, line)
+
+        # Assert
+        self.assertEqual(
+            actual_done,
+            expected_done,
+            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+        )
+        self.assertListEqual(
+            actual_leftover, expected_leftover,
+            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
+
     def test_mapping_overlap_left_results_in_one_done_and_one_to_process(self):
         """
         If there is an overlap to the left, then the passed range should get split in two:
