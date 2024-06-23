@@ -302,3 +302,22 @@ class TestStringMethods(unittest.TestCase):
             actual, expected,
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
+
+    def test_apply_map_ranges_cover_line(self):
+        """
+        Tests that applying a map that has ranges covering all of the line works.
+        """
+        # Arrange
+        expected = {(40, 41), (52, 55), (100, 103)}
+
+        line = (1, 10)
+        map_ = {52: (3, 4), 100: (7, 4), 40: (1, 2)}
+
+        # Act
+        actual = apply_map(map_, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+        )
