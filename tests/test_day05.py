@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from aoc_2023.day05.main import move
+from aoc_2023.day05.main import apply_map, move
 
 
 class TestStringMethods(unittest.TestCase):
@@ -243,4 +243,23 @@ class TestStringMethods(unittest.TestCase):
         self.assertListEqual(
             actual_leftover, expected_leftover,
             f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
+
+    def test_apply_map_two_ranges_basic(self):
+        """
+        Tests that a map with two mappings can be applied accordingly when the maps are contained in the line.
+        """
+        # Arrange
+        expected = {(1, 2), (52, 54), (100, 102)}
+
+        line = (1, 10)
+        map_ = {52: (3, 3), 100: (7, 3)}
+
+        # Act
+        actual = apply_map(map_, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
