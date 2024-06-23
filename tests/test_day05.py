@@ -62,7 +62,7 @@ class TestStringMethods(unittest.TestCase):
     ):
         """
         If there is an overlap to the right, then the passed range should get split in two:
-            - the left part should be unchanged and should end at `map[0] - 1`
+            - the left part should be unchanged and should end at `map[0] - 1`;
             - the right part should be mapped accordingly.
         """
         # Arrange
@@ -89,16 +89,16 @@ class TestStringMethods(unittest.TestCase):
 
     def test_mapping_overlap_left_results_in_one_done_and_one_to_process(self):
         """
-        If there is an overlap to the right, then the passed range should get split in two:
-            - the left part should be unchanged and should end at `map[0] - 1`
-            - the right part should be mapped accordingly.
+        If there is an overlap to the left, then the passed range should get split in two:
+            - the left part should be mapped accordingly;
+            - the right part should remain unchanged.
         """
         # Arrange
-        expected_done = (52, 57)
-        expected_leftover = [(1, 4)]
+        expected_done = (58, 62)
+        expected_leftover = [(6, 10)]
 
         line = (1, 10)
-        map_ = (5, 15)
+        map_ = (-5, 5)
         destination = (52, 62)
 
         # Act
@@ -108,7 +108,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `actual_done=expected_done`, but got `{actual_done=}` and `{expected_done=}`',
+            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
