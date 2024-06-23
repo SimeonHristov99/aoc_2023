@@ -263,3 +263,42 @@ class TestStringMethods(unittest.TestCase):
             actual, expected,
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
+
+    def test_apply_map_two_ranges_longer_maps(self):
+        """
+        Tests that a map with two mappings can be applied accordingly when the maps are not contained in the line.
+        """
+        # Arrange
+        expected = {(16, 19), (5, 5), (40, 44)}
+
+        line = (1, 10)
+        maps = {10: (-5, 10), 40: (6, 10)}
+
+        # Act
+        actual = apply_map(maps, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_apply_map_order_does_not_matter(self):
+        """
+        Tests that the order in which mappings are applied does not matter.
+        Here the last mapping covers the first segment of the line.
+        """
+        # Arrange
+        expected = {(40, 41), (52, 54), (6, 6), (100, 102), (10, 10)}
+
+        line = (1, 10)
+        map_ = {52: (3, 3), 100: (7, 3), 40: (1, 2)}
+
+        # Act
+        actual = apply_map(map_, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+        )
