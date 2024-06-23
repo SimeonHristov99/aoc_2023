@@ -105,6 +105,36 @@ def step(to_process, line_start, line_end):
     return (None, [to_process])
 
 
+def move(
+    destination: tuple[int, int], mapping: tuple[int, int], line: tuple[int,
+                                                                        int]
+) -> tuple[tuple[int, int] | None, list[tuple[int, int]]]:
+    (map_start, map_end) = mapping
+    (destination_start, destination_end) = destination
+    (line_start, line_end) = line
+
+    if line_start <= map_start <= line_end <= map_end:
+        # overlap to the right of line
+        done = (destination_start, destination_start + line_end - map_start)
+        leftover = [(line_start, map_start - 1)]
+        return done, leftover
+
+    if map_start <= line_start <= map_end <= line_end:
+        # overlap to the left of line
+        done = (destination_start + line_start - map_start, destination_end)
+        leftover = [(map_end + 1, line_end)]
+        return done, leftover
+
+    if line_start <= map_start < map_end <= line_end:
+        # overlap in the middle
+        done = (destination_start, destination_end)
+        leftover = [(line_start, map_start - 1), (map_end + 1, line_end)]
+        return done, leftover
+
+    # no overlap
+    return None, [(line_start, line_end)]
+
+
 def part2(filename: str) -> int:
     seed_ranges, maps = get_seeds_and_maps(get_lines(filename))
     it = iter(seed_ranges)
@@ -130,35 +160,6 @@ def part2(filename: str) -> int:
             to_process.extend(dones)
 
     return 42
-
-
-def move(
-    destination: tuple[int, int], map_: tuple[int, int], line: tuple[int, int]
-) -> tuple[tuple[int, int] | None, list[tuple[int, int]]]:
-    (map_start, map_end) = map_
-    (destination_start, destination_end) = destination
-    (line_start, line_end) = line
-
-    if line_start <= map_start <= line_end <= map_end:
-        # overlap to the right of line
-        done = (destination_start, destination_start + line_end - map_start)
-        leftover = [(line_start, map_start - 1)]
-        return done, leftover
-
-    if map_start <= line_start <= map_end <= line_end:
-        # overlap to the left of line
-        done = (destination_start + line_start - map_start, destination_end)
-        leftover = [(map_end + 1, line_end)]
-        return done, leftover
-
-    if line_start <= map_start < map_end <= line_end:
-        # overlap in the middle
-        done = (destination_start, destination_end)
-        leftover = [(line_start, map_start - 1), (map_end + 1, line_end)]
-        return done, leftover
-
-    # no overlap
-    return None, [(line_start, line_end)]
 
 
 def main() -> None:
