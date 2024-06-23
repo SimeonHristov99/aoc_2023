@@ -150,15 +150,15 @@ def apply_map(map_: dict[int, tuple[int, int]],
             mapping = (map_start, map_start + map_length - 1)
             done, leftover = move(destination, mapping, to_process)
             if done:
-                leftovers.extend(leftover)
                 dones.add(done)
                 seen.add(to_process)
-            else:
-                leftovers.extend(leftover)
+            if to_process != mapping:
                 dones.update(leftover)
+                leftovers.extend(leftover)
         to_processs = leftovers
 
     dones.update(to_processs)
+    dones = dones - seen
 
     return dones
 
