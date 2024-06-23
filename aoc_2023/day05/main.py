@@ -119,15 +119,34 @@ def part2(filename: str) -> int:
             for dest_start, (source_start, length) in map.items():
                 to_process_new = []
                 for to_process_current in to_process:
-                    done, to_pr = step(to_process_current, source_start, source_start + length - 1)
+                    done, to_pr = step(
+                        to_process_current, source_start,
+                        source_start + length - 1
+                    )
                     to_process_new.append(to_pr)
                     if done:
                         dones.append(done)
-            
+
             to_process.extend(dones)
 
-
     return 42
+
+
+def move(
+    destination: tuple[int, int], map_: tuple[int, int], line: tuple[int, int]
+) -> tuple[tuple[int, int] | None, list[tuple[int, int]]]:
+    (map_start, map_end) = map_
+    (destination_start, destination_end) = destination
+    (line_start, line_end) = line
+
+    if line_start <= map_start <= line_end < map_end:
+        # overlap to the right of line
+        done = (destination_start, destination_start + line_end - map_start)
+        leftover = [(line_start, map_start - 1)]
+        return done, leftover
+
+    # no overlap
+    return None, [(line_start, line_end)]
 
 
 def main() -> None:
