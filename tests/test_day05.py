@@ -87,9 +87,9 @@ class TestStringMethods(unittest.TestCase):
             f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
-    def test_mapping_overlap_right_edge(self):
+    def test_mapping_overlap_right_ending(self):
         """
-        If there is an overlap at the right-most element, only it should get mapped.
+        If there is an overlap at the right-most element it also gets mapped.
         """
         # Arrange
         expected_done = (52, 55)
@@ -98,6 +98,84 @@ class TestStringMethods(unittest.TestCase):
         line = (1, 10)
         map_ = (7, 10)
         destination = (52, 55)
+
+        # Act
+        actual_done, actual_leftover = move(destination, map_, line)
+
+        # Assert
+        self.assertEqual(
+            actual_done,
+            expected_done,
+            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+        )
+        self.assertListEqual(
+            actual_leftover, expected_leftover,
+            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
+
+    def test_mapping_overlap_right_edge(self):
+        """
+        Tests that if the map starts at the right-most element, only it gets processed.
+        """
+        # Arrange
+        expected_done = (52, 52)
+        expected_leftover = [(1, 9)]
+
+        line = (1, 10)
+        map_ = (10, 15)
+        destination = (52, 57)
+
+        # Act
+        actual_done, actual_leftover = move(destination, map_, line)
+
+        # Assert
+        self.assertEqual(
+            actual_done,
+            expected_done,
+            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+        )
+        self.assertListEqual(
+            actual_leftover, expected_leftover,
+            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
+
+    def test_mapping_overlap_left_ending(self):
+        """
+        If there is an overlap at the left-most element it also gets mapped.
+        """
+        # Arrange
+        expected_done = (52, 55)
+        expected_leftover = [(4, 10)]
+
+        line = (1, 10)
+        map_ = (1, 3)
+        destination = (52, 55)
+
+        # Act
+        actual_done, actual_leftover = move(destination, map_, line)
+
+        # Assert
+        self.assertEqual(
+            actual_done,
+            expected_done,
+            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+        )
+        self.assertListEqual(
+            actual_leftover, expected_leftover,
+            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
+
+    def test_mapping_overlap_left_edge(self):
+        """
+        Tests that if the map ends at the left-most element, only it gets processed.
+        """
+        # Arrange
+        expected_done = (58, 58)
+        expected_leftover = [(2, 10)]
+
+        line = (1, 10)
+        map_ = (-5, 1)
+        destination = (52, 58)
 
         # Act
         actual_done, actual_leftover = move(destination, map_, line)
