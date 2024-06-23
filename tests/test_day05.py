@@ -250,7 +250,7 @@ class TestStringMethods(unittest.TestCase):
         Tests that a map with two mappings can be applied accordingly when the maps are contained in the line.
         """
         # Arrange
-        expected = {(1, 2), (52, 54), (100, 102)}
+        expected = {(1, 2), (52, 54), (6, 6), (100, 102), (10, 10)}
 
         line = (1, 10)
         map_ = {52: (3, 3), 100: (7, 3)}
