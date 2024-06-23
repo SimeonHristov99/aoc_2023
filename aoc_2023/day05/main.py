@@ -135,6 +135,29 @@ def move(
     return None, [(line_start, line_end)]
 
 
+def apply_map(map_: dict[int, tuple[int, int]],
+              line: tuple[int, int]) -> set[tuple[int, int]]:
+    dones = set()
+    to_processs = [line]
+
+    for destination_start, (map_start, map_length) in map_.items():
+        leftovers = []
+        for to_process in to_processs:
+            destination = (
+                destination_start, destination_start + map_length - 1
+            )
+            mapping = (map_start, map_start + map_length - 1)
+            done, leftover = move(destination, mapping, to_process)
+            if done:
+                leftovers.extend(leftover)
+                dones.add(done)
+            else:
+                dones.update(leftover)
+        to_processs = leftovers
+
+    return dones
+
+
 def part2(filename: str) -> int:
     seed_ranges, maps = get_seeds_and_maps(get_lines(filename))
     it = iter(seed_ranges)
