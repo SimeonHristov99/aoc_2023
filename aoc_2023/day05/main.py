@@ -139,8 +139,7 @@ def move(
     (destination_start, destination_end) = destination
     (line_start, line_end) = line
 
-    # TODO: Can it be <= everywhere?
-    if line_start <= map_start <= line_end < map_end:
+    if line_start <= map_start <= line_end <= map_end:
         # overlap to the right of line
         done = (destination_start, destination_start + line_end - map_start)
         leftover = [(line_start, map_start - 1)]
