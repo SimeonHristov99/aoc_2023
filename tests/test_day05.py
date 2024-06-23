@@ -321,3 +321,23 @@ class TestStringMethods(unittest.TestCase):
             actual, expected,
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
+
+    def test_apply_map_non_overlapping_leaves_line_unchanged(self):
+        """
+        Tests that if a map contains no ranges that cover the line,
+        the line is unaltered.
+        """
+        # Arrange
+        expected = {(1, 10)}
+
+        line = (1, 10)
+        map_ = {52: (11, 2), 40: (-5, 2)}
+
+        # Act
+        actual = apply_map(map_, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+        )
