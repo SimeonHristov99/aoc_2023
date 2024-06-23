@@ -115,10 +115,32 @@ class TestStringMethods(unittest.TestCase):
             f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
-    # def test_mapping_overlap_middle_results_in_one_done_and_two_to_process(self):
-    #     # Arrange
+    def test_mapping_overlap_middle_results_in_one_done_and_two_to_process(
+        self
+    ):
+        """
+        If there is an overlap in middle, i.e. the map is contained in the range/line,
+        then the range should get broken down into three parts with the middle part
+        being done and the other two being leftover.
+        """
+        # Arrange
+        expected_done = (52, 55)
+        expected_leftover = [(1, 2), (7, 10)]
 
-    #     # Act
+        line = (1, 10)
+        map_ = (3, 6)
+        destination = (52, 55)
 
-    #     # Assert
-    #     assert False
+        # Act
+        actual_done, actual_leftover = move(destination, map_, line)
+
+        # Assert
+        self.assertEqual(
+            actual_done,
+            expected_done,
+            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+        )
+        self.assertListEqual(
+            actual_leftover, expected_leftover,
+            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
