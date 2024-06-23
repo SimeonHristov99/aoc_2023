@@ -139,6 +139,7 @@ def apply_map(map_: dict[int, tuple[int, int]],
               line: tuple[int, int]) -> set[tuple[int, int]]:
     dones = set()
     to_processs = [line]
+    seen = set()
 
     for destination_start, (map_start, map_length) in map_.items():
         leftovers = []
@@ -151,9 +152,13 @@ def apply_map(map_: dict[int, tuple[int, int]],
             if done:
                 leftovers.extend(leftover)
                 dones.add(done)
+                seen.add(to_process)
             else:
+                leftovers.extend(leftover)
                 dones.update(leftover)
         to_processs = leftovers
+
+    dones.update(to_processs)
 
     return dones
 
