@@ -7,6 +7,32 @@ from aoc_2023.day05.main import almanac, apply_map, move
 
 class TestDay05(unittest.TestCase):
 
+    def test_move_point(self):
+        """
+        Tests that move can be used to map a single point, contained in the mapping.
+        """
+        # Arrange
+        expected_done = (47, 47)
+        expected_leftover = [(1, 5), (7, 10)]
+
+        line = (6, 6)
+        mapping = (1, 10)
+        destination = (42, 51)
+
+        # Act
+        actual_done, actual_leftover = move(destination, mapping, line)
+
+        # Assert
+        self.assertEqual(
+            actual_done,
+            expected_done,
+            f'ERROR: Expected `actual_done=expected_done`, but got `{actual_done=}` and `{expected_done=}`',
+        )
+        self.assertListEqual(
+            actual_leftover, expected_leftover,
+            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+        )
+
     def test_move_no_overlap_right_leaves_without_changes(self):
         """
         If there is no overlap and the map is to the right, nothing should be done and the range should remain unchanged.
