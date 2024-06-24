@@ -138,10 +138,32 @@ def move(
         done = (destination_start, destination_end)
         leftover = [(line_start, map_start - 1), (map_end + 1, line_end)]
 
+        if line_start == map_start and map_end == line_end:
+            return done, []
+
         if line_start == map_start:
             return done, leftover[1]
 
         if map_end == line_end:
+            return done, leftover[0]
+
+        return done, leftover
+
+    if map_start <= line_start <= line_end <= map_end:
+        # map contains line
+        done = (
+            destination_start + line_start - map_start,
+            destination_end - (map_end - line_end)
+        )
+        leftover = [(map_start, line_start - 1), (line_end + 1, map_end)]
+
+        if line_start == map_start and line_end == map_end:
+            return done, []
+
+        if line_start == map_start:
+            return done, leftover[1]
+
+        if line_end == map_end:
             return done, leftover[0]
 
         return done, leftover
