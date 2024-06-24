@@ -387,6 +387,25 @@ class TestDay05(unittest.TestCase):
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
 
+    # def test_apply_map_returns_only_needed_ranges(self):
+    #     """
+    #     Tests that apply map does not return ranges that were not requested.
+    #     """
+    #     # Arrange
+    #     expected = {(43, 43)}
+
+    #     line = (2, 2)
+    #     map_ = {42: (1, 9)}
+
+    #     # Act
+    #     actual = apply_map(map_, line)
+
+    #     # Assert
+    #     self.assertSetEqual(
+    #         actual, expected,
+    #         f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+    #     )
+
     def test_almanac_two_maps(self):
         """
         Tests that applying almanac with the maps works.
@@ -415,3 +434,32 @@ class TestDay05(unittest.TestCase):
             actual, expected,
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
+
+    # def test_almanac_can_be_used_to_map_one_seed(self):
+    #     """
+    #     Tests that almanac can be used to map one seed.
+    #     """
+    #     # Arrange
+    #     expected = {(84, 84)}
+
+    #     line = (82, 82)
+    #     maps = [
+    #         {
+    #             50: (98, 2),
+    #             52: (50, 48)
+    #         },
+    #         {
+    #             0: (15, 37),
+    #             37: (52, 2),
+    #             39: (0, 15)
+    #         },
+    #     ]
+
+    #     # Act
+    #     actual = almanac(maps, line)
+
+    #     # Assert
+    #     self.assertSetEqual(
+    #         actual, expected,
+    #         f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+    #     )
