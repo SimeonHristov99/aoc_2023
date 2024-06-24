@@ -5,7 +5,7 @@ import unittest
 from aoc_2023.day05.main import almanac, apply_map, move
 
 
-class TestStringMethods(unittest.TestCase):
+class TestDay05(unittest.TestCase):
 
     def test_move_no_overlap_right_leaves_without_changes(self):
         """
