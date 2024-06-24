@@ -178,6 +178,21 @@ def apply_map(map_: dict[int, tuple[int, int]],
     return dones
 
 
+def almanac(maps: list[dict[int, tuple[int, int]]],
+            line: tuple[int, int]) -> set[tuple[int, int]]:
+    done = set()
+    num_maps = len(maps)
+    ranges = {line}
+    for idx, map_ in enumerate(maps):
+        new_ranges = set()
+        for range_ in ranges:
+            new_ranges = apply_map(map_, range_)
+            if idx + 1 == num_maps:
+                done |= new_ranges
+        ranges = new_ranges
+    return done
+
+
 def part2(filename: str) -> int:
     seed_ranges, maps = get_seeds_and_maps(get_lines(filename))
     it = iter(seed_ranges)
