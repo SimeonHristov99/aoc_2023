@@ -341,3 +341,23 @@ class TestStringMethods(unittest.TestCase):
             actual, expected,
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
+
+    def test_move_does_not_produce_invalid_points(self):
+        """
+        Tests that move does not produce points that have second coordinate smaller than the first.
+        """
+        # Arrange
+        expected = {(35, 36)}
+
+        line = (50, 51)
+        map_ = {0: (15, 37), 37: (52, 2), 39: (0, 15)}
+
+        # Act
+        actual = apply_map(map_, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+        )
+
