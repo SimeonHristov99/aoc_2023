@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from aoc_2023.day05.main import apply_map, move
+from aoc_2023.day05.main import almanac, apply_map, move
 
 
 class TestStringMethods(unittest.TestCase):
@@ -361,3 +361,31 @@ class TestStringMethods(unittest.TestCase):
             f'ERROR: Expected to get `{expected}`, but got `{actual}`'
         )
 
+    def test_almanac_two_maps(self):
+        """
+        Tests that applying almanac with the maps works.
+        """
+        # Arrange
+        expected = {(39, 53), (0, 34), (37, 38), (54, 99), (35, 36)}
+
+        line = (0, 99)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+        )
