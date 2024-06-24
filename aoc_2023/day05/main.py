@@ -116,12 +116,20 @@ def move(
     if line_start <= map_start <= line_end <= map_end:
         # overlap to the right of line
         done = (destination_start, destination_start + line_end - map_start)
+
+        if line_start == map_start:
+            return done, []
+
         leftover = [(line_start, map_start - 1)]
         return done, leftover
 
     if map_start <= line_start <= map_end <= line_end:
         # overlap to the left of line
         done = (destination_start + line_start - map_start, destination_end)
+
+        if map_end == line_end:
+            return done, []
+
         leftover = [(map_end + 1, line_end)]
         return done, leftover
 
@@ -129,6 +137,13 @@ def move(
         # overlap in the middle
         done = (destination_start, destination_end)
         leftover = [(line_start, map_start - 1), (map_end + 1, line_end)]
+
+        if line_start == map_start:
+            return done, leftover[1]
+
+        if map_end == line_end:
+            return done, leftover[0]
+
         return done, leftover
 
     # no overlap
