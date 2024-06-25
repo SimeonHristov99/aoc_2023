@@ -155,18 +155,7 @@ def move(
             destination_start + line_start - map_start,
             destination_end - (map_end - line_end)
         )
-        leftover = [(map_start, line_start - 1), (line_end + 1, map_end)]
-
-        if line_start == map_start and line_end == map_end:
-            return done, []
-
-        if line_start == map_start:
-            return done, leftover[1]
-
-        if line_end == map_end:
-            return done, leftover[0]
-
-        return done, leftover
+        return done, []
 
     # no overlap
     return None, [(line_start, line_end)]

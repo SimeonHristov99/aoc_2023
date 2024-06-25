@@ -13,7 +13,7 @@ class TestDay05(unittest.TestCase):
         """
         # Arrange
         expected_done = (47, 47)
-        expected_leftover = [(1, 5), (7, 10)]
+        expected_leftover = []
 
         line = (6, 6)
         mapping = (1, 10)
