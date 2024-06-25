@@ -128,14 +128,14 @@ def almanac(maps: list[dict[int, tuple[int, int]]],
             line: tuple[int, int]) -> set[tuple[int, int]]:
     done = set()
     num_maps = len(maps)
-    ranges = {line}
+    lines = {line}
     for idx, map_ in enumerate(maps):
         new_ranges = set()
-        for range_ in ranges:
-            new_ranges = apply_map(map_, range_)
+        for range_ in lines:
+            new_ranges |= apply_map(map_, range_)
             if idx + 1 == num_maps:
                 done |= new_ranges
-        ranges = new_ranges
+        lines = new_ranges
     return done
 
 
