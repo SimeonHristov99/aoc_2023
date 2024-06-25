@@ -38,14 +38,14 @@ class TestDay05(unittest.TestCase):
         If there is no overlap and the map is to the right, nothing should be done and the range should remain unchanged.
         """
         # Arrange
-        destination = (-1, -1)
-        range_ = (1, 10)
+        destination = (-1, 1)
+        line = (1, 10)
         mapping = (11, 13)
 
-        expected_leftover = [range_]
+        expected_leftover = [line]
 
         # Act
-        actual_done, actual_leftover = move(destination, mapping, range_)
+        actual_done, actual_leftover = move(destination, mapping, line)
 
         # Assert
         self.assertIsNone(
@@ -63,14 +63,14 @@ class TestDay05(unittest.TestCase):
         If there is no overlap and the map is to the left, nothing should be done and the range should remain unchanged.
         """
         # Arrange
-        destination = (-1, -1)
-        range_ = (1, 10)
+        destination = (-1, 4)
+        line = (1, 10)
         mapping = (-5, 0)
 
-        expected_leftover = [range_]
+        expected_leftover = [line]
 
         # Act
-        actual_done, actual_leftover = move(destination, mapping, range_)
+        actual_done, actual_leftover = move(destination, mapping, line)
 
         # Assert
         self.assertIsNone(
