@@ -387,24 +387,24 @@ class TestDay05(unittest.TestCase):
             f'Expected to get `{expected}`, but got `{actual}`'
         )
 
-    # def test_apply_map_returns_only_needed_ranges(self):
-    #     """
-    #     Tests that apply map does not return ranges that were not requested.
-    #     """
-    #     # Arrange
-    #     expected = {(43, 43)}
+    def test_apply_map_returns_only_needed_ranges(self):
+        """
+        Tests that apply map does not return ranges that were not requested.
+        """
+        # Arrange
+        expected = {(43, 43)}
 
-    #     line = (2, 2)
-    #     map_ = {42: (1, 9)}
+        line = (2, 2)
+        map_ = {42: (1, 9)}
 
-    #     # Act
-    #     actual = apply_map(map_, line)
+        # Act
+        actual = apply_map(map_, line)
 
-    #     # Assert
-    #     self.assertSetEqual(
-    #         actual, expected,
-    #         f'ERROR: Expected to get `{expected}`, but got `{actual}`'
-    #     )
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
 
     def test_almanac_two_maps(self):
         """
@@ -432,34 +432,483 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
-    # def test_almanac_can_be_used_to_map_one_seed(self):
-    #     """
-    #     Tests that almanac can be used to map one seed.
-    #     """
-    #     # Arrange
-    #     expected = {(84, 84)}
+    def test_almanac_can_be_used_to_map_seed_from_part_one_two_times(self):
+        """
+        Tests that almanac can be used to map one seed 2 times (soil to fertilizer).
+        """
+        # Arrange
+        expected = {(52, 52)}
 
-    #     line = (82, 82)
-    #     maps = [
-    #         {
-    #             50: (98, 2),
-    #             52: (50, 48)
-    #         },
-    #         {
-    #             0: (15, 37),
-    #             37: (52, 2),
-    #             39: (0, 15)
-    #         },
-    #     ]
+        line = (13, 13)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+        ]
 
-    #     # Act
-    #     actual = almanac(maps, line)
+        # Act
+        actual = almanac(maps, line)
 
-    #     # Assert
-    #     self.assertSetEqual(
-    #         actual, expected,
-    #         f'ERROR: Expected to get `{expected}`, but got `{actual}`'
-    #     )
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_one_three_times(self):
+        """
+        Tests that almanac can be used to map one seed 3 times (fertilizer to water).
+        """
+        # Arrange
+        expected = {(41, 41)}
+
+        seed = (13, 13)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_one_four_times(self):
+        """
+        Tests that almanac can be used to map one seed 4 times (water to light).
+        """
+        # Arrange
+        expected = {(34, 34)}
+
+        seed = (13, 13)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+            {
+                88: (18, 7),
+                18: (25, 70),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_one_five_times(self):
+        """
+        Tests that almanac can be used to map one seed 5 times (light to temperature).
+        """
+        # Arrange
+        expected = {(34, 34)}
+
+        seed = (13, 13)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+            {
+                88: (18, 7),
+                18: (25, 70),
+            },
+            {
+                45: (77, 23),
+                81: (45, 19),
+                68: (64, 13),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_one_six_times(self):
+        """
+        Tests that almanac can be used to map one seed 6 times (temperature to humidity).
+        """
+        # Arrange
+        expected = {(35, 35)}
+
+        seed = (13, 13)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+            {
+                88: (18, 7),
+                18: (25, 70),
+            },
+            {
+                45: (77, 23),
+                81: (45, 19),
+                68: (64, 13),
+            },
+            {
+                0: (69, 1),
+                1: (0, 69),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_one_seven_times(self):
+        """
+        Tests that almanac can be used to map one seed 7 times (humidity to location).
+        """
+        # Arrange
+        expected = {(35, 35)}
+
+        seed = (13, 13)
+        maps = [{
+            50: (98, 2),
+            52: (50, 48)
+        }, {
+            0: (15, 37),
+            37: (52, 2),
+            39: (0, 15)
+        }, {
+            49: (53, 8),
+            0: (11, 42),
+            42: (0, 7),
+            57: (7, 4),
+        }, {
+            88: (18, 7),
+            18: (25, 70),
+        }, {
+            45: (77, 23),
+            81: (45, 19),
+            68: (64, 13),
+        }, {
+            0: (69, 1),
+            1: (0, 69),
+        }, {
+            60: (56, 37),
+            56: (93, 4),
+        }]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_two_two_times(self):
+        """
+        Tests that almanac can be used to map one seed 2 times (soil to fertilizer).
+        """
+        # Arrange
+        expected = {(84, 84)}
+
+        line = (82, 82)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, line)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_two_three_times(self):
+        """
+        Tests that almanac can be used to map one seed 3 times (fertilizer to water).
+        """
+        # Arrange
+        expected = {(84, 84)}
+
+        seed = (82, 82)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_two_four_times(self):
+        """
+        Tests that almanac can be used to map one seed 4 times (water to light).
+        """
+        # Arrange
+        expected = {(77, 77)}
+
+        seed = (82, 82)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+            {
+                88: (18, 7),
+                18: (25, 70),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_two_five_times(self):
+        """
+        Tests that almanac can be used to map one seed 5 times (light to temperature).
+        """
+        # Arrange
+        expected = {(45, 45)}
+
+        seed = (82, 82)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+            {
+                88: (18, 7),
+                18: (25, 70),
+            },
+            {
+                45: (77, 23),
+                81: (45, 19),
+                68: (64, 13),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_two_six_times(self):
+        """
+        Tests that almanac can be used to map one seed 6 times (temperature to humidity).
+        """
+        # Arrange
+        expected = {(46, 46)}
+
+        seed = (82, 82)
+        maps = [
+            {
+                50: (98, 2),
+                52: (50, 48)
+            },
+            {
+                0: (15, 37),
+                37: (52, 2),
+                39: (0, 15)
+            },
+            {
+                49: (53, 8),
+                0: (11, 42),
+                42: (0, 7),
+                57: (7, 4),
+            },
+            {
+                88: (18, 7),
+                18: (25, 70),
+            },
+            {
+                45: (77, 23),
+                81: (45, 19),
+                68: (64, 13),
+            },
+            {
+                0: (69, 1),
+                1: (0, 69),
+            },
+        ]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
+
+    def test_almanac_can_be_used_to_map_seed_from_part_two_seven_times(self):
+        """
+        Tests that almanac can be used to map one seed 7 times (humidity to location).
+        """
+        # Arrange
+        expected = {(46, 46)}
+
+        seed = (82, 82)
+        maps = [{
+            50: (98, 2),
+            52: (50, 48)
+        }, {
+            0: (15, 37),
+            37: (52, 2),
+            39: (0, 15)
+        }, {
+            49: (53, 8),
+            0: (11, 42),
+            42: (0, 7),
+            57: (7, 4),
+        }, {
+            88: (18, 7),
+            18: (25, 70),
+        }, {
+            45: (77, 23),
+            81: (45, 19),
+            68: (64, 13),
+        }, {
+            0: (69, 1),
+            1: (0, 69),
+        }, {
+            60: (56, 37),
+            56: (93, 4),
+        }]
+
+        # Act
+        actual = almanac(maps, seed)
+
+        # Assert
+        self.assertSetEqual(
+            actual, expected,
+            f'Expected to get `{expected}`, but got `{actual}`'
+        )
