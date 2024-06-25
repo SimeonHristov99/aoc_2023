@@ -26,11 +26,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `actual_done=expected_done`, but got `{actual_done=}` and `{expected_done=}`',
+            f'Expected `actual_done=expected_done`, but got `{actual_done=}` and `{expected_done=}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_no_overlap_right_leaves_without_changes(self):
@@ -50,12 +50,12 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertIsNone(
             actual_done,
-            f'ERROR: Expected `actual_done=None`, but got `{actual_done=}`',
+            f'Expected `actual_done=None`, but got `{actual_done=}`',
         )
         self.assertListEqual(
             actual_leftover,
             expected_leftover,
-            f'ERROR: Expected `actual_leftover=expected_leftover`, but got `{actual_leftover=}` and `{expected_leftover=}`',
+            f'Expected `actual_leftover=expected_leftover`, but got `{actual_leftover=}` and `{expected_leftover=}`',
         )
 
     def test_move_no_overlap_left_leaves_without_changes(self):
@@ -75,12 +75,12 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertIsNone(
             actual_done,
-            f'ERROR: Expected `actual_done=None`, but got `{actual_done=}`',
+            f'Expected `actual_done=None`, but got `{actual_done=}`',
         )
         self.assertListEqual(
             actual_leftover,
             expected_leftover,
-            f'ERROR: Expected `actual_leftover=expected_leftover`, but got `{actual_leftover=}` and `{expected_leftover=}`',
+            f'Expected `actual_leftover=expected_leftover`, but got `{actual_leftover=}` and `{expected_leftover=}`',
         )
 
     def test_move_overlap_right_results_in_one_done_and_one_to_process(self):
@@ -104,11 +104,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `actual_done=expected_done`, but got `{actual_done=}` and `{expected_done=}`',
+            f'Expected `actual_done=expected_done`, but got `{actual_done=}` and `{expected_done=}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_overlap_right_ending(self):
@@ -130,11 +130,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+            f'Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_overlap_right_edge(self):
@@ -156,11 +156,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+            f'Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_overlap_left_ending(self):
@@ -182,11 +182,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+            f'Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_overlap_left_edge(self):
@@ -208,11 +208,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+            f'Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_overlap_left_results_in_one_done_and_one_to_process(self):
@@ -236,11 +236,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+            f'Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_move_overlap_middle_results_in_one_done_and_two_to_process(self):
@@ -264,11 +264,11 @@ class TestDay05(unittest.TestCase):
         self.assertEqual(
             actual_done,
             expected_done,
-            f'ERROR: Expected `done={expected_done}`, but got `done={actual_done}`',
+            f'Expected `done={expected_done}`, but got `done={actual_done}`',
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'ERROR: Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
         )
 
     def test_apply_map_two_ranges_basic(self):
@@ -287,7 +287,7 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
     def test_apply_map_two_ranges_longer_maps(self):
@@ -306,7 +306,7 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
     def test_apply_map_order_does_not_matter(self):
@@ -326,7 +326,7 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
     def test_apply_map_ranges_cover_line(self):
@@ -345,7 +345,7 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
     def test_apply_map_non_overlapping_leaves_line_unchanged(self):
@@ -365,7 +365,7 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
     def test_move_does_not_produce_invalid_points(self):
@@ -384,7 +384,7 @@ class TestDay05(unittest.TestCase):
         # Assert
         self.assertSetEqual(
             actual, expected,
-            f'ERROR: Expected to get `{expected}`, but got `{actual}`'
+            f'Expected to get `{expected}`, but got `{actual}`'
         )
 
     # def test_apply_map_returns_only_needed_ranges(self):
