@@ -149,39 +149,27 @@ def part1(filename: str) -> int:
     return int(acc)
 
 
-# def part2(filename: str) -> int:
-#     seed_ranges, maps = get_seeds_and_maps(get_lines(filename))
-#     it = iter(seed_ranges)
-#     ranges = list(zip(it, it))
+def part2(filename: str) -> int:
+    seed_ranges, maps = get_seeds_and_maps(get_lines(filename))
+    it = iter(seed_ranges)
+    lines = list(zip(it, it))
 
-#     for range in ranges:
-#         to_process = [range]
+    acc = float('inf')
 
-#         for map in maps:
-#             dones = []
+    for (line_start, line_length) in lines:
+        results = almanac(maps, (line_start, line_start + line_length - 1))
+        locations = [coords[0] for coords in results]
+        acc = min(acc, min(locations))
 
-#             for dest_start, (source_start, length) in map.items():
-#                 to_process_new = []
-#                 for to_process_current in to_process:
-#                     done, to_pr = step(
-#                         to_process_current, source_start,
-#                         source_start + length - 1
-#                     )
-#                     to_process_new.append(to_pr)
-#                     if done:
-#                         dones.append(done)
-
-#             to_process.extend(dones)
-
-#     return 42
+    return int(acc)
 
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day05/sample.txt")}')  # 35
     print(f'Part 1, Input: {part1("aoc_2023/day05/input.txt")}')  # 323142486
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day05/sample.txt")}')  # 46
-    # print(f'Part 2, Input: {part2("aoc_2023/day05/input.txt")}')
+    print(f'Part 2, Sample: {part2("aoc_2023/day05/sample.txt")}')  # 46
+    print(f'Part 2, Input: {part2("aoc_2023/day05/input.txt")}')  # 79874951
 
 
 if __name__ == '__main__':
