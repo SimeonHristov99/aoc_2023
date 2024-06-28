@@ -1,4 +1,9 @@
-import math
+def parse_input(filename: str) -> list[tuple[int, int]]:
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    times = list(map(int, lines[0].split()[1:]))
+    distances = list(map(int, lines[1].split()[1:]))
+    return list(zip(times, distances))
 
 
 def get_bigger_distances(time: int, threshold: int) -> int:
