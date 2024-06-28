@@ -1,3 +1,22 @@
+import math
+
+
+def get_bigger_distances(time: int, threshold: int) -> int:
+    """
+    Returns the number of ways to get a distance larger than a specified threshold.
+
+    Makes use of the formula: `s = v * t`.
+    """
+    acc = 0
+    time_halved = time // 2
+
+    while time_halved >= 0 and time_halved * (time - time_halved) > threshold:
+        acc += 1
+        time_halved -= 1
+
+    return acc * 2 - (1 if time % 2 == 0 else 0)
+
+
 def part1(filename: str) -> int:
     print('Hello, world')
     return 42
