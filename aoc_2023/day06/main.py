@@ -9,6 +9,14 @@ def parse_input(filename: str) -> list[tuple[int, int]]:
     return list(zip(times, distances))
 
 
+def parse_input_part2(filename: str) -> list[tuple[int, int]]:
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    time = int(''.join(lines[0].split(': ')[1].split()))
+    distance = int(''.join(lines[1].split(': ')[1].split()))
+    return time, distance
+
+
 def get_bigger_distances(time: int, threshold: int) -> int:
     """
     Returns the number of ways to get a distance larger than a specified threshold.
