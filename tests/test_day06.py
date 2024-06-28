@@ -1,20 +1,20 @@
 import unittest
 
-from aoc_2023.day06.main import get_bigger_distances, parse_input
+from aoc_2023.day06 import main
 
 
 class TestDay06(unittest.TestCase):
 
-    def test_input_parsing(self):
+    def test_input_parsing_part1(self):
         """
-        Tests that the input can be parsed accordingly.
+        Tests that the input can be parsed according to the requirements of part 1.
         """
         # Arrange
         input_file = 'aoc_2023/day06/sample.txt'
         expected = [(7, 9), (15, 40), (30, 200)]
 
         # Act
-        actual = parse_input(input_file)
+        actual = main.parse_input(input_file)
 
         # Assert
         self.assertListEqual(
@@ -31,7 +31,7 @@ class TestDay06(unittest.TestCase):
         expected = 4
 
         # Act
-        actual = get_bigger_distances(time, threshold)
+        actual = main.get_bigger_distances(time, threshold)
 
         # Assert
         self.assertEqual(
@@ -49,7 +49,7 @@ class TestDay06(unittest.TestCase):
         expected = 8
 
         # Act
-        actual = get_bigger_distances(time, threshold)
+        actual = main.get_bigger_distances(time, threshold)
 
         # Assert
         self.assertEqual(
@@ -67,10 +67,26 @@ class TestDay06(unittest.TestCase):
         expected = 9
 
         # Act
-        actual = get_bigger_distances(time, threshold)
+        actual = main.get_bigger_distances(time, threshold)
 
         # Assert
         self.assertEqual(
             actual, expected,
             f'For {time=} and {threshold=}, expected to get {expected} ways in which to surpass the threshold, but got {actual}.'
+        )
+
+    def test_input_parsing_part2(self):
+        """
+        Tests that the input can be parsed according to the requirements of part 2.
+        """
+        # Arrange
+        input_file = 'aoc_2023/day06/sample.txt'
+        expected = (71530, 940200)
+
+        # Act
+        actual = main.parse_input_part2(input_file)
+
+        # Assert
+        self.assertTupleEqual(
+            actual, expected, f'Expected to get {expected}, but got {actual}.'
         )
