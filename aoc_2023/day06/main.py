@@ -42,16 +42,15 @@ def part1(filename: str) -> int:
 
 
 def part2(filename: str) -> int:
-    print('Hello, world')
-    return 42
+    return get_bigger_distances(*parse_input_part2(filename))
 
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day06/sample.txt")}')  # 288
     print(f'Part 1, Input: {part1("aoc_2023/day06/input.txt")}')  # 293046
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day06/sample.txt")}')
-    # print(f'Part 2, Input: {part2("aoc_2023/day06/input.txt")}')
+    print(f'Part 2, Sample: {part2("aoc_2023/day06/sample.txt")}')  # 71503
+    print(f'Part 2, Input: {part2("aoc_2023/day06/input.txt")}')  # 35150181
 
 
 if __name__ == '__main__':
