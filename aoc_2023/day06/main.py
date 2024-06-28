@@ -1,3 +1,6 @@
+import math
+
+
 def parse_input(filename: str) -> list[tuple[int, int]]:
     with open(filename, 'r') as f:
         lines = f.readlines()
@@ -23,8 +26,11 @@ def get_bigger_distances(time: int, threshold: int) -> int:
 
 
 def part1(filename: str) -> int:
-    print('Hello, world')
-    return 42
+    entries = parse_input(filename)
+    num_bigger_distances = [
+        get_bigger_distances(time, threshold) for time, threshold in entries
+    ]
+    return math.prod(num_bigger_distances)
 
 
 def part2(filename: str) -> int:
@@ -33,11 +39,11 @@ def part2(filename: str) -> int:
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("aoc_2023/day05/sample.txt")}')  # 35
-    # print(f'Part 1, Input: {part1("aoc_2023/day05/input.txt")}')
+    print(f'Part 1, Sample: {part1("aoc_2023/day06/sample.txt")}')  # 288
+    print(f'Part 1, Input: {part1("aoc_2023/day06/input.txt")}')  # 293046
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day05/sample.txt")}')
-    # print(f'Part 2, Input: {part2("aoc_2023/day05/input.txt")}')
+    # print(f'Part 2, Sample: {part2("aoc_2023/day06/sample.txt")}')
+    # print(f'Part 2, Input: {part2("aoc_2023/day06/input.txt")}')
 
 
 if __name__ == '__main__':
