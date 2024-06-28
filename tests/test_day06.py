@@ -1,9 +1,25 @@
 import unittest
 
-from aoc_2023.day06.main import get_bigger_distances
+from aoc_2023.day06.main import get_bigger_distances, parse_input
 
 
 class TestDay06(unittest.TestCase):
+
+    def test_input_parsing(self):
+        """
+        Tests that the input can be parsed accordingly.
+        """
+        # Arrange
+        input_file = 'aoc_2023/day06/sample.txt'
+        expected = [(7, 9), (15, 40), (30, 200)]
+
+        # Act
+        actual = parse_input(input_file)
+
+        # Assert
+        self.assertListEqual(
+            actual, expected, f'Expected to get {expected}, but got {actual}.'
+        )
 
     def test_get_bigger_distances_threshold_v1(self):
         """
