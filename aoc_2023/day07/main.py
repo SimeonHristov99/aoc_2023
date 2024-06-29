@@ -18,44 +18,24 @@ def parse_input(filename: str) -> dict[str, int]:
     return {hand: int(bid) for line in lines for hand, bid in [line.split()]}
 
 
-def is_five_of_a_kind(hand: str) -> bool:
-    return len(set(hand)) == 1
-
-
-def is_four_of_a_kind(hand: str) -> bool:
-    return set(Counter(hand).values()) == {1, 4}
-
-
-def is_full_house(hand: str) -> bool:
-    return set(Counter(hand).values()) == {2, 3}
-
-
-def is_three_of_a_kind(hand: str) -> bool:
-    return sorted(Counter(hand).values()) == [1, 1, 3]
-
-
-def is_two_pair(hand: str) -> bool:
-    return sorted(Counter(hand).values()) == [1, 2, 2]
-
-
-def is_one_pair(hand: str) -> bool:
-    return sorted(Counter(hand).values()) == [1, 1, 1, 2]
-
-
 def card_type(hand: str) -> CardType:
-    if is_five_of_a_kind(hand):
-        return CardType.FIVE_OF_A_KIND
-    if is_four_of_a_kind(hand):
-        return CardType.FOUR_OF_A_KIND
-    if is_full_house(hand):
-        return CardType.FULL_HOUSE
-    if is_three_of_a_kind(hand):
-        return CardType.THREE_OF_A_KIND
-    if is_two_pair(hand):
-        return CardType.TWO_PAIR
-    if is_one_pair(hand):
-        return CardType.ONE_PAIR
-    return CardType.HIGH_CARD
+    distribution = sorted(Counter(hand).values())
+
+    match distribution:
+        case [5]:
+            return CardType.FIVE_OF_A_KIND
+        case [1, 4]:
+            return CardType.FOUR_OF_A_KIND
+        case [2, 3]:
+            return CardType.FULL_HOUSE
+        case [1, 1, 3]:
+            return CardType.THREE_OF_A_KIND
+        case [1, 2, 2]:
+            return CardType.TWO_PAIR
+        case [1, 1, 1, 2]:
+            return CardType.ONE_PAIR
+        case _:
+            return CardType.HIGH_CARD
 
 
 def part1(filename: str) -> int:
