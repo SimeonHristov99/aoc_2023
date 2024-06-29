@@ -284,6 +284,20 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_type_with_joker_high_card_becomes_one_pair(self):
+        """
+        Tests that when `J` is treated as a joker card and there is one `J`, high card becomes one pair.
+        """
+        # Arrange
+        hand = '23J56'
+        expected = main.CardType.ONE_PAIR
+
+        # Act
+        actual = main.card_type(hand, joker=True)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
     # def test_comparator_with_joker(self):
     #     """
     #     Tests that comparing cards works when `J` is treated as a joker card.
