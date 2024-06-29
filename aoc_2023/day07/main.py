@@ -48,7 +48,15 @@ def compare(hand1: str, hand2: str) -> int:
     if type_lhs > type_rhs:
         return 1
 
-    raise NotImplemented('Not implemented!')
+    for v1, v2 in zip(
+        sorted(hand1, reverse=True), sorted(hand2, reverse=True)
+    ):
+        if v1 < v2:
+            return -1
+        if v1 > v2:
+            return 1
+
+    raise NotImplementedError(f'Cards are the same: {hand1}, {hand2}.')
 
 
 def part1(filename: str) -> int:

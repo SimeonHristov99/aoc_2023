@@ -153,20 +153,20 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_compare_equal_types_four_of_a_kind(self):
-    #     """
-    #     Tests whether comparing equal types works for four of a kind.
-    #     """
-    #     # Arrange
-    #     hand1 = '33332'
-    #     hand2 = '2AAAA'
-    #     expected = -1
+    def test_compare_equal_types_four_of_a_kind(self):
+        """
+        Tests whether comparing equal types works for four of a kind.
+        """
+        # Arrange
+        hand1 = '33332'
+        hand2 = '2AAAA'
+        expected = -1
 
-    #     # Act
-    #     actual = main.compare(hand1, hand2)
+        # Act
+        actual = main.compare(hand1, hand2)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_comparator_equal_inputs(self):
     #     """
