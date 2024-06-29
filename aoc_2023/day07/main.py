@@ -48,12 +48,26 @@ def compare(hand1: str, hand2: str) -> int:
     if type_lhs > type_rhs:
         return 1
 
-    for v1, v2 in zip(
-        sorted(hand1, reverse=True), sorted(hand2, reverse=True)
-    ):
-        if v1 < v2:
+    strength = {
+        'A': 1,
+        'K': 2,
+        'Q': 3,
+        'J': 4,
+        'T': 5,
+        '9': 6,
+        '8': 7,
+        '7': 8,
+        '6': 9,
+        '5': 10,
+        '4': 11,
+        '3': 12,
+        '2': 13,
+    }
+
+    for v1, v2 in zip(hand1, hand2):
+        if strength[str(v1)] > strength[str(v2)]:
             return -1
-        if v1 > v2:
+        if strength[str(v1)] < strength[str(v2)]:
             return 1
 
     raise NotImplementedError(f'Cards are the same: {hand1}, {hand2}.')
