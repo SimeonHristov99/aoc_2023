@@ -34,6 +34,10 @@ def is_three_of_a_kind(hand: str) -> bool:
     return set(Counter(hand).values()) == {1, 1, 3}
 
 
+def is_two_pair(hand: str) -> bool:
+    return set(Counter(hand).values()) == {1, 2, 2}
+
+
 def card_type(hand: str) -> CardType:
     if is_five_of_a_kind(hand):
         return CardType.FIVE_OF_A_KIND
@@ -43,6 +47,8 @@ def card_type(hand: str) -> CardType:
         return CardType.FULL_HOUSE
     if is_three_of_a_kind(hand):
         return CardType.THREE_OF_A_KIND
+    if is_two_pair(hand):
+        return CardType.TWO_PAIR
     return CardType.HIGH_CARD
 
 

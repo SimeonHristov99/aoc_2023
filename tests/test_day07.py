@@ -81,19 +81,19 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_type_two_pair(self):
-    #     """
-    #     Tests whether recognizing two pair works.
-    #     """
-    #     # Arrange
-    #     hand = '23432'
-    #     expected = main.CardType.TWO_PAIR
+    def test_type_two_pair(self):
+        """
+        Tests whether recognizing two pair works.
+        """
+        # Arrange
+        hand = '23432'
+        expected = main.CardType.TWO_PAIR
 
-    #     # Act
-    #     actual = main.card_type(hand)
+        # Act
+        actual = main.card_type(hand)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_type_one_pair(self):
     #     """
