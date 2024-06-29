@@ -53,19 +53,19 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_type_full_house(self):
-    #     """
-    #     Tests whether recognizing full house works.
-    #     """
-    #     # Arrange
-    #     hand = '23332'
-    #     expected = main.CardType.FULL_HOUSE
+    def test_type_full_house(self):
+        """
+        Tests whether recognizing full house works.
+        """
+        # Arrange
+        hand = '23332'
+        expected = main.CardType.FULL_HOUSE
 
-    #     # Act
-    #     actual = main.card_type(hand)
+        # Act
+        actual = main.card_type(hand)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_type_three_of_kind(self):
     #     """

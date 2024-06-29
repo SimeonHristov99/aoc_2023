@@ -26,11 +26,17 @@ def is_four_of_a_kind(hand: str) -> bool:
     return set(Counter(hand).values()) == {1, 4}
 
 
+def is_full_house(hand: str) -> bool:
+    return set(Counter(hand).values()) == {2, 3}
+
+
 def card_type(hand: str) -> CardType:
     if is_five_of_a_kind(hand):
         return CardType.FIVE_OF_A_KIND
     if is_four_of_a_kind(hand):
         return CardType.FOUR_OF_A_KIND
+    if is_full_house(hand):
+        return CardType.FULL_HOUSE
     return CardType.HIGH_CARD
 
 
