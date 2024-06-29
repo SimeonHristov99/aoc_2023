@@ -38,6 +38,10 @@ def is_two_pair(hand: str) -> bool:
     return sorted(Counter(hand).values()) == [1, 2, 2]
 
 
+def is_one_pair(hand: str) -> bool:
+    return sorted(Counter(hand).values()) == [1, 1, 1, 2]
+
+
 def card_type(hand: str) -> CardType:
     if is_five_of_a_kind(hand):
         return CardType.FIVE_OF_A_KIND
@@ -49,6 +53,8 @@ def card_type(hand: str) -> CardType:
         return CardType.THREE_OF_A_KIND
     if is_two_pair(hand):
         return CardType.TWO_PAIR
+    if is_one_pair(hand):
+        return CardType.ONE_PAIR
     return CardType.HIGH_CARD
 
 
