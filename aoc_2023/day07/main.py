@@ -1,3 +1,9 @@
+def parse_input(filename: str) -> dict[str, int]:
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    return {hand: int(bid) for line in lines for hand, bid in [line.split()]}
+
+
 def part1(filename: str) -> int:
     return 42
 
