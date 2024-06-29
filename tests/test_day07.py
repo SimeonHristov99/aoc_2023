@@ -168,20 +168,16 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_comparator_equal_inputs(self):
-    #     """
-    #     Tests that comparing cards returns 0 when the inputs are equal.
-    #     """
-    #     # Arrange
-    #     hand1 = '32T3K'
-    #     hand2 = '32T3K'
-    #     expected = 0
+    def test_comparator_raises_on_equal_inputs(self):
+        """
+        Tests that comparing identical hands raises a `NotImplementedError` since this cannot happen.
+        """
+        # Arrange
+        hand1 = '32T3K'
+        hand2 = '32T3K'
 
-    #     # Act
-    #     actual = main.compare(hand1, hand2)
-
-    #     # Assert
-    #     self.assertEqual(expected, actual)
+        # Act & Assert
+        self.assertRaises(NotImplementedError, main.compare, hand1, hand2)
 
     # def test_comparator_v1(self):
     #     """
