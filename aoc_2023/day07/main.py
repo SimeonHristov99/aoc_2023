@@ -29,8 +29,8 @@ def card_type(hand: str, joker=False) -> CardType:
         case [1, 4]:
             return CardType.FOUR_OF_A_KIND
         case [2, 3]:
-            # if 'J' in hand:
-            #     return CardType.FIVE_OF_A_KIND
+            if 'J' in hand:
+                return CardType.FIVE_OF_A_KIND
             return CardType.FULL_HOUSE
         case [1, 1, 3]:
             if joker and 'J' in hand:
