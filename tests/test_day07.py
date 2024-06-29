@@ -312,6 +312,20 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_type_with_joker_four_of_a_kind_becomes_five_of_a_kind(self):
+        """
+        Tests that when `J` is treated as a joker card and there is one `J`, four of a kind becomes five of a kind.
+        """
+        # Arrange
+        hand = 'AAJAA'
+        expected = main.CardType.FIVE_OF_A_KIND
+
+        # Act
+        actual = main.card_type(hand, joker=True)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
     # def test_comparator_with_joker(self):
     #     """
     #     Tests that comparing cards works when `J` is treated as a joker card.

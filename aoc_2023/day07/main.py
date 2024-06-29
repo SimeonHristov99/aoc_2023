@@ -19,7 +19,7 @@ def parse_input(filename: str) -> dict[str, int]:
     return {hand: int(bid) for line in lines for hand, bid in [line.split()]}
 
 
-def card_type(hand: str, joker=False) -> CardType:
+def card_type(hand: str, joker: bool = False) -> CardType:
     counts = Counter(hand)
     distribution = sorted(counts.values())
 
@@ -27,6 +27,8 @@ def card_type(hand: str, joker=False) -> CardType:
         case [5]:
             return CardType.FIVE_OF_A_KIND
         case [1, 4]:
+            if 'J' in hand:
+                return CardType.FIVE_OF_A_KIND
             return CardType.FOUR_OF_A_KIND
         case [2, 3]:
             if 'J' in hand:
