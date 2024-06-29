@@ -25,19 +25,19 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_type_five_of_a_kind(self):
-    #     """
-    #     Tests whether recognizing five of a kind works.
-    #     """
-    #     # Arrange
-    #     hand = 'AAAAA'
-    #     expected = main.CardType.FIVE_OF_A_KIND
+    def test_type_five_of_a_kind(self):
+        """
+        Tests whether recognizing five of a kind works.
+        """
+        # Arrange
+        hand = 'AAAAA'
+        expected = main.CardType.FIVE_OF_A_KIND
 
-    #     # Act
-    #     actual = main.type(hand)
+        # Act
+        actual = main.card_type(hand)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_type_four_of_a_kind(self):
     #     """
@@ -48,7 +48,7 @@ class TestDay07(unittest.TestCase):
     #     expected = main.CardType.FOUR_OF_A_KIND
 
     #     # Act
-    #     actual = main.type(hand)
+    #     actual = main.card_type(hand)
 
     #     # Assert
     #     self.assertEqual(actual, expected)
@@ -62,7 +62,7 @@ class TestDay07(unittest.TestCase):
     #     expected = main.CardType.FULL_HOUSE
 
     #     # Act
-    #     actual = main.type(hand)
+    #     actual = main.card_type(hand)
 
     #     # Assert
     #     self.assertEqual(actual, expected)
@@ -76,7 +76,7 @@ class TestDay07(unittest.TestCase):
     #     expected = main.CardType.THREE_OF_A_KIND
 
     #     # Act
-    #     actual = main.type(hand)
+    #     actual = main.card_type(hand)
 
     #     # Assert
     #     self.assertEqual(actual, expected)
@@ -90,7 +90,7 @@ class TestDay07(unittest.TestCase):
     #     expected = main.CardType.TWO_PAIR
 
     #     # Act
-    #     actual = main.type(hand)
+    #     actual = main.card_type(hand)
 
     #     # Assert
     #     self.assertEqual(actual, expected)
@@ -104,7 +104,7 @@ class TestDay07(unittest.TestCase):
     #     expected = main.CardType.ONE_PAIR
 
     #     # Act
-    #     actual = main.type(hand)
+    #     actual = main.card_type(hand)
 
     #     # Assert
     #     self.assertEqual(actual, expected)
@@ -118,7 +118,7 @@ class TestDay07(unittest.TestCase):
     #     expected = main.CardType.HIGH_CARD
 
     #     # Act
-    #     actual = main.type(hand)
+    #     actual = main.card_type(hand)
 
     #     # Assert
     #     self.assertEqual(actual, expected)
