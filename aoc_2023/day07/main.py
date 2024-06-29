@@ -39,6 +39,8 @@ def card_type(hand: str, joker=False) -> CardType:
         case [1, 2, 2]:
             if joker and counts['J'] == 2:
                 return CardType.FOUR_OF_A_KIND
+            if joker and counts['J'] == 1:
+                return CardType.THREE_OF_A_KIND
             return CardType.TWO_PAIR
         case [1, 1, 1, 2]:
             return CardType.ONE_PAIR
