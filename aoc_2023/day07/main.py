@@ -74,6 +74,10 @@ def compare(hand1: str, hand2: str) -> int:
     raise NotImplementedError(f'Cards are the same: {hand1}, {hand2}.')
 
 
+def order_by_rank(cards: list[str]) -> list[str]:
+    return sorted(cards, key=functools.cmp_to_key(compare))
+
+
 def part1(filename: str) -> int:
     hand_to_bid = parse_input(filename)
     sorted_hands = sorted(hand_to_bid, key=functools.cmp_to_key(compare))
@@ -89,7 +93,7 @@ def part2(filename: str) -> int:
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day07/sample.txt")}')  # 6440
-    print(f'Part 1, Input: {part1("aoc_2023/day07/input.txt")}')  # 246163188
+    # print(f'Part 1, Input: {part1("aoc_2023/day07/input.txt")}')  # 246163188
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day07/sample.txt")}')  #
     # print(f'Part 2, Input: {part2("aoc_2023/day07/input.txt")}')  #
