@@ -43,6 +43,8 @@ def card_type(hand: str, joker=False) -> CardType:
                 return CardType.THREE_OF_A_KIND
             return CardType.TWO_PAIR
         case [1, 1, 1, 2]:
+            if joker and 'J' in hand:
+                return CardType.THREE_OF_A_KIND
             return CardType.ONE_PAIR
         case _:
             return CardType.HIGH_CARD
