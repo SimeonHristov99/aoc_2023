@@ -31,11 +31,11 @@ def is_full_house(hand: str) -> bool:
 
 
 def is_three_of_a_kind(hand: str) -> bool:
-    return set(Counter(hand).values()) == {1, 1, 3}
+    return sorted(Counter(hand).values()) == [1, 1, 3]
 
 
 def is_two_pair(hand: str) -> bool:
-    return set(Counter(hand).values()) == {1, 2, 2}
+    return sorted(Counter(hand).values()) == [1, 2, 2]
 
 
 def card_type(hand: str) -> CardType:
