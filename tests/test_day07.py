@@ -123,6 +123,36 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_full_house_stronger_than_three_of_a_kind(self):
+        """
+        Tests that comparing unequal types favors the stronger type.
+        """
+        # Arrange
+        hand1 = '23332'
+        hand2 = 'TTT98'
+        expected = 1
+
+        # Act
+        actual = main.compare(hand1, hand2)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_three_of_a_kind_weaker_than_full_house(self):
+        """
+        Tests that comparing unequal types favors the stronger type.
+        """
+        # Arrange
+        hand1 = 'TTT98'
+        hand2 = '23332'
+        expected = -1
+
+        # Act
+        actual = main.compare(hand1, hand2)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
     # def test_compare_equal_types_four_of_a_kind(self):
     #     """
     #     Tests whether comparing equal types works for four of a kind.

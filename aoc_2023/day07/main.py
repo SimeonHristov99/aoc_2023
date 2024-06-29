@@ -38,6 +38,19 @@ def card_type(hand: str) -> CardType:
             return CardType.HIGH_CARD
 
 
+def compare(hand1: str, hand2: str) -> int:
+    type_lhs = card_type(hand1)
+    type_rhs = card_type(hand2)
+
+    if type_lhs < type_rhs:
+        return -1
+
+    if type_lhs > type_rhs:
+        return 1
+
+    raise NotImplemented('Not implemented!')
+
+
 def part1(filename: str) -> int:
     return 42
 
