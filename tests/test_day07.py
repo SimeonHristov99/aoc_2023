@@ -230,7 +230,7 @@ class TestDay07(unittest.TestCase):
 
     def test_type_with_joker_two_pair_four_of_a_kind_when_two_jokers(self):
         """
-        Tests that when `J` is treated as a joker card and there are two `J`s, two pair becomes four of a kind.
+        Tests that when `J` is treated as a joker card two pair becomes four of a kind when there are two `J`s.
         """
         # Arrange
         hand = 'KTJJT'
@@ -244,7 +244,7 @@ class TestDay07(unittest.TestCase):
 
     def test_type_with_joker_two_pair_three_of_a_kind_one_joker(self):
         """
-        Tests that when `J` is treated as a joker card and there is one `J`, two pair becomes three of a kind.
+        Tests that when `J` is treated as a joker card two pair becomes three of a kind when there is one `J`.
         """
         # Arrange
         hand = 'KKJTT'
@@ -258,7 +258,7 @@ class TestDay07(unittest.TestCase):
 
     def test_type_with_joker_three_of_a_kind_full_house_when_one_joker(self):
         """
-        Tests that when `J` is treated as a joker card and there is one `J`, three of a kind becomes full house.
+        Tests that when `J` is treated as a joker card three of a kind becomes full house when there is one `J`.
         """
         # Arrange
         hand = 'KTJTT'
@@ -272,7 +272,7 @@ class TestDay07(unittest.TestCase):
 
     def test_type_with_joker_one_pair_three_of_a_kind(self):
         """
-        Tests that when `J` is treated as a joker card and there is one `J`, one pair becomes three of a kind.
+        Tests that when `J` is treated as a joker card one pair becomes three of a kind where there is one `J`.
         """
         # Arrange
         hand = 'A2JA4'
@@ -286,7 +286,7 @@ class TestDay07(unittest.TestCase):
 
     def test_type_with_joker_high_card_becomes_one_pair(self):
         """
-        Tests that when `J` is treated as a joker card and there is one `J`, high card becomes one pair.
+        Tests that when `J` is treated as a joker card high card becomes one pair when there is one `J`.
         """
         # Arrange
         hand = '23J56'
@@ -300,31 +300,37 @@ class TestDay07(unittest.TestCase):
 
     def test_type_with_joker_full_house_becomes_five_of_a_kind(self):
         """
-        Tests that when `J` is treated as a joker card and there are two `J`s, full house becomes five of a kind.
+        Tests that when `J` is treated as a joker card, full house becomes five of a kind.
         """
         # Arrange
-        hand = 'J333J'
+        hand1 = 'J333J'
+        hand2 = '3JJJ3'
         expected = main.CardType.FIVE_OF_A_KIND
 
         # Act
-        actual = main.card_type(hand, joker=True)
+        actual1 = main.card_type(hand1, joker=True)
+        actual2 = main.card_type(hand2, joker=True)
 
         # Assert
-        self.assertEqual(actual, expected)
+        self.assertEqual(actual1, expected)
+        self.assertEqual(actual2, expected)
 
     def test_type_with_joker_four_of_a_kind_becomes_five_of_a_kind(self):
         """
-        Tests that when `J` is treated as a joker card and there is one `J`, four of a kind becomes five of a kind.
+        Tests that when `J` is treated as a joker card, four of a kind becomes five of a kind.
         """
         # Arrange
-        hand = 'AAJAA'
+        hand1 = 'AAJAA'
+        hand2 = 'JJAJJ'
         expected = main.CardType.FIVE_OF_A_KIND
 
         # Act
-        actual = main.card_type(hand, joker=True)
+        actual1 = main.card_type(hand1, joker=True)
+        actual2 = main.card_type(hand2, joker=True)
 
         # Assert
-        self.assertEqual(actual, expected)
+        self.assertEqual(actual1, expected)
+        self.assertEqual(actual2, expected)
 
     # def test_comparator_with_joker(self):
     #     """
