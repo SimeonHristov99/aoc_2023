@@ -19,8 +19,9 @@ def parse_input(filename: str) -> dict[str, int]:
     return {hand: int(bid) for line in lines for hand, bid in [line.split()]}
 
 
-def card_type(hand: str) -> CardType:
-    distribution = sorted(Counter(hand).values())
+def card_type(hand: str, joker=False) -> CardType:
+    counts = Counter(hand)
+    distribution = sorted(counts.values())
 
     match distribution:
         case [5]:
@@ -28,10 +29,16 @@ def card_type(hand: str) -> CardType:
         case [1, 4]:
             return CardType.FOUR_OF_A_KIND
         case [2, 3]:
+            # if 'J' in hand:
+            #     return CardType.FIVE_OF_A_KIND
             return CardType.FULL_HOUSE
         case [1, 1, 3]:
+            # if 'J' in hand:
+            #     return CardType.FOUR_OF_A_KIND
             return CardType.THREE_OF_A_KIND
         case [1, 2, 2]:
+            if joker and counts['J'] == 2:
+                return CardType.FOUR_OF_A_KIND
             return CardType.TWO_PAIR
         case [1, 1, 1, 2]:
             return CardType.ONE_PAIR
@@ -39,7 +46,7 @@ def card_type(hand: str) -> CardType:
             return CardType.HIGH_CARD
 
 
-def compare(hand1: str, hand2: str) -> int:
+def compare(hand1: str, hand2: str, joker=False) -> int:
     type_lhs = card_type(hand1)
     type_rhs = card_type(hand2)
 
@@ -65,7 +72,14 @@ def compare(hand1: str, hand2: str) -> int:
         '2': 13,
     }
 
+    if joker:
+        strength['J'] = 14
+
     for v1, v2 in zip(hand1, hand2):
+        if v1 == 'J' and v2 != 'J':
+            return 1
+        if v1 != 'J' and v2 == 'J':
+            return -1
         if strength[str(v1)] > strength[str(v2)]:
             return -1
         if strength[str(v1)] < strength[str(v2)]:
@@ -74,7 +88,8 @@ def compare(hand1: str, hand2: str) -> int:
     raise NotImplementedError(f'Cards are the same: {hand1}, {hand2}.')
 
 
-def order_by_rank(cards: list[str]) -> list[str]:
+def order_by_rank(cards: list[str], joker=False) -> list[str]:
+
     return sorted(cards, key=functools.cmp_to_key(compare))
 
 
@@ -92,10 +107,10 @@ def part2(filename: str) -> int:
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("aoc_2023/day07/sample.txt")}')  # 6440
-    # print(f'Part 1, Input: {part1("aoc_2023/day07/input.txt")}')  # 246163188
+    # print(f'Part 1, Sample: {part1("aoc_2023/day07/sample.txt")}')  # 6440
+    # print(f'Part 1, Input: {part1("aoc_2023/day07/input.txt")}')  # 246_163_188
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day07/sample.txt")}')  #
+    print(f'Part 2, Sample: {part2("aoc_2023/day07/sample.txt")}')  # 5905
     # print(f'Part 2, Input: {part2("aoc_2023/day07/input.txt")}')  #
 
 
