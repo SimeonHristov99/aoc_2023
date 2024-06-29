@@ -228,13 +228,27 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertListEqual(actual, expected)
 
-    def test_type_with_joker_two_pair_four_of_a_kind(self):
+    def test_type_with_joker_two_pair_four_of_a_kind_when_two_jokers(self):
         """
-        Tests that when `J` is treated as a joker card, two pair becomes four of a kind.
+        Tests that when `J` is treated as a joker card and there are two `J`s, two pair becomes four of a kind.
         """
         # Arrange
         hand = 'KTJJT'
         expected = main.CardType.FOUR_OF_A_KIND
+
+        # Act
+        actual = main.card_type(hand, joker=True)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_type_with_joker_three_of_a_kind_full_house_when_one_joker(self):
+        """
+        Tests that when `J` is treated as a joker card and there is one `J`, three of a kind becomes full house.
+        """
+        # Arrange
+        hand = 'KTJTT'
+        expected = main.CardType.FULL_HOUSE
 
         # Act
         actual = main.card_type(hand, joker=True)
