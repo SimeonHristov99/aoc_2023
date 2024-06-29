@@ -179,305 +179,40 @@ class TestDay07(unittest.TestCase):
         # Act & Assert
         self.assertRaises(NotImplementedError, main.compare, hand1, hand2)
 
-    def test_comparator_v1(self):
+    def test_comparator(self):
         """
-        Tests that comparing cards works - variant 1.
-        """
-        # Arrange
-        hand1 = '32T3K'
-        hand2 = 'T55J5'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v2(self):
-        """
-        Tests that comparing cards works - variant 2.
+        Tests that comparing cards works.
         """
         # Arrange
-        hand1 = '32T3K'
-        hand2 = 'KK677'
-        expected = -1
+        trials = [
+            ('32T3K', 'T55J5', -1),
+            ('32T3K', 'KK677', -1),
+            ('32T3K', 'KTJJT', -1),
+            ('32T3K', 'QQQJA', -1),
+            ('T55J5', '32T3K', 1),
+            ('T55J5', 'KK677', 1),
+            ('T55J5', 'KTJJT', 1),
+            ('T55J5', 'QQQJA', -1),
+            ('KK677', '32T3K', 1),
+            ('KK677', 'T55J5', -1),
+            ('KK677', 'KTJJT', 1),
+            ('KK677', 'QQQJA', -1),
+            ('KTJJT', '32T3K', 1),
+            ('KTJJT', 'T55J5', -1),
+            ('KTJJT', 'KK677', -1),
+            ('KTJJT', 'QQQJA', -1),
+            ('QQQJA', '32T3K', 1),
+            ('QQQJA', 'T55J5', 1),
+            ('QQQJA', 'KK677', 1),
+            ('QQQJA', 'KTJJT', 1),
+        ]
 
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v3(self):
-        """
-        Tests that comparing cards works - variant 3.
-        """
-        # Arrange
-        hand1 = '32T3K'
-        hand2 = 'KTJJT'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v4(self):
-        """
-        Tests that comparing cards works - variant 4.
-        """
-        # Arrange
-        hand1 = '32T3K'
-        hand2 = 'QQQJA'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v5(self):
-        """
-        Tests that comparing cards works - variant 5.
-        """
-        # Arrange
-        hand1 = 'T55J5'
-        hand2 = '32T3K'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v6(self):
-        """
-        Tests that comparing cards works - variant 6.
-        """
-        # Arrange
-        hand1 = 'T55J5'
-        hand2 = 'KK677'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v7(self):
-        """
-        Tests that comparing cards works - variant 7.
-        """
-        # Arrange
-        hand1 = 'T55J5'
-        hand2 = 'KTJJT'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v8(self):
-        """
-        Tests that comparing cards works - variant 8.
-        """
-        # Arrange
-        hand1 = 'T55J5'
-        hand2 = 'QQQJA'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v9(self):
-        """
-        Tests that comparing cards works - variant 9.
-        """
-        # Arrange
-        hand1 = 'KK677'
-        hand2 = '32T3K'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v10(self):
-        """
-        Tests that comparing cards works - variant 10.
-        """
-        # Arrange
-        hand1 = 'KK677'
-        hand2 = 'T55J5'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v11(self):
-        """
-        Tests that comparing cards works - variant 11.
-        """
-        # Arrange
-        hand1 = 'KK677'
-        hand2 = 'KTJJT'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v12(self):
-        """
-        Tests that comparing cards works - variant 12.
-        """
-        # Arrange
-        hand1 = 'KK677'
-        hand2 = 'QQQJA'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v13(self):
-        """
-        Tests that comparing cards works - variant 13.
-        """
-        # Arrange
-        hand1 = 'KTJJT'
-        hand2 = '32T3K'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v14(self):
-        """
-        Tests that comparing cards works - variant 14.
-        """
-        # Arrange
-        hand1 = 'KTJJT'
-        hand2 = 'T55J5'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v15(self):
-        """
-        Tests that comparing cards works - variant 15.
-        """
-        # Arrange
-        hand1 = 'KTJJT'
-        hand2 = 'KK677'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v16(self):
-        """
-        Tests that comparing cards works - variant 16.
-        """
-        # Arrange
-        hand1 = 'KTJJT'
-        hand2 = 'QQQJA'
-        expected = -1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v17(self):
-        """
-        Tests that comparing cards works - variant 17.
-        """
-        # Arrange
-        hand1 = 'QQQJA'
-        hand2 = '32T3K'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v18(self):
-        """
-        Tests that comparing cards works - variant 18.
-        """
-        # Arrange
-        hand1 = 'QQQJA'
-        hand2 = 'T55J5'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v19(self):
-        """
-        Tests that comparing cards works - variant 19.
-        """
-        # Arrange
-        hand1 = 'QQQJA'
-        hand2 = 'KK677'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
-
-    def test_comparator_v20(self):
-        """
-        Tests that comparing cards works - variant 20.
-        """
-        # Arrange
-        hand1 = 'QQQJA'
-        hand2 = 'KTJJT'
-        expected = 1
-
-        # Act
-        actual = main.compare(hand1, hand2)
-
-        # Assert
-        self.assertEqual(expected, actual)
+        # Act & Assert
+        for hand1, hand2, expected in trials:
+            self.assertEqual(
+                main.compare(hand1, hand2), expected,
+                f'Expected {expected} for {hand1=} and {hand2=}.'
+            )
 
     # def test_order_by_rank(self):
     #     """
