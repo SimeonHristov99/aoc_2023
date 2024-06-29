@@ -214,16 +214,16 @@ class TestDay07(unittest.TestCase):
                 f'Expected {expected} for {hand1=} and {hand2=}.'
             )
 
-    # def test_order_by_rank(self):
-    #     """
-    #     Tests that ordering by rank works.
-    #     """
-    #     # Arrange
-    #     cards = ['32T3K', 'T55J5', 'KK677', 'KTJJT', 'QQQJA']
-    #     expected = ['32T3K', 'KTJJT', 'KK677', 'T55J5', 'QQQJA']
+    def test_order_by_rank(self):
+        """
+        Tests that ordering by rank works.
+        """
+        # Arrange
+        cards = ['32T3K', 'T55J5', 'KK677', 'KTJJT', 'QQQJA']
+        expected = ['32T3K', 'KTJJT', 'KK677', 'T55J5', 'QQQJA']
 
-    #     # Act
-    #     actual = main.order_by_rank(cards)
+        # Act
+        actual = main.order_by_rank(cards)
 
-    #     # Assert
-    #     self.assertListEqual(actual, expected)
+        # Assert
+        self.assertListEqual(actual, expected)

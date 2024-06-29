@@ -1,5 +1,6 @@
 import enum
-from typing import Counter
+import functools
+from collections import Counter
 
 
 class CardType(enum.IntEnum):
@@ -71,6 +72,10 @@ def compare(hand1: str, hand2: str) -> int:
             return 1
 
     raise NotImplementedError(f'Cards are the same: {hand1}, {hand2}.')
+
+
+def order_by_rank(cards: list[str]) -> list[str]:
+    return sorted(cards, key=functools.cmp_to_key(compare))
 
 
 def part1(filename: str) -> int:
