@@ -67,19 +67,19 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_type_three_of_kind(self):
-    #     """
-    #     Tests whether recognizing three of a kind works.
-    #     """
-    #     # Arrange
-    #     hand = 'TTT98'
-    #     expected = main.CardType.THREE_OF_A_KIND
+    def test_type_three_of_kind(self):
+        """
+        Tests whether recognizing three of a kind works.
+        """
+        # Arrange
+        hand = 'TTT98'
+        expected = main.CardType.THREE_OF_A_KIND
 
-    #     # Act
-    #     actual = main.card_type(hand)
+        # Act
+        actual = main.card_type(hand)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_type_two_pair(self):
     #     """
