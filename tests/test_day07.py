@@ -39,19 +39,19 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_type_four_of_a_kind(self):
-    #     """
-    #     Tests whether recognizing four of a kind works.
-    #     """
-    #     # Arrange
-    #     hand = 'AA8AA'
-    #     expected = main.CardType.FOUR_OF_A_KIND
+    def test_type_four_of_a_kind(self):
+        """
+        Tests whether recognizing four of a kind works.
+        """
+        # Arrange
+        hand = 'AA8AA'
+        expected = main.CardType.FOUR_OF_A_KIND
 
-    #     # Act
-    #     actual = main.card_type(hand)
+        # Act
+        actual = main.card_type(hand)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_type_full_house(self):
     #     """

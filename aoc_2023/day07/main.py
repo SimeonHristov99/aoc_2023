@@ -1,4 +1,5 @@
 import enum
+from typing import Counter
 
 
 class CardType(enum.IntEnum):
@@ -21,10 +22,15 @@ def is_five_of_a_kind(hand: str) -> bool:
     return len(set(hand)) == 1
 
 
+def is_four_of_a_kind(hand: str) -> bool:
+    return set(Counter(hand).values()) == {1, 4}
+
+
 def card_type(hand: str) -> CardType:
     if is_five_of_a_kind(hand):
         return CardType.FIVE_OF_A_KIND
-
+    if is_four_of_a_kind(hand):
+        return CardType.FOUR_OF_A_KIND
     return CardType.HIGH_CARD
 
 
