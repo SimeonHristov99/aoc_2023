@@ -54,7 +54,7 @@ def card_type(hand: str, joker: bool = False) -> CardType:
             return CardType.HIGH_CARD
 
 
-def compare(hand1: str, hand2: str, joker=False) -> int:
+def compare(hand1: str, hand2: str, joker: bool = False) -> int:
     type_lhs = card_type(hand1)
     type_rhs = card_type(hand2)
 
@@ -84,10 +84,6 @@ def compare(hand1: str, hand2: str, joker=False) -> int:
         strength['J'] = 14
 
     for v1, v2 in zip(hand1, hand2):
-        if v1 == 'J' and v2 != 'J':
-            return 1
-        if v1 != 'J' and v2 == 'J':
-            return -1
         if strength[str(v1)] > strength[str(v2)]:
             return -1
         if strength[str(v1)] < strength[str(v2)]:
