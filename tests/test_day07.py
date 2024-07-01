@@ -242,13 +242,13 @@ class TestDay07(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_type_with_joker_two_pair_three_of_a_kind_one_joker(self):
+    def test_type_with_joker_two_pair_full_house_one_joker(self):
         """
-        Tests that when `J` is treated as a joker card two pair becomes three of a kind when there is one `J`.
+        Tests that when `J` is treated as a joker card two pair becomes full house when there is one `J`.
         """
         # Arrange
         hand = 'KKJTT'
-        expected = main.CardType.THREE_OF_A_KIND
+        expected = main.CardType.FULL_HOUSE
 
         # Act
         actual = main.card_type(hand, joker=True)
