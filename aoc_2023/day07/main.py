@@ -55,8 +55,8 @@ def card_type(hand: str, joker: bool = False) -> CardType:
 
 
 def compare(hand1: str, hand2: str, joker: bool = False) -> int:
-    type_lhs = card_type(hand1)
-    type_rhs = card_type(hand2)
+    type_lhs = card_type(hand1, joker)
+    type_rhs = card_type(hand2, joker)
 
     if type_lhs < type_rhs:
         return -1
