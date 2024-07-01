@@ -101,7 +101,7 @@ def order_by_rank(cards: list[str], joker: bool = False) -> list[str]:
 
 def part1(filename: str) -> int:
     hand_to_bid = parse_input(filename)
-    sorted_hands = sorted(hand_to_bid, key=functools.cmp_to_key(compare))
+    sorted_hands = order_by_rank(hand_to_bid)
     acc = 0
     for pos, hand in enumerate(sorted_hands, start=1):
         acc += hand_to_bid[hand] * pos
