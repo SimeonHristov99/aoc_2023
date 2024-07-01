@@ -315,6 +315,23 @@ class TestDay07(unittest.TestCase):
         self.assertEqual(actual1, expected)
         self.assertEqual(actual2, expected)
 
+    def test_type_without_joker_full_house_does_not_change(self):
+        """
+        Tests that when `J` is not treated as a joker card, full house does not change.
+        """
+        # Arrange
+        hand1 = 'J333J'
+        hand2 = '3JJJ3'
+        expected = main.CardType.FULL_HOUSE
+
+        # Act
+        actual1 = main.card_type(hand1)
+        actual2 = main.card_type(hand2)
+
+        # Assert
+        self.assertEqual(actual1, expected)
+        self.assertEqual(actual2, expected)
+
     def test_type_with_joker_four_of_a_kind_becomes_five_of_a_kind(self):
         """
         Tests that when `J` is treated as a joker card, four of a kind becomes five of a kind.
@@ -327,6 +344,23 @@ class TestDay07(unittest.TestCase):
         # Act
         actual1 = main.card_type(hand1, joker=True)
         actual2 = main.card_type(hand2, joker=True)
+
+        # Assert
+        self.assertEqual(actual1, expected)
+        self.assertEqual(actual2, expected)
+
+    def test_type_without_joker_four_of_a_kind_does_not_change(self):
+        """
+        Tests that when `J` is not treated as a joker card, four of a kind does not change.
+        """
+        # Arrange
+        hand1 = 'AAJAA'
+        hand2 = 'JJAJJ'
+        expected = main.CardType.FOUR_OF_A_KIND
+
+        # Act
+        actual1 = main.card_type(hand1)
+        actual2 = main.card_type(hand2)
 
         # Assert
         self.assertEqual(actual1, expected)
