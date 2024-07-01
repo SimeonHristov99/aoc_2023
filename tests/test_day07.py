@@ -262,7 +262,7 @@ class TestDay07(unittest.TestCase):
         """
         # Arrange
         hand = 'KTJTT'
-        expected = main.CardType.FULL_HOUSE
+        expected = main.CardType.FOUR_OF_A_KIND
 
         # Act
         actual = main.card_type(hand, joker=True)
