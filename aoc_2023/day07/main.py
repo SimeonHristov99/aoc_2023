@@ -92,9 +92,11 @@ def compare(hand1: str, hand2: str, joker: bool = False) -> int:
     raise NotImplementedError(f'Cards are the same: {hand1}, {hand2}.')
 
 
-def order_by_rank(cards: list[str], joker=False) -> list[str]:
-
-    return sorted(cards, key=functools.cmp_to_key(compare))
+def order_by_rank(cards: list[str], joker: bool = False) -> list[str]:
+    return sorted(
+        cards,
+        key=functools.cmp_to_key(functools.partial(compare, joker=joker))
+    )
 
 
 def part1(filename: str) -> int:
