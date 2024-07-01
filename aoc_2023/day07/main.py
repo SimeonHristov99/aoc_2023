@@ -109,15 +109,20 @@ def part1(filename: str) -> int:
 
 
 def part2(filename: str) -> int:
-    return 42
+    hand_to_bid = parse_input(filename)
+    hand_to_bid_sorted = order_by_rank(hand_to_bid, joker=True)
+    acc = 0
+    for pos, hand in enumerate(hand_to_bid_sorted, start=1):
+        acc += hand_to_bid[hand] * pos
+    return acc
 
 
 def main() -> None:
-    # print(f'Part 1, Sample: {part1("aoc_2023/day07/sample.txt")}')  # 6440
-    # print(f'Part 1, Input: {part1("aoc_2023/day07/input.txt")}')  # 246_163_188
+    print(f'Part 1, Sample: {part1("aoc_2023/day07/sample.txt")}')  # 6440
+    print(f'Part 1, Input: {part1("aoc_2023/day07/input.txt")}')  # 246163188
 
     print(f'Part 2, Sample: {part2("aoc_2023/day07/sample.txt")}')  # 5905
-    # print(f'Part 2, Input: {part2("aoc_2023/day07/input.txt")}')  #
+    print(f'Part 2, Input: {part2("aoc_2023/day07/input.txt")}')  # 245794069
 
 
 if __name__ == '__main__':
