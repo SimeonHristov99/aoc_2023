@@ -367,16 +367,16 @@ class TestDay07(unittest.TestCase):
                 f'Expected {expected} for {hand1=} and {hand2=}.'
             )
 
-    # def test_order_by_rank_with_joker(self):
-    #     """
-    #     Tests that ordering by rank works when `J` is treated as a joker card.
-    #     """
-    #     # Arrange
-    #     cards = ['32T3K', 'T55J5', 'KK677', 'KTJJT', 'QQQJA']
-    #     expected = ['32T3K', 'KK677', 'T55J5', 'QQQJA', 'KTJJT']
+    def test_order_by_rank_with_joker(self):
+        """
+        Tests that ordering by rank works when `J` is treated as a joker card.
+        """
+        # Arrange
+        cards = ['32T3K', 'T55J5', 'KK677', 'KTJJT', 'QQQJA']
+        expected = ['32T3K', 'KK677', 'T55J5', 'QQQJA', 'KTJJT']
 
-    #     # Act
-    #     actual = main.order_by_rank(cards, joker=True)
+        # Act
+        actual = main.order_by_rank(cards, joker=True)
 
-    #     # Assert
-    #     self.assertListEqual(actual, expected)
+        # Assert
+        self.assertListEqual(actual, expected)
