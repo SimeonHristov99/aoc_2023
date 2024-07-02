@@ -10,6 +10,21 @@ def parse_input(filename: str) -> tuple[str, dict[str, tuple[str, str]]]:
     return directions, map_
 
 
+def num_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
+    pos = 'AAA'
+    directions_idxs = [
+        0 if direction == 'L' else 1 for direction in directions
+    ]
+    len_directions_idxs = len(directions_idxs)
+    num_steps = 0
+    while pos != 'ZZZ':
+        pos = map_[pos][directions_idxs[num_steps % len_directions_idxs]]
+        num_steps += 1
+        if pos == 'ZZZ':
+            break
+    return num_steps
+
+
 def part1(filename: str) -> int:
     return 42
 
