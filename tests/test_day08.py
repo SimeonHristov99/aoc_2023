@@ -24,3 +24,45 @@ class TestDay08(unittest.TestCase):
         # Assert
         self.assertEqual(actual_directions, expected_directions)
         self.assertEqual(actual_map, expected_map)
+
+    def test_get_num_steps_v1(self):
+        """
+        Tests that obtaining the number of steps works - variant 1.
+        """
+        # Arrange
+        directions = 'LLR'
+        map_ = {
+            'AAA': ('BBB', 'BBB'),
+            'BBB': ('AAA', 'ZZZ'),
+            'ZZZ': ('ZZZ', 'ZZZ'),
+        }
+        expected = 6
+
+        # Act
+        actual = main.num_steps(directions, map_)
+
+        # Assert
+        self.assertEqual(expected, actual)
+
+    def test_get_num_steps_v2(self):
+        """
+        Tests that obtaining the number of steps works - variant 2.
+        """
+        # Arrange
+        directions = 'RL'
+        map_ = {
+            'AAA': ('BBB', 'CCC'),
+            'BBB': ('DDD', 'EEE'),
+            'CCC': ('ZZZ', 'GGG'),
+            'DDD': ('DDD', 'DDD'),
+            'EEE': ('EEE', 'EEE'),
+            'GGG': ('GGG', 'GGG'),
+            'ZZZ': ('ZZZ', 'ZZZ'),
+        }
+        expected = 2
+
+        # Act
+        actual = main.num_steps(directions, map_)
+
+        # Assert
+        self.assertEqual(expected, actual)
