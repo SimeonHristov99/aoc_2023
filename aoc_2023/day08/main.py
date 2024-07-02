@@ -35,6 +35,16 @@ def num_ghost_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
             f"{l1}{l2}{l3} => {mat[ord(l1) - ord('0')][ord(l2) - ord('0')][ord(l3) - ord('0')]}"
         )
 
+    for idxr, row in enumerate(mat):
+        for idxc, col in enumerate(row):
+            for idxe, entry in enumerate(col):
+                if entry == 1:
+                    print(entry, col, row)
+                    # print(chr(ord('0') + idxr + 1), chr(ord('0') + idxc + 1), chr(ord('0') + idxe + 1))
+                    # break
+            # break
+        break
+
     x = 5 + 6
 
 
