@@ -66,3 +66,27 @@ class TestDay08(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected, actual)
+
+    def test_get_num_ghost_steps(self):
+        """
+        Tests that obtaining the number of steps when one is a ghost works.
+        """
+        # Arrange
+        directions = 'LR'
+        map_ = {
+            '11A': ('11B', 'XXX'),
+            '11B': ('XXX', '11Z'),
+            '11Z': ('11B', 'XXX'),
+            '22A': ('22B', 'XXX'),
+            '22B': ('22C', '22C'),
+            '22C': ('22Z', '22Z'),
+            '22Z': ('22B', '22B'),
+            'XXX': ('XXX', 'XXX'),
+        }
+        expected = 6
+
+        # Act
+        actual = main.num_ghost_steps(directions, map_)
+
+        # Assert
+        self.assertEqual(expected, actual)
