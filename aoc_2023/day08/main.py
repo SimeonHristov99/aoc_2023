@@ -26,7 +26,8 @@ def num_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
 
 
 def part1(filename: str) -> int:
-    return 42
+    directions, map_ = parse_input(filename)
+    return num_steps(directions, map_)
 
 
 def part2(filename: str) -> int:
@@ -36,7 +37,7 @@ def part2(filename: str) -> int:
 def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day08/sample1.txt")}')  # 2
     print(f'Part 1, Sample: {part1("aoc_2023/day08/sample2.txt")}')  # 6
-    # print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')
+    print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')  # 16409
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day08/sample.txt")}')
     # print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')
