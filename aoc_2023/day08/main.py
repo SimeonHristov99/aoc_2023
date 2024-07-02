@@ -26,22 +26,16 @@ def num_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
 
 
 def num_ghost_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
-    starting_positions = [node for node in map_ if node.endswith('A')]
+    mat = [[[0] * 43] * 43] * 43
+    for (l1, l2, l3) in map_:
+        mat[ord(l1) - ord('0')][ord(l2) - ord('0')][ord(l3) - ord('0')] = 1
 
-    directions_idxs = [
-        0 if direction == 'L' else 1 for direction in directions
-    ]
-    len_directions_idxs = len(directions_idxs)
-    num_steps = 0
+    for (l1, l2, l3) in map_:
+        print(
+            f"{l1}{l2}{l3} => {mat[ord(l1) - ord('0')][ord(l2) - ord('0')][ord(l3) - ord('0')]}"
+        )
 
-    while not all(node.endswith('Z') for node in starting_positions):
-        direction = directions_idxs[num_steps % len_directions_idxs]
-        starting_positions = [
-            map_[node][direction] for node in starting_positions
-        ]
-        num_steps += 1
-
-    return num_steps
+    x = 5 + 6
 
 
 def part1(filename: str) -> int:
