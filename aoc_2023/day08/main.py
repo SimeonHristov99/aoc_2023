@@ -1,3 +1,6 @@
+from queue import Queue
+
+
 def parse_input(filename: str) -> tuple[str, dict[str, tuple[str, str]]]:
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
@@ -26,31 +29,66 @@ def num_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
 
 
 def num_ghost_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
-    mat = [[[0] * 43] * 43] * 43
-    for (l1, l2, l3) in map_:
-        mat[ord(l1) - ord('0')][ord(l2) - ord('0')][ord(l3) - ord('0')] = 1
+    starting_positions = [node for node in map_ if node.endswith('A')]
 
-    for (l1, l2, l3) in map_:
-        print(
-            f"{l1}{l2}{l3} => {mat[ord(l1) - ord('0')][ord(l2) - ord('0')][ord(l3) - ord('0')]}"
-        )
+    directions_idxs = [
+        0 if direction == 'L' else 1 for direction in directions
+    ]
+    len_directions_idxs = len(directions_idxs)
+    print(len_directions_idxs)
+    num_steps = 0
 
-    for idxr, row in enumerate(mat):
-        for idxc, col in enumerate(row):
-            for idxe, entry in enumerate(col):
-                if entry == 1:
-                    print(entry, col, row)
-                    # print(chr(ord('0') + idxr + 1), chr(ord('0') + idxc + 1), chr(ord('0') + idxe + 1))
-                    # break
-            # break
-        break
+    while not all(node.endswith('Z') for node in starting_positions):
+        print(starting_positions)
+        nodes_done = [
+            node for node in starting_positions if node.endswith('Z')
+        ]
+        # print(nodes_done)
+        if len(nodes_done) == 6:
+            print('Jello')
+        direction = directions_idxs[num_steps % len_directions_idxs]
+        starting_positions = [
+            map_[node][direction] for node in starting_positions
+        ]
+        num_steps += 1
+        print(num_steps)
 
-    x = 5 + 6
+    return num_steps
 
 
 def part1(filename: str) -> int:
     directions, map_ = parse_input(filename)
     return num_steps(directions, map_)
+
+
+def bfs(map_: dict[str, tuple[str, str]],
+        root: str) -> list[tuple[list[str], str]]:
+    result = []
+
+    queue = Queue()
+    queue.put(([root], ''))
+
+    seen = set()
+
+    while not queue.empty():
+        path, directions = queue.get()
+        child1, child2 = map_[path[0]]
+
+        if child1 in seen and child2 in seen:
+            result.append((path, directions))
+        elif child1 not in seen and child2 not in seen:
+            queue.put(([child1] + path, 'L' + directions))
+            queue.put(([child2] + path, 'R' + directions))
+            seen.add(child1)
+            seen.add(child2)
+        elif child1 in seen and child2 not in seen:
+            queue.put(([child2] + path, 'R' + directions))
+            seen.add(child2)
+        elif child1 not in seen and child2 in seen:
+            queue.put(([child1] + path, 'L' + directions))
+            seen.add(child1)
+
+    return result
 
 
 def part2(filename: str) -> int:
@@ -63,8 +101,8 @@ def main() -> None:
     # print(f'Part 1, Sample: {part1("aoc_2023/day08/sample2.txt")}')  # 6
     # print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')  # 16409
 
-    print(f'Part 2, Sample: {part2("aoc_2023/day08/sample3.txt")}')  # 6
-    # print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')
+    # print(f'Part 2, Sample: {part2("aoc_2023/day08/sample3.txt")}')  # 6
+    print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')
 
 
 if __name__ == '__main__':
