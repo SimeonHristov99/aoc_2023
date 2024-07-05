@@ -90,3 +90,53 @@ class TestDay08(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected, actual)
+
+    def test_bfs_v1(self):
+        """
+        Tests that running BFS works for "11A".
+        """
+        # Arrange
+        expected_path_directions = [(['XXX', '11A'], 'R'),
+                                    (['11Z', '11B', '11A'], 'RL')]
+        map_ = {
+            '11A': ('11B', 'XXX'),
+            '11B': ('XXX', '11Z'),
+            '11Z': ('11B', 'XXX'),
+            '22A': ('22B', 'XXX'),
+            '22B': ('22C', '22C'),
+            '22C': ('22Z', '22Z'),
+            '22Z': ('22B', '22B'),
+            'XXX': ('XXX', 'XXX'),
+        }
+
+        # Act
+        actual_path_directions = main.bfs(map_, '11A')
+
+        # Assert
+        self.assertListEqual(actual_path_directions, expected_path_directions)
+
+    def test_bfs_v2(self):
+        """
+        Tests that running BFS works for "22A".
+        """
+        # Arrange
+        expected_path_directions = [(['XXX', '22A'], 'R'),
+                                    (['22C', '22B', '22A'], 'RL'),
+                                    (['22Z', '22C', '22B', '22A'], 'LLL'),
+                                    (['22Z', '22C', '22B', '22A'], 'RLL')]
+        map_ = {
+            '11A': ('11B', 'XXX'),
+            '11B': ('XXX', '11Z'),
+            '11Z': ('11B', 'XXX'),
+            '22A': ('22B', 'XXX'),
+            '22B': ('22C', '22C'),
+            '22C': ('22Z', '22Z'),
+            '22Z': ('22B', '22B'),
+            'XXX': ('XXX', 'XXX'),
+        }
+
+        # Act
+        actual_path_directions = main.bfs(map_, '22A')
+
+        # Assert
+        self.assertListEqual(actual_path_directions, expected_path_directions)
