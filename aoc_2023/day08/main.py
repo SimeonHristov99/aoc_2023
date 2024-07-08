@@ -72,21 +72,21 @@ def bfs(map_: dict[str, tuple[str, str]],
 
     while not queue.empty():
         path, directions = queue.get()
+
+        if path[0].endswith('Z'):
+            result.append((path, directions))
+
         child1, child2 = map_[path[0]]
 
-        if child1 in seen and child2 in seen:
-            result.append((path, directions))
-        elif child1 not in seen and child2 not in seen:
+        if child1 not in seen and child2 not in seen:
             queue.put(([child1] + path, 'L' + directions))
             queue.put(([child2] + path, 'R' + directions))
-            seen.add(child1)
-            seen.add(child2)
         elif child1 in seen and child2 not in seen:
             queue.put(([child2] + path, 'R' + directions))
-            seen.add(child2)
         elif child1 not in seen and child2 in seen:
             queue.put(([child1] + path, 'L' + directions))
-            seen.add(child1)
+
+        seen.add(path[0])
 
     return result
 
