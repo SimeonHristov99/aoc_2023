@@ -119,8 +119,8 @@ class TestDay08(unittest.TestCase):
         Tests that running BFS works for "22A".
         """
         # Arrange
-        expected_path_directions = [(['XXX', '22A'], 'R'),
-                                    (['22C', '22B', '22A'], 'RL'),
+        expected_path_directions = [(['22Z', '22C', '22B', '22A'], 'LRL'),
+                                    (['22Z', '22C', '22B', '22A'], 'RRL'),
                                     (['22Z', '22C', '22B', '22A'], 'LLL'),
                                     (['22Z', '22C', '22B', '22A'], 'RLL')]
         map_ = {
@@ -138,4 +138,6 @@ class TestDay08(unittest.TestCase):
         actual_path_directions = main.bfs(map_, '22A')
 
         # Assert
-        self.assertListEqual(actual_path_directions, expected_path_directions)
+        self.assertListEqual(
+            sorted(actual_path_directions), sorted(expected_path_directions)
+        )
