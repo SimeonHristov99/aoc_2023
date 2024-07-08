@@ -96,8 +96,7 @@ class TestDay08(unittest.TestCase):
         Tests that running BFS works for "11A".
         """
         # Arrange
-        expected_path_directions = [(['XXX', '11A'], 'R'),
-                                    (['11Z', '11B', '11A'], 'RL')]
+        expected_path_directions = [(['11Z', '11B', '11A'], 'RL')]
         map_ = {
             '11A': ('11B', 'XXX'),
             '11B': ('XXX', '11Z'),
