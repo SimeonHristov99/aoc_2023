@@ -1,3 +1,4 @@
+import itertools
 from queue import Queue
 
 
@@ -90,6 +91,19 @@ def bfs(map_: dict[str, tuple[str, str]],
         seen.add(path[0])
 
     return result
+
+
+def get_steps(pattern: str, paths: list[set[str]]) -> int:
+    steps = 0
+
+    it = iter(itertools.cycle(pattern))
+    patterns = zip(it, it)
+
+    for pat in patterns:
+        pat = ''.join(pat)
+        steps += len(pat)
+        if pat in paths:
+            return steps
 
 
 def part2(filename: str) -> int:
