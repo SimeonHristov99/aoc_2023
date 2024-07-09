@@ -164,3 +164,33 @@ class TestDay08(unittest.TestCase):
         self.assertListEqual(
             sorted(actual_path_directions), sorted(expected_path_directions)
         )
+
+    def test_get_steps_v1(self):
+        """
+        Tests that the number of steps can be correctly calculated given a pattern and correct paths - variant 1.
+        """
+        # Arrange
+        expected_num_steps = 6
+        pattern = 'LLR'
+        paths = {'LR', 'RR'}
+
+        # Act
+        actual_num_steps = main.get_steps(pattern, paths)
+
+        # Assert
+        self.assertEqual(actual_num_steps, expected_num_steps)
+
+    def test_get_steps_v2(self):
+        """
+        Tests that the number of steps can be correctly calculated given a pattern and correct paths - variant 2.
+        """
+        # Arrange
+        expected_num_steps = 2
+        pattern = 'RL'
+        paths = {'RL'}
+
+        # Act
+        actual_num_steps = main.get_steps(pattern, paths)
+
+        # Assert
+        self.assertEqual(actual_num_steps, expected_num_steps)
