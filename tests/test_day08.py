@@ -141,3 +141,26 @@ class TestDay08(unittest.TestCase):
         self.assertListEqual(
             sorted(actual_path_directions), sorted(expected_path_directions)
         )
+
+    def test_bfs_does_not_repeat_goal_node(self):
+        """
+        Tests that running BFS will not append the goal node more than one time to the resulting paths.
+        """
+        # Arrange
+        expected_path_directions = [
+            (['ZZZ', 'BBB', 'AAA'], 'RL'),
+            (['ZZZ', 'BBB', 'AAA'], 'RR'),
+        ]
+        map_ = {
+            'AAA': ('BBB', 'BBB'),
+            'BBB': ('AAA', 'ZZZ'),
+            'ZZZ': ('ZZZ', 'ZZZ')
+        }
+
+        # Act
+        actual_path_directions = main.bfs(map_, 'AAA')
+
+        # Assert
+        self.assertListEqual(
+            sorted(actual_path_directions), sorted(expected_path_directions)
+        )
