@@ -75,6 +75,7 @@ def bfs(map_: dict[str, tuple[str, str]],
 
         if path[0].endswith('Z'):
             result.append((path, directions))
+            continue
 
         child1, child2 = map_[path[0]]
 
@@ -98,11 +99,11 @@ def part2(filename: str) -> int:
 
 def main() -> None:
     # print(f'Part 1, Sample: {part1("aoc_2023/day08/sample1.txt")}')  # 2
-    # print(f'Part 1, Sample: {part1("aoc_2023/day08/sample2.txt")}')  # 6
+    print(f'Part 1, Sample: {part1("aoc_2023/day08/sample2.txt")}')  # 6
     # print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')  # 16409
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day08/sample3.txt")}')  # 6
-    print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')
+    # print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')
 
 
 if __name__ == '__main__':
