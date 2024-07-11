@@ -194,3 +194,57 @@ class TestDay08(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual_num_steps, expected_num_steps)
+
+    def test_num_times_to_repeat_directions_v1(self):
+        """
+        Tests that the number of times to repeat the directions works - variant 1.
+        """
+        # Arrange
+        expected_num_repetitions = 1
+        directions = 'LR'
+        start_node = '11A'
+        map_ = {
+            '11A': ('11B', 'XXX'),
+            '11B': ('XXX', '11Z'),
+            '11Z': ('11B', 'XXX'),
+            '22A': ('22B', 'XXX'),
+            '22B': ('22C', '22C'),
+            '22C': ('22Z', '22Z'),
+            '22Z': ('22B', '22B'),
+            'XXX': ('XXX', 'XXX'),
+        }
+
+        # Act
+        actual_num_repetitions = main.num_repetitions(
+            directions, map_, start_node
+        )
+
+        # Assert
+        self.assertEqual(actual_num_repetitions, expected_num_repetitions)
+
+    def test_num_times_to_repeat_directions_v2(self):
+        """
+        Tests that the number of times to repeat the directions works - variant 2.
+        """
+        # Arrange
+        expected_num_repetitions = 3
+        directions = 'LR'
+        start_node = '22A'
+        map_ = {
+            '11A': ('11B', 'XXX'),
+            '11B': ('XXX', '11Z'),
+            '11Z': ('11B', 'XXX'),
+            '22A': ('22B', 'XXX'),
+            '22B': ('22C', '22C'),
+            '22C': ('22Z', '22Z'),
+            '22Z': ('22B', '22B'),
+            'XXX': ('XXX', 'XXX'),
+        }
+
+        # Act
+        actual_num_repetitions = main.num_repetitions(
+            directions, map_, start_node
+        )
+
+        # Assert
+        self.assertEqual(actual_num_repetitions, expected_num_repetitions)
