@@ -106,6 +106,25 @@ def get_steps(pattern: str, paths: list[set[str]]) -> int:
             return steps
 
 
+def num_repetitions(
+    directions: str, map_: dict[str, tuple[str, str]], start_node: str
+) -> int:
+    num_repetitions = 0
+    directions_idxs = [
+        0 if direction == 'L' else 1 for direction in directions
+    ]
+    len_directions_idxs = len(directions_idxs)
+
+    node = start_node
+
+    while not node.endswith('Z'):
+        num_repetitions += 1
+        for direction in directions_idxs:
+            node = map_[node][direction]
+
+    return num_repetitions
+
+
 def part2(filename: str) -> int:
     directions, map_ = parse_input(filename)
     return num_ghost_steps(directions, map_)
