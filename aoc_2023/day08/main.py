@@ -1,4 +1,5 @@
 import itertools
+import math
 from queue import Queue
 
 
@@ -127,16 +128,23 @@ def num_repetitions(
 
 def part2(filename: str) -> int:
     directions, map_ = parse_input(filename)
-    return num_ghost_steps(directions, map_)
+    nodes_starting_with_a = [node for node in map_ if node.endswith('A')]
+    num_repetitions_per_a = [
+        num_repetitions(directions, map_, node)
+        for node in nodes_starting_with_a
+    ]
+    return math.lcm(*num_repetitions_per_a)
 
 
 def main() -> None:
-    # print(f'Part 1, Sample: {part1("aoc_2023/day08/sample1.txt")}')  # 2
-    print(f'Part 1, Sample: {part1("aoc_2023/day08/sample2.txt")}')  # 6
-    # print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')  # 16409
+    print(f'Part 1, Sample 1: {part1("aoc_2023/day08/sample1.txt")}')  # 2
+    print(f'Part 1, Sample 2: {part1("aoc_2023/day08/sample2.txt")}')  # 6
+    print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')  # 16409
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day08/sample3.txt")}')  # 6
-    # print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')
+    print(f'Part 2, Sample: {part2("aoc_2023/day08/sample3.txt")}')  # 6
+    print(
+        f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}'
+    )  # 11795205644011
 
 
 if __name__ == '__main__':
