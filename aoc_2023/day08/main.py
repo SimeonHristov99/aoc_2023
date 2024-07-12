@@ -118,9 +118,9 @@ def num_repetitions(
     node = start_node
 
     while not node.endswith('Z'):
-        num_repetitions += 1
         for direction in directions_idxs:
             node = map_[node][direction]
+        num_repetitions += len_directions_idxs
 
     return num_repetitions
 
