@@ -200,7 +200,7 @@ class TestDay08(unittest.TestCase):
         Tests that the number of times to repeat the directions works - variant 1.
         """
         # Arrange
-        expected_num_repetitions = 1
+        expected_num_repetitions = 2
         directions = 'LR'
         start_node = '11A'
         map_ = {
@@ -227,7 +227,7 @@ class TestDay08(unittest.TestCase):
         Tests that the number of times to repeat the directions works - variant 2.
         """
         # Arrange
-        expected_num_repetitions = 3
+        expected_num_repetitions = 6
         directions = 'LR'
         start_node = '22A'
         map_ = {
