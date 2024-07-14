@@ -11,7 +11,8 @@ def predict(xs: list[int]) -> int:
 
 
 def part1(filename: str) -> int:
-    return 42
+    xss = parse_input(filename)
+    return sum(predict(xs) for xs in xss)
 
 
 def part2(filename: str) -> int:
