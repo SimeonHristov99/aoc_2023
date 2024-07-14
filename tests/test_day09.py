@@ -5,6 +5,21 @@ from aoc_2023.day09 import main
 
 class TestDay09(unittest.TestCase):
 
+    def test_parsing(self):
+        """
+        Tests that parsing works.
+        """
+        # Arrange
+        filename = 'aoc_2023/day09/sample.txt'
+        expected = [[0, 3, 6, 9, 12, 15], [1, 3, 6, 10, 15, 21],
+                    [10, 13, 16, 21, 30, 45]]
+
+        # Act
+        actual = main.parse_input(filename)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
     def test_predict_v1(self):
         """
         Tests that predicting the next number works - variant 1.
