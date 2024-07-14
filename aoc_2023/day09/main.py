@@ -4,9 +4,13 @@ def parse_input(filename: str) -> list[list[int]]:
     return [[int(num) for num in line.split()] for line in lines]
 
 
-def predict(xs: list[int]) -> int:
+def predict(xs: list[int], left=False) -> int:
     if all(x == 0 for x in xs):
         return 0
+
+    if left:
+        return xs[0] + predict([y - x for x, y in zip(xs[1:], xs)], left)
+
     return xs[-1] + predict([y - x for x, y in zip(xs, xs[1:])])
 
 
