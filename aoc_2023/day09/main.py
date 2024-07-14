@@ -1,3 +1,9 @@
+def parse_input(filename: str) -> list[list[int]]:
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    return [[int(num) for num in line.split()] for line in lines]
+
+
 def predict(xs: list[int]) -> int:
     if all(x == 0 for x in xs):
         return 0
