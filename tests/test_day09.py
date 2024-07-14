@@ -131,3 +131,31 @@ class TestDay09(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+    def test_part2_sample(self):
+        """
+        Tests that passing the sample for part 2 works.
+        """
+        # Arrange
+        filename = 'aoc_2023/day09/sample.txt'
+        expected = 2
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_part2_input(self):
+        """
+        Tests that passing the input for part 2 works.
+        """
+        # Arrange
+        filename = 'aoc_2023/day09/input.txt'
+        expected = 1053
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
