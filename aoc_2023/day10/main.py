@@ -48,12 +48,28 @@ def right(
         stack.append(path + [next_])
 
 
+def initialize_stack(
+    matrix: list[list[str]], start_coords: tuple[int, int]
+) -> list[list[tuple[int, int]]]:
+    result = []
+    x, y = start_coords
+    if 0 < y and matrix[x][y - 1] == '-':  # left
+        result.append([start_coords, (x, y - 1)])
+    if 0 < x and matrix[x - 1][y] == '|':  # up
+        result.append([start_coords, (x - 1, y)])
+    if x < len(matrix) - 1 and matrix[x + 1][y] == '|':  # down
+        result.append([start_coords, (x + 1, y)])
+    if y < len(matrix[0]) - 1 and matrix[x][y + 1] == '-':  # right
+        result.append([start_coords, (x, y + 1)])
+    return result
+
+
 def num_steps_farthest(
     matrix: list[list[str]], start_coords: tuple[int, int]
 ) -> int:
     num_rows = len(matrix)
     num_cols = len(matrix[0])
-    stack = [[start_coords]]
+    stack = initiate_stack(start_coords, matrix)
     seen = set()
     max_len_path = 0
 
@@ -66,19 +82,23 @@ def num_steps_farthest(
         seen.add((x, y))
 
         if matrix[x][y] == '|':  # only up and down
-            ...
+            up((x, y), stack, seen, path)
+            down((x, y), stack, seen, path, num_rows)
         elif matrix[x][y] == '-':  # only left and right
-            ...
+            left((x, y), stack, seen, path)
+            right((x, y), stack, seen, path, num_cols)
         elif matrix[x][y] == 'L':  # only up and right
-            ...
+            up((x, y), stack, seen, path)
+            right((x, y), stack, seen, path, num_cols)
         elif matrix[x][y] == 'J':  # only up and left
-            ...
+            up((x, y), stack, seen, path)
+            left((x, y), stack, seen, path)
         elif matrix[x][y] == '7':  # only down and left
-            ...
+            down((x, y), stack, seen, path, num_rows)
+            left((x, y), stack, seen, path)
         elif matrix[x][y] == 'F':  # only down and right
-            ...
-        else:
-            continue
+            down((x, y), stack, seen, path, num_rows)
+            right((x, y), stack, seen, path, num_cols)
 
     return max_len_path
 
