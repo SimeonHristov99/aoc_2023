@@ -57,7 +57,6 @@ class TestDay10(unittest.TestCase):
         Tests that moving up works when the x is greater than 0.
         """
         # Arrange
-        matrix = [['-', 'L', '|', 'F', '7'], ['7', 'G', '-', '7', '|']]
         coords = (1, 1)
         stack = []
         path = []
@@ -65,7 +64,7 @@ class TestDay10(unittest.TestCase):
         expected = [[(0, 1)]]
 
         # Act
-        actual = main.up(matrix, coords, stack, seen, path)
+        actual = main.up(coords, stack, seen, path)
 
         # Assert
         self.assertListEqual(actual, expected)
@@ -75,7 +74,6 @@ class TestDay10(unittest.TestCase):
         Tests that moving up does not add a new coordinate when x is 0.
         """
         # Arrange
-        matrix = [['-', 'L', '|', 'F', '7'], ['7', 'G', '-', '7', '|']]
         coords = (0, 1)
         stack = []
         path = []
@@ -83,7 +81,7 @@ class TestDay10(unittest.TestCase):
         expected = []
 
         # Act
-        actual = main.up(matrix, coords, stack, seen, path)
+        actual = main.up(coords, stack, seen, path)
 
         # Assert
         self.assertListEqual(actual, expected)
@@ -93,7 +91,6 @@ class TestDay10(unittest.TestCase):
         Tests that moving up does not add a new coordinate the new coordinates have been seen.
         """
         # Arrange
-        matrix = [['-', 'L', '|', 'F', '7'], ['7', 'G', '-', '7', '|']]
         coords = (1, 1)
         stack = []
         path = []
@@ -101,7 +98,7 @@ class TestDay10(unittest.TestCase):
         expected = []
 
         # Act
-        actual = main.up(matrix, coords, stack, seen, path)
+        actual = main.up(coords, stack, seen, path)
 
         # Assert
         self.assertListEqual(actual, expected)

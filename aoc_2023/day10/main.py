@@ -9,9 +9,8 @@ def find_one(matrix: list[list[str]]) -> tuple[int, int]:
 
 
 def up(
-    matrix: list[list[str]], coords: tuple[int, int],
-    stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
-    path: list[tuple[int, int]]
+    coords: tuple[int, int], stack: list[list[tuple[int, int]]],
+    seen: set[tuple[int, int]], path: list[tuple[int, int]]
 ) -> list[list[tuple[int, int]]]:
     x, y = coords
     if 0 < x:
