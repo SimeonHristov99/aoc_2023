@@ -111,7 +111,9 @@ def num_steps_farthest(
 
 
 def part1(filename: str) -> int:
-    return 42
+    matrix = parse_input(filename)
+    start_coords = find_start(matrix)
+    return num_steps_farthest(matrix, start_coords)
 
 
 def part2(filename: str) -> int:
