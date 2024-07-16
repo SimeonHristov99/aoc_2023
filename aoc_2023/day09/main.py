@@ -28,8 +28,8 @@ def main() -> None:
     print(f'Part 1, Sample: {part1("aoc_2023/day09/sample.txt")}')  # 114
     print(f'Part 1, Input: {part1("aoc_2023/day09/input.txt")}')  # 1743490457
 
-    print(f'Part 2, Sample: {part2("aoc_2023/day09/sample.txt")}')
-    print(f'Part 2, Input: {part2("aoc_2023/day09/input.txt")}')
+    print(f'Part 2, Sample: {part2("aoc_2023/day09/sample.txt")}')  # 2
+    print(f'Part 2, Input: {part2("aoc_2023/day09/input.txt")}')  # 1053
 
 
 if __name__ == '__main__':
