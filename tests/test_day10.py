@@ -7,7 +7,27 @@ from aoc_2023.day10 import main
 
 class TestDay10(unittest.TestCase):
 
-    def test_find_one(self):
+    def test_parse_input(self):
+        """
+        Tests that the input is parsed correctly.
+        """
+        # Arrange
+        filename = 'aoc_2023/day10/sample1.txt'
+        expected = [
+            ['-', 'L', '|', 'F', '7'],
+            ['7', 'S', '-', '7', '|'],
+            ['L', '|', '7', '|', '|'],
+            ['-', 'L', '-', 'J', '|'],
+            ['L', '|', '-', 'J', 'F'],
+        ]
+
+        # Act
+        actual = main.parse_input(filename)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+    def test_find_start(self):
         """
         Tests that the coordinates of the starting point are correctly found.
         """
@@ -31,12 +51,12 @@ class TestDay10(unittest.TestCase):
 
         # Act
         for matrix in matrices:
-            actuals.append(main.find_one(matrix))
+            actuals.append(main.find_start(matrix))
 
         # Assert
         self.assertListEqual(actuals, expectations)
 
-    def test_find_one_raises_when_no_one(self):
+    def test_find_start_raises_when_no_one(self):
         """
         Tests that an exception is raised when 'S' is not found.
         """
@@ -46,7 +66,7 @@ class TestDay10(unittest.TestCase):
 
         # Act
         with pytest.raises(NotImplementedError) as exception_context:
-            _ = main.find_one(matrix)
+            _ = main.find_start(matrix)
         actual_text = str(exception_context.value)
 
         # Assert
@@ -324,3 +344,17 @@ class TestDay10(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+    def test_part1_sample(self):
+        """
+        Tests that part 1 works for the sample.
+        """
+        # Arrange
+        fs = ['aoc_2023/day10/sample1.txt', 'aoc_2023/day10/sample2.txt']
+        expectations = [4, 8]
+
+        # Act
+        actuals = [main.part1(filename) for filename in fs]
+
+        # Assert
+        self.assertListEqual(actuals, expectations)
