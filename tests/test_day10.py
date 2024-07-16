@@ -345,13 +345,16 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_part1_samples(self):
+    def test_part1(self):
         """
-        Tests that part 1 works for the sample.
+        Tests that part 1 works for the samples and input.
         """
         # Arrange
-        fs = ['aoc_2023/day10/sample1.txt', 'aoc_2023/day10/sample2.txt']
-        expectations = [4, 8]
+        fs = [
+            'aoc_2023/day10/sample1.txt', 'aoc_2023/day10/sample2.txt',
+            'aoc_2023/day10/input.txt'
+        ]
+        expectations = [4, 8, 6828]
 
         # Act
         actuals = [main.part1(filename) for filename in fs]
