@@ -51,3 +51,85 @@ class TestDay10(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual_text, expected_text)
+
+    def test_num_steps_v1(self):
+        """
+        Tests that the number of steps to the farthest point is calculated correctly - variant 1.
+        """
+        # Arrange
+        matrix = [
+            '-',
+            'L',
+            '|',
+            'F',
+            '7',
+            '7',
+            'S',
+            '-',
+            '7',
+            '|',
+            'L',
+            '|',
+            '7',
+            '|',
+            '|',
+            '-',
+            'L',
+            '-',
+            'J',
+            '|',
+            'L',
+            '|',
+            '-',
+            'J',
+            'F',
+        ]
+        start_coords = (1, 1)
+        expected = 4
+
+        # Act
+        actual = main.num_steps_farthest(matrix, start_coords)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_num_steps_v2(self):
+        """
+        Tests that the number of steps to the farthest point is calculated correctly - variant 2.
+        """
+        # Arrange
+        matrix = [
+            '7',
+            '-',
+            'F',
+            '7',
+            '-',
+            '.',
+            'F',
+            'J',
+            '|',
+            '7',
+            'S',
+            'J',
+            'L',
+            'L',
+            '7',
+            '|',
+            'F',
+            '-',
+            '-',
+            'J',
+            'L',
+            'J',
+            '.',
+            'L',
+            'J',
+        ]
+        start_coords = (2, 0)
+        expected = 8
+
+        # Act
+        actual = main.num_steps_farthest(matrix, start_coords)
+
+        # Assert
+        self.assertEqual(actual, expected)
