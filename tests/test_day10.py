@@ -64,10 +64,10 @@ class TestDay10(unittest.TestCase):
         expected = [[(5, 6), (0, 1)]]
 
         # Act
-        actual = main.up(coords, stack, seen, path)
+        main.up(coords, stack, seen, path)
 
         # Assert
-        self.assertListEqual(actual, expected)
+        self.assertListEqual(stack, expected)
 
     def test_up_cannot_move_does_not_add(self):
         """
@@ -81,10 +81,10 @@ class TestDay10(unittest.TestCase):
         expected = []
 
         # Act
-        actual = main.up(coords, stack, seen, path)
+        main.up(coords, stack, seen, path)
 
         # Assert
-        self.assertListEqual(actual, expected)
+        self.assertListEqual(stack, expected)
 
     def test_up_can_move_does_not_add_when_seen(self):
         """
@@ -98,10 +98,10 @@ class TestDay10(unittest.TestCase):
         expected = []
 
         # Act
-        actual = main.up(coords, stack, seen, path)
+        main.up(coords, stack, seen, path)
 
         # Assert
-        self.assertListEqual(actual, expected)
+        self.assertListEqual(stack, expected)
 
     def test_down_can_move_adds_new_coords(self):
         """

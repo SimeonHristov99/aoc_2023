@@ -11,13 +11,11 @@ def find_one(matrix: list[list[str]]) -> tuple[int, int]:
 def up(
     coords: tuple[int, int], stack: list[list[tuple[int, int]]],
     seen: set[tuple[int, int]], path: list[tuple[int, int]]
-) -> list[list[tuple[int, int]]]:
+):
     x, y = coords
-    if 0 < x:
-        next_ = (x - 1, y)
-        if next_ not in seen:
-            stack.append(path + [next_])
-    return stack
+    next_ = (x - 1, y)
+    if 0 < x and next_ not in seen:
+        stack.append(path + [next_])
 
 
 def down(
