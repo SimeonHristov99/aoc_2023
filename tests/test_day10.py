@@ -262,6 +262,27 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(stack, expected)
 
+    def test_initiate_stack(self):
+        """
+        Tests that all possible paths get added to the stack initially.
+        """
+        # Arrange
+        matrix = [
+            ['-', 'L', '|', 'F', '7'],
+            ['7', 'S', '-', '7', '|'],
+            ['L', '|', '7', '|', '|'],
+            ['-', 'L', '-', 'J', '|'],
+            ['L', '|', '-', 'J', 'F'],
+        ]
+        start_coords = (1, 1)
+        expected = [[(1, 1), (2, 1)], [(1, 1), (1, 2)]]
+
+        # Act
+        actual = main.initialize_stack(matrix, start_coords)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
     # def test_num_steps_v1(self):
     #     """
     #     Tests that the number of steps to the farthest point is calculated correctly - variant 1.
