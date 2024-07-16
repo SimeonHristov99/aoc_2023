@@ -64,10 +64,6 @@ def initialize_stack(
     return result
 
 
-def manhattan_dist(p1: tuple[int, int], p2: tuple[int, int]) -> int:
-    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
-
-
 def num_steps_farthest(
     matrix: list[list[str]], start_coords: tuple[int, int]
 ) -> int:
@@ -75,13 +71,14 @@ def num_steps_farthest(
     num_cols = len(matrix[0])
     stack = initialize_stack(matrix, start_coords)
     seen = set()
-    max_len_path = 0
+    path = []
 
     while len(stack) > 0:
         path = stack.pop()
         x, y = path[-1]
 
-        max_len_path = max(max_len_path, len(path))
+        if (x, y) == start_coords:
+            break
 
         seen.add((x, y))
 
@@ -104,7 +101,7 @@ def num_steps_farthest(
             down((x, y), stack, seen, path, num_rows)
             right((x, y), stack, seen, path, num_cols)
 
-    return max_len_path
+    return (len(path) - 1) // 2
 
 
 def part1(filename: str) -> int:
