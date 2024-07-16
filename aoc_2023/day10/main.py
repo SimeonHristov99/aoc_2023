@@ -73,7 +73,7 @@ def num_steps_farthest(
 ) -> int:
     num_rows = len(matrix)
     num_cols = len(matrix[0])
-    stack = initiate_stack(start_coords, matrix)
+    stack = initialize_stack(matrix, start_coords)
     seen = set()
     max_len_path = 0
 
