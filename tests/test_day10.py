@@ -52,6 +52,60 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertEqual(actual_text, expected_text)
 
+    def test_up_can_move_adds_new_coords(self):
+        """
+        Tests that moving up works when the x is greater than 0.
+        """
+        # Arrange
+        matrix = [['-', 'L', '|', 'F', '7'], ['7', 'G', '-', '7', '|']]
+        coords = (1, 1)
+        stack = []
+        path = []
+        seen = set()
+        expected = [[(0, 1)]]
+
+        # Act
+        actual = main.up(matrix, coords, stack, seen, path)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+    def test_up_cannot_move_does_not_add(self):
+        """
+        Tests that moving up does not add a new coordinate when x is 0.
+        """
+        # Arrange
+        matrix = [['-', 'L', '|', 'F', '7'], ['7', 'G', '-', '7', '|']]
+        coords = (0, 1)
+        stack = []
+        path = []
+        seen = set()
+        expected = []
+
+        # Act
+        actual = main.up(matrix, coords, stack, seen, path)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+    def test_up_can_move_does_not_add_when_seen(self):
+        """
+        Tests that moving up does not add a new coordinate the new coordinates have been seen.
+        """
+        # Arrange
+        matrix = [['-', 'L', '|', 'F', '7'], ['7', 'G', '-', '7', '|']]
+        coords = (1, 1)
+        stack = []
+        path = []
+        seen = {(0, 1)}
+        expected = []
+
+        # Act
+        actual = main.up(matrix, coords, stack, seen, path)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
     def test_num_steps_v1(self):
         """
         Tests that the number of steps to the farthest point is calculated correctly - variant 1.
