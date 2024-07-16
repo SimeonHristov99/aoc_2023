@@ -345,7 +345,7 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_part1_sample(self):
+    def test_part1_samples(self):
         """
         Tests that part 1 works for the sample.
         """
