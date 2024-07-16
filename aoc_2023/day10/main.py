@@ -21,13 +21,11 @@ def up(
 def down(
     coords: tuple[int, int], stack: list[list[tuple[int, int]]],
     seen: set[tuple[int, int]], path: list[tuple[int, int]], num_rows: int
-) -> list[list[tuple[int, int]]]:
+):
     x, y = coords
-    if x < num_rows - 1:
-        next_ = (x + 1, y)
-        if next_ not in seen:
-            stack.append(path + [next_])
-    return stack
+    next_ = (x + 1, y)
+    if x < num_rows - 1 and next_ not in seen:
+        stack.append(path + [next_])
 
 
 def num_steps_farthest(
