@@ -283,21 +283,6 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_manhattan_dist(self):
-        """
-        Tests that the manhattan distance between two points is calculated correctly.
-        """
-        # Arrange
-        p1 = (1, 1)
-        p2 = (3, 3)
-        expected = 4
-
-        # Act
-        actual = main.manhattan_dist(p1, p2)
-
-        # Assert
-        self.assertEqual(actual, expected)
-
     def test_num_steps_v1(self):
         """
         Tests that the number of steps to the farthest point is calculated correctly - variant 1.
@@ -319,23 +304,23 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_num_steps_v2(self):
-    #     """
-    #     Tests that the number of steps to the farthest point is calculated correctly - variant 2.
-    #     """
-    #     # Arrange
-    #     matrix = [
-    #         ['7', '-', 'F', '7', '-'],
-    #         ['.', 'F', 'J', '|', '7'],
-    #         ['S', 'J', 'L', 'L', '7'],
-    #         ['|', 'F', '-', '-', 'J'],
-    #         ['L', 'J', '.', 'L', 'J'],
-    #     ]
-    #     start_coords = (2, 0)
-    #     expected = 8
+    def test_num_steps_v2(self):
+        """
+        Tests that the number of steps to the farthest point is calculated correctly - variant 2.
+        """
+        # Arrange
+        matrix = [
+            ['7', '-', 'F', '7', '-'],
+            ['.', 'F', 'J', '|', '7'],
+            ['S', 'J', 'L', 'L', '7'],
+            ['|', 'F', '-', '-', 'J'],
+            ['L', 'J', '.', 'L', 'J'],
+        ]
+        start_coords = (2, 0)
+        expected = 8
 
-    #     # Act
-    #     actual = main.num_steps_farthest(matrix, start_coords)
+        # Act
+        actual = main.num_steps_farthest(matrix, start_coords)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
