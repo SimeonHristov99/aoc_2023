@@ -77,14 +77,15 @@ def num_steps_farthest(
     num_cols = len(matrix[0])
     stack = initialize_stack(matrix, start_coords)
     seen = set()
-    path = []
+    lens = []
 
     while len(stack) > 0:
         path = stack.pop()
         x, y = path[-1]
 
         if (x, y) == start_coords:
-            break
+            lens.append(len(path))
+            continue
 
         seen.add((x, y))
 
@@ -107,7 +108,7 @@ def num_steps_farthest(
             down((x, y), stack, seen, path, num_rows)
             right((x, y), stack, seen, path, num_cols)
 
-    return (len(path) - 1) // 2
+    return (max(lens) - 1) // 2
 
 
 def part1(filename: str) -> int:
@@ -121,11 +122,12 @@ def part2(filename: str) -> int:
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample.txt")}')
+    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample1.txt")}')
+    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample2.txt")}')
     print(f'Part 1, Input: {part1("aoc_2023/day10/input.txt")}')
 
-    print(f'Part 2, Sample: {part2("aoc_2023/day10/sample.txt")}')
-    print(f'Part 2, Input: {part2("aoc_2023/day10/input.txt")}')
+    # print(f'Part 2, Sample: {part2("aoc_2023/day10/sample.txt")}')
+    # print(f'Part 2, Input: {part2("aoc_2023/day10/input.txt")}')
 
 
 if __name__ == '__main__':
