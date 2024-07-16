@@ -28,6 +28,16 @@ def down(
         stack.append(path + [next_])
 
 
+def left(
+    coords: tuple[int, int], stack: list[list[tuple[int, int]]],
+    seen: set[tuple[int, int]], path: list[tuple[int, int]]
+):
+    x, y = coords
+    next_ = (x, y - 1)
+    if 0 < y and next_ not in seen:
+        stack.append(path + [next_])
+
+
 def num_steps_farthest(
     matrix: list[list[str]], start_coords: tuple[int, int]
 ) -> int:
@@ -60,10 +70,6 @@ def num_steps_farthest(
         else:
             continue
 
-        if 0 < y:
-            next_ = (x, y - 1)  # left
-            if next_ not in seen:
-                stack.append(path + [next_])
         if y < num_cols - 1:
             next_ = (x, y + 1)  # right
             if next_ not in seen:
