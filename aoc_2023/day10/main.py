@@ -122,9 +122,9 @@ def part2(filename: str) -> int:
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample1.txt")}')
-    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample2.txt")}')
-    print(f'Part 1, Input: {part1("aoc_2023/day10/input.txt")}')
+    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample1.txt")}')  # 4
+    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample2.txt")}')  # 8
+    print(f'Part 1, Input: {part1("aoc_2023/day10/input.txt")}')  # 6828
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day10/sample.txt")}')
     # print(f'Part 2, Input: {part2("aoc_2023/day10/input.txt")}')
