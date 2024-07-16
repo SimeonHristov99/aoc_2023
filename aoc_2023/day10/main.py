@@ -1,4 +1,10 @@
-def find_one(matrix: list[list[str]]) -> tuple[int, int]:
+def parse_input(filename: str) -> list[list[str]]:
+    with open(filename, 'r') as f:
+        lines = f.read().splitlines()
+    return [list(line) for line in lines]
+
+
+def find_start(matrix: list[list[str]]) -> tuple[int, int]:
     num_rows = len(matrix)
     num_cols = len(matrix[0])
     for i in range(num_rows):
