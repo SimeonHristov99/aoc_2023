@@ -157,6 +157,57 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(stack, expected)
 
+    def test_left_can_move_adds_new_coords(self):
+        """
+        Tests that moving left works when y is greater than 0.
+        """
+        # Arrange
+        coords = (1, 1)
+        stack = []
+        path = [(5, 6)]
+        seen = set()
+        expected = [[(5, 6), (1, 0)]]
+
+        # Act
+        main.left(coords, stack, seen, path)
+
+        # Assert
+        self.assertListEqual(stack, expected)
+
+    def test_left_cannot_move_does_not_add(self):
+        """
+        Tests that moving left does not add a new coordinate when y is 0.
+        """
+        # Arrange
+        coords = (1, 0)
+        stack = []
+        path = []
+        seen = set()
+        expected = []
+
+        # Act
+        main.left(coords, stack, seen, path)
+
+        # Assert
+        self.assertListEqual(stack, expected)
+
+    def test_left_can_move_does_not_add_when_seen(self):
+        """
+        Tests that moving left does not add new coordinates when they have been seen.
+        """
+        # Arrange
+        coords = (1, 1)
+        stack = []
+        path = []
+        seen = {(1, 0)}
+        expected = []
+
+        # Act
+        main.left(coords, stack, seen, path)
+
+        # Assert
+        self.assertListEqual(stack, expected)
+
     # def test_num_steps_v1(self):
     #     """
     #     Tests that the number of steps to the farthest point is calculated correctly - variant 1.
