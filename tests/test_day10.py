@@ -208,6 +208,60 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(stack, expected)
 
+    def test_right_can_move_adds_new_coords(self):
+        """
+        Tests that moving right works when y is less than the number of columns.
+        """
+        # Arrange
+        num_cols = 2
+        coords = (0, 0)
+        stack = []
+        path = [(4, 8)]
+        seen = set()
+        expected = [[(4, 8), (0, 1)]]
+
+        # Act
+        main.right(coords, stack, seen, path, num_cols)
+
+        # Assert
+        self.assertListEqual(stack, expected)
+
+    def test_right_cannot_move_does_not_add(self):
+        """
+        Tests that moving right does not add a new coordinate when y is the last column.
+        """
+        # Arrange
+        num_cols = 2
+        coords = (1, 1)
+        stack = []
+        path = []
+        seen = set()
+        expected = []
+
+        # Act
+        main.right(coords, stack, seen, path, num_cols)
+
+        # Assert
+        self.assertListEqual(stack, expected)
+
+    def test_right_can_move_does_not_add_when_seen(self):
+        """
+        Tests that moving right does not add new coordinates when they have been seen.
+        """
+        # Arrange
+        num_cols = 2
+        coords = (0, 0)
+        stack = []
+        path = []
+        seen = {(0, 1)}
+        expected = []
+
+        # Act
+        main.right(coords, stack, seen, path, num_cols)
+
+        # Assert
+        self.assertListEqual(stack, expected)
+
     # def test_num_steps_v1(self):
     #     """
     #     Tests that the number of steps to the farthest point is calculated correctly - variant 1.
