@@ -362,26 +362,25 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(actuals, expectations)
 
-    def test_is_encompassed(self):
+    # def test_extract_encompassed_points(self):
+
+    def test_is_encompassed_part_of_loop(self):
         """
-        Tests that a tile can be successfully checked to be outside of the loop.
+        Tests that a tile can be successfully checked to be part of the loop.
         """
         # Arrange
-        matrix = [['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-                  ['.', 'S', '-', '-', '-', '-', '-', '-', '-', '7', '.'],
-                  ['.', '|', 'F', '-', '-', '-', '-', '-', '7', '|', '.'],
-                  ['.', '|', '|', '.', '.', '.', '.', '.', '|', '|', '.'],
-                  ['.', '|', '|', '.', '.', '.', '.', '.', '|', '|', '.'],
-                  ['.', '|', 'L', '-', '7', '.', 'F', '-', 'J', '|', '.'],
-                  ['.', '|', '.', '.', '|', '.', '|', '.', '.', '|', '.'],
-                  ['.', 'L', '-', '-', 'J', '.', 'L', '-', '-', 'J', '.'],
-                  ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.']]
+        matrix = [['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+                  ['.', 'S', '-', '-', '-', '-', '-', '-', '7', '.'],
+                  ['.', '|', 'F', '-', '-', '-', '-', '7', '|', '.'],
+                  ['.', '|', '|', '.', '.', '.', '.', '|', '|', '.'],
+                  ['.', '|', '|', '.', '.', '.', '.', '|', '|', '.'],
+                  ['.', '|', 'L', '-', '7', 'F', '-', 'J', '|', '.'],
+                  ['.', '|', '.', '.', '|', '|', '.', '.', '|', '.'],
+                  ['.', 'L', '-', '-', 'J', 'L', '-', '-', 'J', '.'],
+                  ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.']]
 
         expectations = [
-            ((0, 0), False),
-            ((4, 0), False),
-            ((6, 2), True),
-            ((5, 5), False),
+            ((7, 1), True),
             ((5, 7), True),
         ]
 
@@ -391,3 +390,63 @@ class TestDay10(unittest.TestCase):
 
             # Assert
             self.assertEqual(actual, expected)
+
+    # def test_is_encompassed_outside(self):
+    #     """
+    #     Tests that a tile can be successfully checked to be outside of the loop when there is a path to the outside.
+    #     """
+    #     # Arrange
+    #     matrix = [['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    #               ['.', 'S', '-', '-', '-', '-', '-', '-', '-', '7', '.'],
+    #               ['.', '|', 'F', '-', '-', '-', '-', '-', '7', '|', '.'],
+    #               ['.', '|', '|', '.', '.', '.', '.', '.', '|', '|', '.'],
+    #               ['.', '|', '|', '.', '.', '.', '.', '.', '|', '|', '.'],
+    #               ['.', '|', 'L', '-', '7', '.', 'F', '-', 'J', '|', '.'],
+    #               ['.', '|', '.', '.', '|', '.', '|', '.', '.', '|', '.'],
+    #               ['.', 'L', '-', '-', 'J', '.', 'L', '-', '-', 'J', '.'],
+    #               ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.']]
+
+    #     expectations = [
+    #         ((0, 0), False),
+    #         ((4, 0), False),
+    #         ((6, 2), True),
+    #         ((5, 5), False),
+    #         ((5, 7), True),
+    #     ]
+
+    #     for p, expected in expectations:
+    #         # Act
+    #         actual = main.is_encompassed(p, matrix)
+
+    #         # Assert
+    #         self.assertEqual(actual, expected)
+
+    # def test_is_encompassed_inside(self):
+    #     """
+    #     Tests that a tile can be successfully checked to be outside of the loop when there is no path to the outside.
+    #     """
+    #     # Arrange
+    #     matrix = [['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    #               ['.', 'S', '-', '-', '-', '-', '-', '-', '7', '.'],
+    #               ['.', '|', 'F', '-', '-', '-', '-', '7', '|', '.'],
+    #               ['.', '|', '|', '.', '.', '.', '.', '|', '|', '.'],
+    #               ['.', '|', '|', '.', '.', '.', '.', '|', '|', '.'],
+    #               ['.', '|', 'L', '-', '7', 'F', '-', 'J', '|', '.'],
+    #               ['.', '|', '.', '.', '|', '|', '.', '.', '|', '.'],
+    #               ['.', 'L', '-', '-', 'J', 'L', '-', '-', 'J', '.'],
+    #               ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.']]
+
+    #     expectations = [
+    #         ((0, 0), False),
+    #         ((4, 0), False),
+    #         ((6, 2), True),
+    #         ((5, 5), False),
+    #         ((5, 7), True),
+    #     ]
+
+    #     for p, expected in expectations:
+    #         # Act
+    #         actual = main.is_encompassed(p, matrix)
+
+    #         # Assert
+    #         self.assertEqual(actual, expected)

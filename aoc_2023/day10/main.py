@@ -117,6 +117,11 @@ def part1(filename: str) -> int:
     return num_steps_farthest(matrix, start_coords)
 
 
+def is_encompassed(p: tuple[int, int], matrix: list[list[str]]) -> bool:
+    _ = num_steps_farthest(matrix, start_coords=(1, 1))
+    return False
+
+
 def part2(filename: str) -> int:
     return 42
 
