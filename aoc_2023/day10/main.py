@@ -1,3 +1,6 @@
+import functools
+
+
 def parse_input(filename: str) -> list[list[str]]:
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
@@ -70,14 +73,14 @@ def initialize_stack(
     return result
 
 
-def num_steps_farthest(
-    matrix: list[list[str]], start_coords: tuple[int, int]
-) -> int:
+def num_steps_farthest(matrix: list[list[str]],
+                       start_coords: tuple[int, int]) -> tuple[int, list]:
     num_rows = len(matrix)
     num_cols = len(matrix[0])
     stack = initialize_stack(matrix, start_coords)
     seen = set()
     lens = []
+    paths = []
 
     while len(stack) > 0:
         path = stack.pop()
@@ -85,6 +88,7 @@ def num_steps_farthest(
 
         if (x, y) == start_coords:
             lens.append(len(path))
+            paths.append(path)
             continue
 
         seen.add((x, y))
@@ -108,7 +112,11 @@ def num_steps_farthest(
             down((x, y), stack, seen, path, num_rows)
             right((x, y), stack, seen, path, num_cols)
 
-    return (max(lens) - 1) // 2
+    longest_path = functools.reduce(
+        lambda acc, xs: xs if len(acc) < len(xs) else acc, paths, []
+    )
+
+    return (max(lens) - 1) // 2, longest_path
 
 
 def part1(filename: str) -> int:
@@ -118,8 +126,24 @@ def part1(filename: str) -> int:
 
 
 def is_encompassed(p: tuple[int, int], matrix: list[list[str]]) -> bool:
-    _ = num_steps_farthest(matrix, start_coords=(1, 1))
-    return False
+    start_coords = find_start(matrix)
+    longest_path: set[tuple[int,
+                            int]] = num_steps_farthest(matrix, start_coords)[1]
+
+    if p in longest_path:
+        return False
+
+    x, y = p
+
+    left_points = sum(
+        1 if (x1, y) in longest_path else 0 for x1 in range(0, x - 1)
+    )
+    right_points = sum(
+        1 if (x1, y) in longest_path else 0
+        for x1 in range(x + 1, len(matrix[0]))
+    )
+
+    return left_points % 2 == 1 and right_points % 2 != 1 or left_points % 2 != 1 and right_points % 2 == 1
 
 
 def part2(filename: str) -> int:
