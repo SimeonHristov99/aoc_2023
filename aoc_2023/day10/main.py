@@ -163,7 +163,7 @@ def part2(filename: str) -> int:
     for x in range(num_rows):
         for y in range(num_cols):
             if is_encompassed((x, y), matrix):
-                print((x, y))
+                # print((x, y))
                 result += 1
 
     return result
@@ -175,7 +175,7 @@ def main() -> None:
     print(f'Part 1, Input: {part1("aoc_2023/day10/input.txt")}')  # 6828
 
     # print(f'Part 2, Sample: {part2("aoc_2023/day10/sample.txt")}')
-    # print(f'Part 2, Input: {part2("aoc_2023/day10/input.txt")}')
+    print(f'Part 2, Input: {part2("aoc_2023/day10/input.txt")}')
 
 
 if __name__ == '__main__':

@@ -586,3 +586,21 @@ class TestDay10(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+    def test_part2_example4(self):
+        """
+        Tests that part 2 works for example 4.
+        """
+        # Arrange
+        filename = 'aoc_2023/day10/example4.txt'
+        expected = 10
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
+# Idea: Build a bit matrix instead of finding the path every time.
+# Then, just check if that cell is in the bit matrix (or is True in the bit matrix).
