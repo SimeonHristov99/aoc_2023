@@ -64,11 +64,11 @@ def initialize_stack(
     x, y = start_coords
     if 0 < y and matrix[x][y - 1] == '-':  # left
         result.append([start_coords, (x, y - 1)])
-    if 0 < x and matrix[x - 1][y] == '|':  # up
+    if 0 < x and matrix[x - 1][y] in {'|', 'F'}:  # up
         result.append([start_coords, (x - 1, y)])
-    if x < len(matrix) - 1 and matrix[x + 1][y] == '|':  # down
+    if x < len(matrix) - 1 and matrix[x + 1][y] in {'|', 'J'}:  # down
         result.append([start_coords, (x + 1, y)])
-    if y < len(matrix[0]) - 1 and matrix[x][y + 1] == '-':  # right
+    if y < len(matrix[0]) - 1 and matrix[x][y + 1] in {'-', '7'}:  # right
         result.append([start_coords, (x, y + 1)])
     return result
 

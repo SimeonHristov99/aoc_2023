@@ -282,9 +282,9 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(stack, expected)
 
-    def test_initiate_stack(self):
+    def test_initiate_stack_example1(self):
         """
-        Tests that all possible paths get added to the stack initially.
+        Tests that all possible paths get added to the stack initially - example 1.
         """
         # Arrange
         matrix = [
@@ -296,6 +296,69 @@ class TestDay10(unittest.TestCase):
         ]
         start_coords = (1, 1)
         expected = [[(1, 1), (2, 1)], [(1, 1), (1, 2)]]
+
+        # Act
+        actual = main.initialize_stack(matrix, start_coords)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_initiate_stack_example2(self):
+        """
+        Tests that all possible paths get added to the stack initially - example 2.
+        """
+        # Arrange
+        matrix = [
+            ['-', 'L', '|', 'F', '7'],
+            ['7', 'S', '-', '7', '|'],
+            ['L', 'J', '7', '|', '|'],
+            ['-', 'L', '-', 'J', '|'],
+            ['L', '|', '-', 'J', 'F'],
+        ]
+        start_coords = (1, 1)
+        expected = [[(1, 1), (2, 1)], [(1, 1), (1, 2)]]
+
+        # Act
+        actual = main.initialize_stack(matrix, start_coords)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_initiate_stack_example3(self):
+        """
+        Tests that all possible paths get added to the stack initially - example 3.
+        """
+        # Arrange
+        matrix = [
+            ['-', 'L', '|', 'F', '7'],
+            ['7', 'S', '7', '7', '|'],
+            ['L', '|', '-', '|', '|'],
+            ['-', 'L', '-', 'J', '|'],
+            ['L', '|', '-', 'J', 'F'],
+        ]
+        start_coords = (1, 1)
+        expected = [[(1, 1), (2, 1)], [(1, 1), (1, 2)]]
+
+        # Act
+        actual = main.initialize_stack(matrix, start_coords)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_initiate_stack_example4(self):
+        """
+        Tests that all possible paths get added to the stack initially - example 4.
+        """
+        # Arrange
+        matrix = [
+            ['-', 'F', '|', 'F', '7'],
+            ['7', 'S', '-', '7', '|'],
+            ['L', '|', '7', '|', '|'],
+            ['-', 'L', '-', 'J', '|'],
+            ['L', '|', '-', 'J', 'F'],
+        ]
+        start_coords = (1, 1)
+        expected = [[(1, 1), (0, 1)], [(1, 1), (2, 1)], [(1, 1), (1, 2)]]
 
         # Act
         actual = main.initialize_stack(matrix, start_coords)
