@@ -135,19 +135,38 @@ def is_encompassed(p: tuple[int, int], matrix: list[list[str]]) -> bool:
 
     x, y = p
 
-    left_points = sum(
-        1 if (x1, y) in longest_path else 0 for x1 in range(0, x - 1)
-    )
+    left_points = sum(1 if (x, y1) in longest_path else 0 for y1 in range(y))
     right_points = sum(
+        1 if (x, y1) in longest_path else 0
+        for y1 in range(y + 1, len(matrix[0]))
+    )
+    up_points = sum(1 if (x1, y) in longest_path else 0 for x1 in range(x))
+    down_points = sum(
         1 if (x1, y) in longest_path else 0
-        for x1 in range(x + 1, len(matrix[0]))
+        for x1 in range(x + 1, len(matrix))
     )
 
-    return left_points % 2 == 1 and right_points % 2 != 1 or left_points % 2 != 1 and right_points % 2 == 1
+    return left_points > 0 and right_points > 0 and up_points > 0 and down_points > 0 and (
+        left_points % 2 == 1 and right_points % 2 == 1
+        or left_points % 2 == 1 and right_points % 2 != 1
+        or left_points % 2 != 1 and right_points % 2 == 1
+    )
 
 
 def part2(filename: str) -> int:
-    return 42
+    result = 0
+    matrix = parse_input(filename)
+
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
+
+    for x in range(num_rows):
+        for y in range(num_cols):
+            if is_encompassed((x, y), matrix):
+                print((x, y))
+                result += 1
+
+    return result
 
 
 def main() -> None:

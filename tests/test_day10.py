@@ -446,6 +446,7 @@ class TestDay10(unittest.TestCase):
             ((6, 2), True),
             ((5, 5), False),
             ((5, 7), False),
+            ((0, 1), False),
         ]
 
         for p, expected in expectations:
@@ -454,3 +455,71 @@ class TestDay10(unittest.TestCase):
 
             # Assert
             self.assertEqual(actual, expected)
+
+    # add a test where there is a single, normal loop and 1 point at the center
+
+    def test_is_encompassed_single_loop(self):
+        """
+        Tests that a point in a single loop is successfully treated as encompassed.
+        """
+        # Arrange
+        matrix = [['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+                  ['.', 'S', '-', '-', '-', '-', '-', '-', '7', '.'],
+                  ['.', '|', '.', '.', '.', '.', '.', '.', '|', '.'],
+                  ['.', '|', '.', '.', '.', '.', '.', '.', '|', '.'],
+                  ['.', '|', '.', '.', '.', '.', '.', '.', '|', '.'],
+                  ['.', '|', '.', '.', '.', '.', '.', '.', '|', '.'],
+                  ['.', '|', '.', '.', '.', '.', '.', '.', '|', '.'],
+                  ['.', 'L', '-', '-', '-', '-', '-', '-', 'J', '.'],
+                  ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.']]
+
+        p = (5, 4)
+        expected = True
+
+        # Act
+        actual = main.is_encompassed(p, matrix)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_part2_example1(self):
+        """
+        Tests that part 2 works for example 1.
+        """
+        # Arrange
+        filename = 'aoc_2023/day10/example1.txt'
+        expected = 4
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_part2_example2(self):
+        """
+        Tests that part 2 works for example 2.
+        """
+        # Arrange
+        filename = 'aoc_2023/day10/example2.txt'
+        expected = 4
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_part2_example3(self):
+        """
+        Tests that part 2 works for example 3.
+        """
+        # Arrange
+        filename = 'aoc_2023/day10/example3.txt'
+        expected = 8
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
