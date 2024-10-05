@@ -1,146 +1,91 @@
-import functools
+import copy
+from typing import List, Tuple
 
 
-def parse_input(filename: str) -> list[list[str]]:
+def parse_input(filename: str) -> List[List[str]]:
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
-    return [list(line) for line in lines]
+    return [[c for c in line] for line in lines]
 
 
-def find_start(matrix: list[list[str]]) -> tuple[int, int]:
-    num_rows = len(matrix)
-    num_cols = len(matrix[0])
-    for i in range(num_rows):
-        for j in range(num_cols):
-            if matrix[i][j] == 'S':
+def find_start(pipe_map: List[List[str]]) -> Tuple[int, int]:
+    for i in range(len(pipe_map)):
+        for j in range(len(pipe_map[0])):
+            if pipe_map[i][j] == 'S':
                 return (i, j)
-    raise NotImplementedError('Coordinates of starting point not found.')
+    return (-1, -1)
 
 
-def up(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
-       path: list[tuple[int, int]]):
-    x, y = coords
-    next_ = (x - 1, y)
-    if 0 < x and next_ not in seen:
-        stack.append(path + [next_])
+def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
+                                                                  int]) -> List[Tuple[int, int]]:
+    result = [start]
 
+    input_map_copy = copy.deepcopy(input_map)
 
-def down(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
-         path: list[tuple[int, int]], num_rows: int):
-    x, y = coords
-    next_ = (x + 1, y)
-    if x < num_rows - 1 and next_ not in seen:
-        stack.append(path + [next_])
+    num_cols = len(input_map_copy[0])
+    num_rows = len(input_map_copy)
 
+    possible_right = {'-', 'J', '7'}
+    possible_up = {'|', '7', 'F'}
+    possible_left = {'-', 'L', 'F'}
+    possible_down = {'|', 'L', 'J'}
 
-def left(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
-         path: list[tuple[int, int]]):
-    x, y = coords
-    next_ = (x, y - 1)
-    if 0 < y and next_ not in seen:
-        stack.append(path + [next_])
+    can_move = { # map pipe type to possible movements [right, up, left, down]
+        '|': [False, True, False, True],
+        '-': [True, False, True, False],
+        'L': [True, True, False, False],
+        'J': [False, True, True, False],
+        '7': [False, False, True, True],
+        'F': [True, False, False, True],
+    }
 
+    (x, y) = start
 
-def right(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
-          path: list[tuple[int, int]], num_cols: int):
-    x, y = coords
-    next_ = (x, y + 1)
-    if y < num_cols - 1 and next_ not in seen:
-        stack.append(path + [next_])
+    if y < num_cols and input_map_copy[x][y + 1] in possible_right:
+        y = y + 1
+    elif x > 0 and input_map_copy[x - 1][y] in possible_up:
+        x = x - 1
+    elif y > 0 and input_map_copy[x][y - 1] in possible_left:
+        y = y - 1
+    else:
+        raise ValueError('Input map does not have two connected pipes to the starting pipe.')
 
+    while True:
+        result.append((x, y))
+        can_move_right, can_move_up, can_move_left, can_move_down = can_move[input_map[x][y]]
+        input_map_copy[x][y] = 'X'
 
-def initialize_stack(matrix: list[list[str]],
-                     start_coords: tuple[int, int]) -> list[list[tuple[int, int]]]:
-    result = []
-    x, y = start_coords
-    if 0 < y and matrix[x][y - 1] == '-':  # left
-        result.append([start_coords, (x, y - 1)])
-    if 0 < x and matrix[x - 1][y] in {'|', 'F'}:  # up
-        result.append([start_coords, (x - 1, y)])
-    if x < len(matrix) - 1 and matrix[x + 1][y] in {'|', 'J'}:  # down
-        result.append([start_coords, (x + 1, y)])
-    if y < len(matrix[0]) - 1 and matrix[x][y + 1] in {'-', '7'}:  # right
-        result.append([start_coords, (x, y + 1)])
+        if can_move_right and y < num_cols and input_map_copy[x][y + 1] in possible_right:
+            y = y + 1
+        elif can_move_up and x > 0 and input_map_copy[x - 1][y] in possible_up:
+            x = x - 1
+        elif can_move_left and y > 0 and input_map_copy[x][y - 1] in possible_left:
+            y = y - 1
+        elif can_move_down and input_map_copy[x + 1][y] in possible_down:
+            x += 1
+        else:
+            break
+
     return result
-
-
-def num_steps_farthest(matrix: list[list[str]], start_coords: tuple[int, int]) -> tuple[int, list]:
-    num_rows = len(matrix)
-    num_cols = len(matrix[0])
-    stack = initialize_stack(matrix, start_coords)
-    seen = set()
-    lens = []
-    paths = []
-
-    while len(stack) > 0:
-        path = stack.pop()
-        x, y = path[-1]
-
-        if (x, y) == start_coords:
-            lens.append(len(path))
-            paths.append(path)
-            continue
-
-        seen.add((x, y))
-
-        if matrix[x][y] == '|':  # only up and down
-            up((x, y), stack, seen, path)
-            down((x, y), stack, seen, path, num_rows)
-        elif matrix[x][y] == '-':  # only left and right
-            left((x, y), stack, seen, path)
-            right((x, y), stack, seen, path, num_cols)
-        elif matrix[x][y] == 'L':  # only up and right
-            up((x, y), stack, seen, path)
-            right((x, y), stack, seen, path, num_cols)
-        elif matrix[x][y] == 'J':  # only up and left
-            up((x, y), stack, seen, path)
-            left((x, y), stack, seen, path)
-        elif matrix[x][y] == '7':  # only down and left
-            down((x, y), stack, seen, path, num_rows)
-            left((x, y), stack, seen, path)
-        elif matrix[x][y] == 'F':  # only down and right
-            down((x, y), stack, seen, path, num_rows)
-            right((x, y), stack, seen, path, num_cols)
-
-    longest_path = functools.reduce(lambda acc, xs: xs if len(acc) < len(xs) else acc, paths, [])
-
-    return (max(lens) - 1) // 2, longest_path
 
 
 def part1(filename: str) -> int:
-    matrix = parse_input(filename)
-    start_coords = find_start(matrix)
-    return num_steps_farthest(matrix, start_coords)
-
-
-def is_encompassed(p: tuple[int, int], matrix: list[list[str]]) -> bool:
-    start_coords = find_start(matrix)
-    longest_path: set[tuple[int, int]] = num_steps_farthest(matrix, start_coords)[1]
+    pipe_map = parse_input(filename)
+    start = find_start(pipe_map)
+    loop = get_loop_coordinates(pipe_map, start)
+    return len(loop) // 2
 
 
 def part2(filename: str) -> int:
-    result = 0
-    matrix = parse_input(filename)
-
-    num_rows = len(matrix)
-    num_cols = len(matrix[0])
-
-    for x in range(num_rows):
-        for y in range(num_cols):
-            if is_encompassed((x, y), matrix):
-                # print((x, y))
-                result += 1
-
-    return result
+    return 42
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample1.txt")}')  # 4
-    print(f'Part 1, Sample: {part1("aoc_2023/day10/sample2.txt")}')  # 8
-    print(f'Part 1, Input: {part1("aoc_2023/day10/input.txt")}')  # 6828
+    print(f'Part 1, Sample: {part1("./aoc_2023/day10_new/sample.txt")}')
+    print(f'Part 1, Input: {part1("./aoc_2023/day10_new/input.txt")}')
 
-    # print(f'Part 2, Sample: {part2("aoc_2023/day10/sample.txt")}')
-    print(f'Part 2, Input: {part2("aoc_2023/day10/input.txt")}')
+    # print(f'Part 2, Sample: {part2("./aoc_2023/day10_new/sample.txt")}')
+    # print(f'Part 2, Input: {part2("input.txt")}')
 
 
 if __name__ == '__main__':
