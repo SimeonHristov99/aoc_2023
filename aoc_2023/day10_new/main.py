@@ -1,3 +1,4 @@
+import copy
 from typing import List, Tuple
 
 
@@ -13,6 +14,49 @@ def find_start(pipe_map: List[List[str]]) -> Tuple[int, int]:
             if pipe_map[i][j] == 'S':
                 return (i, j)
     return (-1, -1)
+
+
+def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
+                                                                  int]) -> List[Tuple[int, int]]:
+    result = [start]
+
+    input_map_copy = copy.deepcopy(input_map)
+
+    num_cols = len(input_map_copy[0])
+    num_rows = len(input_map_copy)
+
+    possible_right = {'-', 'J', '7'}
+    possible_up = {'|', '7', 'F'}
+    possible_left = {'-', 'L', 'F'}
+    possible_down = {'|', 'L', 'J'}
+
+    (x, y) = start
+
+    if y < num_cols and input_map_copy[x][y + 1] in possible_right:
+        y = y + 1
+    elif x > 0 and input_map_copy[x - 1][y] in possible_up:
+        x = x - 1
+    elif y > 0 and input_map_copy[x][y - 1] in possible_left:
+        y = y - 1
+    else:
+        raise ValueError('Input map does not have two connected pipes to the starting pipe.')
+
+    while True:
+        result.append((x, y))
+        input_map_copy[x][y] = 'X'
+
+        if y < num_cols and input_map_copy[x][y + 1] in possible_right:
+            y = y + 1
+        elif x > 0 and input_map_copy[x - 1][y] in possible_up:
+            x = x - 1
+        elif y > 0 and input_map_copy[x][y - 1] in possible_left:
+            y = y - 1
+        elif input_map_copy[x + 1][y] in possible_down:
+            x += 1
+        else:
+            break
+
+    return result
 
 
 def part1(filename: str) -> int:
