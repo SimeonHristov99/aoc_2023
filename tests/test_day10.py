@@ -4,7 +4,6 @@
 
 # from aoc_2023.day10 import main
 
-
 # class TestDay10(unittest.TestCase):
 
 #     def test_parse_input(self):
@@ -619,7 +618,6 @@
 
 #         # Assert
 #         self.assertEqual(actual, expected)
-
 
 # # Idea: Build a bit matrix instead of finding the path every time.
 # # Then, just check if that cell is in the bit matrix (or is True in the bit matrix).
