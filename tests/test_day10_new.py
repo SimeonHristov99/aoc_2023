@@ -128,23 +128,21 @@ class TestDay10New(unittest.TestCase):
         # Assert
         self.assertListEqual(actual, expected)
 
-    def test_manhattan_distance(self):
+    def test_part1(self):
         """
-        Tests the manhattan distance between two points is calculated correctly.
+        Tests that part 1 returns correct calculations.
         """
         # Arrange
-        expecteds = [0, 1, 2, 41]
         inputs = [
-            ((1, 0), (1, 0)),
-            ((1, 1), (1, 0)),
-            ((0, 0), (1, 1)),
-            ((31, 10), (32, 50)),
+            './aoc_2023/day10_new/sample.txt', './aoc_2023/day10_new/input.txt',
+            'tests/resources/d10_s3.txt'
         ]
+        expecteds = [8, 6828, 80]
         actuals = []
 
         # Act
-        for p1, p2 in inputs:
-            actuals.append(main.manhattan_distance(p1, p2))
+        for filename in inputs:
+            actuals.append(main.part1(filename))
 
         # Assert
         self.assertListEqual(actuals, expecteds)

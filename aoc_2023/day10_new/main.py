@@ -2,10 +2,6 @@ import copy
 from typing import List, Tuple
 
 
-def manhattan_distance(p1: Tuple[int, int], p2: Tuple[int, int]) -> int:
-    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
-
-
 def parse_input(filename: str) -> List[List[str]]:
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
@@ -74,7 +70,10 @@ def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
 
 
 def part1(filename: str) -> int:
-    return 42
+    pipe_map = parse_input(filename)
+    start = find_start(pipe_map)
+    loop = get_loop_coordinates(pipe_map, start)
+    return len(loop) // 2
 
 
 def part2(filename: str) -> int:
@@ -83,7 +82,7 @@ def part2(filename: str) -> int:
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("./aoc_2023/day10_new/sample.txt")}')
-    # print(f'Part 1, Input: {part1("input.txt")}')
+    print(f'Part 1, Input: {part1("./aoc_2023/day10_new/input.txt")}')
 
     # print(f'Part 2, Sample: {part2("./aoc_2023/day10_new/sample.txt")}')
     # print(f'Part 2, Input: {part2("input.txt")}')
