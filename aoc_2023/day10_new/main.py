@@ -30,6 +30,15 @@ def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
     possible_left = {'-', 'L', 'F'}
     possible_down = {'|', 'L', 'J'}
 
+    can_move = { # map pipe type to possible movements [right, up, left, down]
+        '|': [False, True, False, True],
+        '-': [True, False, True, False],
+        'L': [True, True, False, False],
+        'J': [False, True, True, False],
+        '7': [False, False, True, True],
+        'F': [True, False, False, True],
+    }
+
     (x, y) = start
 
     if y < num_cols and input_map_copy[x][y + 1] in possible_right:
@@ -43,15 +52,16 @@ def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
 
     while True:
         result.append((x, y))
+        can_move_right, can_move_up, can_move_left, can_move_down = can_move[input_map[x][y]]
         input_map_copy[x][y] = 'X'
 
-        if y < num_cols and input_map_copy[x][y + 1] in possible_right:
+        if can_move_right and y < num_cols and input_map_copy[x][y + 1] in possible_right:
             y = y + 1
-        elif x > 0 and input_map_copy[x - 1][y] in possible_up:
+        elif can_move_up and x > 0 and input_map_copy[x - 1][y] in possible_up:
             x = x - 1
-        elif y > 0 and input_map_copy[x][y - 1] in possible_left:
+        elif can_move_left and y > 0 and input_map_copy[x][y - 1] in possible_left:
             y = y - 1
-        elif input_map_copy[x + 1][y] in possible_down:
+        elif can_move_down and input_map_copy[x + 1][y] in possible_down:
             x += 1
         else:
             break
@@ -60,7 +70,13 @@ def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
 
 
 def part1(filename: str) -> int:
-    print(parse_input(filename))
+    # print(parse_input(filename))
+    input_map = parse_input('aoc_2023/day10_new/input.txt')
+    start = find_start(input_map)
+    loop_coords = get_loop_coordinates(input_map, start)
+    with open('tests/resources/d10_input_loop_coords.txt', 'w') as f:
+        f.write(str(loop_coords))
+    print()
     return 42
 
 
