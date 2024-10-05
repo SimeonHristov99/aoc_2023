@@ -3,8 +3,7 @@ from __future__ import annotations
 from enum import Enum
 from functools import reduce
 
-from attrs import define
-from attrs import field
+from attrs import define, field
 
 from aoc_2023 import utils
 
@@ -137,7 +136,9 @@ def part2(filename: str) -> int:
     lines = utils.get_lines(filename)
     games = [parse(game) for game in lines]
     return reduce(
-        lambda acc, game: acc + game.minimum_cube_set_power(), games, 0,
+        lambda acc, game: acc + game.minimum_cube_set_power(),
+        games,
+        0,
     )
 
 

@@ -40,10 +40,8 @@ def get_seeds_and_maps(lines: list[str]):
     return seeds, maps
 
 
-def move(
-    destination: tuple[int, int], mapping: tuple[int, int], line: tuple[int,
-                                                                        int]
-) -> tuple[tuple[int, int] | None, list[tuple[int, int]]]:
+def move(destination: tuple[int, int], mapping: tuple[int, int],
+         line: tuple[int, int]) -> tuple[tuple[int, int] | None, list[tuple[int, int]]]:
     (map_start, map_end) = mapping
     (destination_start, destination_end) = destination
     (line_start, line_end) = line
@@ -86,18 +84,14 @@ def move(
 
     if map_start <= line_start <= line_end <= map_end:
         # map contains line
-        done = (
-            destination_start + line_start - map_start,
-            destination_end - (map_end - line_end)
-        )
+        done = (destination_start + line_start - map_start, destination_end - (map_end - line_end))
         return done, []
 
     # no overlap
     return None, [(line_start, line_end)]
 
 
-def apply_map(map_: dict[int, tuple[int, int]],
-              line: tuple[int, int]) -> set[tuple[int, int]]:
+def apply_map(map_: dict[int, tuple[int, int]], line: tuple[int, int]) -> set[tuple[int, int]]:
     dones = set()
     to_processs = [line]
     seen = set()
@@ -105,9 +99,7 @@ def apply_map(map_: dict[int, tuple[int, int]],
     for destination_start, (map_start, map_length) in map_.items():
         leftovers = []
         for to_process in to_processs:
-            destination = (
-                destination_start, destination_start + map_length - 1
-            )
+            destination = (destination_start, destination_start + map_length - 1)
             mapping = (map_start, map_start + map_length - 1)
             done, leftover = move(destination, mapping, to_process)
             if done:
@@ -124,8 +116,7 @@ def apply_map(map_: dict[int, tuple[int, int]],
     return dones
 
 
-def almanac(maps: list[dict[int, tuple[int, int]]],
-            line: tuple[int, int]) -> set[tuple[int, int]]:
+def almanac(maps: list[dict[int, tuple[int, int]]], line: tuple[int, int]) -> set[tuple[int, int]]:
     done = set()
     num_maps = len(maps)
     lines = {line}

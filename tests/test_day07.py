@@ -209,10 +209,8 @@ class TestDay07(unittest.TestCase):
 
         # Act & Assert
         for hand1, hand2, expected in trials:
-            self.assertEqual(
-                main.compare(hand1, hand2), expected,
-                f'Expected {expected} for {hand1=} and {hand2=}.'
-            )
+            self.assertEqual(main.compare(hand1, hand2), expected,
+                             f'Expected {expected} for {hand1=} and {hand2=}.')
 
     def test_order_by_rank_no_joker(self):
         """
@@ -396,10 +394,8 @@ class TestDay07(unittest.TestCase):
 
         # Act & Assert
         for hand1, hand2, expected in trials:
-            self.assertEqual(
-                main.compare(hand1, hand2, joker=True), expected,
-                f'Expected {expected} for {hand1=} and {hand2=}.'
-            )
+            self.assertEqual(main.compare(hand1, hand2, joker=True), expected,
+                             f'Expected {expected} for {hand1=} and {hand2=}.')
 
     def test_order_by_rank_with_joker(self):
         """

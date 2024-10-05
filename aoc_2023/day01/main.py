@@ -1,5 +1,6 @@
 import sys
 from functools import reduce
+
 from aoc_2023.utils import get_lines
 
 DIGIT_LETTERS_MAP = {
@@ -14,6 +15,7 @@ DIGIT_LETTERS_MAP = {
     'eight': 8,
     'nine': 9,
 }
+
 
 def part1(filename: str) -> int:
     lines = get_lines(filename)
@@ -38,6 +40,7 @@ def part1(filename: str) -> int:
 
     return sum(numbers)
 
+
 def parse(line: str) -> int:
     digits = []
 
@@ -54,6 +57,7 @@ def parse(line: str) -> int:
         i += 1
 
     return int(f'{digits[0]}{digits[-1]}')
+
 
 def part2(filename: str) -> int:
     lines = get_lines(filename)

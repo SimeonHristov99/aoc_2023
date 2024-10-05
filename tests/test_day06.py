@@ -17,9 +17,7 @@ class TestDay06(unittest.TestCase):
         actual = main.parse_input(input_file)
 
         # Assert
-        self.assertListEqual(
-            actual, expected, f'Expected to get {expected}, but got {actual}.'
-        )
+        self.assertListEqual(actual, expected, f'Expected to get {expected}, but got {actual}.')
 
     def test_get_bigger_distances_threshold_v1(self):
         """
@@ -87,6 +85,4 @@ class TestDay06(unittest.TestCase):
         actual = main.parse_input_part2(input_file)
 
         # Assert
-        self.assertTupleEqual(
-            actual, expected, f'Expected to get {expected}, but got {actual}.'
-        )
+        self.assertTupleEqual(actual, expected, f'Expected to get {expected}, but got {actual}.')

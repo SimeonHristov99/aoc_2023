@@ -87,9 +87,7 @@ class TestDay08(unittest.TestCase):
         }
 
         # Act
-        actual_num_repetitions = main.num_repetitions(
-            directions, map_, start_node
-        )
+        actual_num_repetitions = main.num_repetitions(directions, map_, start_node)
 
         # Assert
         self.assertEqual(actual_num_repetitions, expected_num_repetitions)
@@ -114,9 +112,7 @@ class TestDay08(unittest.TestCase):
         }
 
         # Act
-        actual_num_repetitions = main.num_repetitions(
-            directions, map_, start_node
-        )
+        actual_num_repetitions = main.num_repetitions(directions, map_, start_node)
 
         # Assert
         self.assertEqual(actual_num_repetitions, expected_num_repetitions)

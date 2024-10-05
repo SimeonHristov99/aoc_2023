@@ -30,8 +30,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_no_overlap_right_leaves_without_changes(self):
         """
@@ -108,8 +107,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_overlap_right_ending(self):
         """
@@ -134,8 +132,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_overlap_right_edge(self):
         """
@@ -160,8 +157,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_overlap_left_ending(self):
         """
@@ -186,8 +182,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_overlap_left_edge(self):
         """
@@ -212,8 +207,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_overlap_left_results_in_one_done_and_one_to_process(self):
         """
@@ -240,8 +234,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_move_overlap_middle_results_in_one_done_and_two_to_process(self):
         """
@@ -268,8 +261,7 @@ class TestDay05(unittest.TestCase):
         )
         self.assertListEqual(
             actual_leftover, expected_leftover,
-            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`'
-        )
+            f'Expected `leftover={expected_leftover}`, but got `leftover={actual_leftover}`')
 
     def test_apply_map_two_ranges_basic(self):
         """
@@ -285,10 +277,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(map_, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_apply_map_two_ranges_longer_maps(self):
         """
@@ -304,10 +293,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(maps, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_apply_map_order_does_not_matter(self):
         """
@@ -324,10 +310,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(map_, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_apply_map_ranges_cover_line(self):
         """
@@ -343,10 +326,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(map_, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_apply_map_non_overlapping_leaves_line_unchanged(self):
         """
@@ -363,10 +343,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(map_, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_move_does_not_produce_invalid_points(self):
         """
@@ -382,10 +359,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(map_, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_apply_map_returns_only_needed_ranges(self):
         """
@@ -401,10 +375,7 @@ class TestDay05(unittest.TestCase):
         actual = apply_map(map_, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_two_maps(self):
         """
@@ -430,10 +401,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_one_two_times(self):
         """
@@ -459,10 +427,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_one_three_times(self):
         """
@@ -494,10 +459,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_one_four_times(self):
         """
@@ -533,10 +495,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_one_five_times(self):
         """
@@ -577,10 +536,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_one_six_times(self):
         """
@@ -625,10 +581,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_one_seven_times(self):
         """
@@ -669,10 +622,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_two_two_times(self):
         """
@@ -698,10 +648,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, line)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_two_three_times(self):
         """
@@ -733,10 +680,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_two_four_times(self):
         """
@@ -772,10 +716,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_two_five_times(self):
         """
@@ -816,10 +757,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_two_six_times(self):
         """
@@ -864,10 +802,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_can_be_used_to_map_seed_from_part_two_seven_times(self):
         """
@@ -908,10 +843,7 @@ class TestDay05(unittest.TestCase):
         actual = almanac(maps, seed)
 
         # Assert
-        self.assertSetEqual(
-            actual, expected,
-            f'Expected to get `{expected}`, but got `{actual}`'
-        )
+        self.assertSetEqual(actual, expected, f'Expected to get `{expected}`, but got `{actual}`')
 
     def test_almanac_ranges(self):
         """
@@ -955,6 +887,4 @@ class TestDay05(unittest.TestCase):
             actual = min(actual, mapped_range[0])
 
         # Assert
-        self.assertEqual(
-            actual, expected, f'Expected to get {expected}, but got {actual}.'
-        )
+        self.assertEqual(actual, expected, f'Expected to get {expected}, but got {actual}.')

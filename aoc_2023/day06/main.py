@@ -35,9 +35,7 @@ def get_bigger_distances(time: int, threshold: int) -> int:
 
 def part1(filename: str) -> int:
     entries = parse_input(filename)
-    num_bigger_distances = [
-        get_bigger_distances(time, threshold) for time, threshold in entries
-    ]
+    num_bigger_distances = [get_bigger_distances(time, threshold) for time, threshold in entries]
     return math.prod(num_bigger_distances)
 
 

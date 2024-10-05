@@ -15,9 +15,7 @@ def parse_input(filename: str) -> tuple[str, dict[str, tuple[str, str]]]:
 
 def num_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
     pos = 'AAA'
-    directions_idxs = [
-        0 if direction == 'L' else 1 for direction in directions
-    ]
+    directions_idxs = [0 if direction == 'L' else 1 for direction in directions]
     len_directions_idxs = len(directions_idxs)
     num_steps = 0
     while pos != 'ZZZ':
@@ -33,13 +31,9 @@ def part1(filename: str) -> int:
     return num_steps(directions, map_)
 
 
-def num_repetitions(
-    directions: str, map_: dict[str, tuple[str, str]], start_node: str
-) -> int:
+def num_repetitions(directions: str, map_: dict[str, tuple[str, str]], start_node: str) -> int:
     num_repetitions = 0
-    directions_idxs = [
-        0 if direction == 'L' else 1 for direction in directions
-    ]
+    directions_idxs = [0 if direction == 'L' else 1 for direction in directions]
     len_directions_idxs = len(directions_idxs)
 
     node = start_node
@@ -55,9 +49,7 @@ def num_repetitions(
 def part2(filename: str) -> int:
     directions, map_ = parse_input(filename)
     num_repetitions_per_a = [
-        num_repetitions(directions, map_, node)
-        for node in map_
-        if node.endswith('A')
+        num_repetitions(directions, map_, node) for node in map_ if node.endswith('A')
     ]
     return math.lcm(*num_repetitions_per_a)
 
@@ -68,9 +60,7 @@ def main() -> None:
     print(f'Part 1, Input: {part1("aoc_2023/day08/input.txt")}')  # 16409
 
     print(f'Part 2, Sample: {part2("aoc_2023/day08/sample3.txt")}')  # 6
-    print(
-        f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}'
-    )  # 11795205644011
+    print(f'Part 2, Input: {part2("aoc_2023/day08/input.txt")}')  # 11795205644011
 
 
 if __name__ == '__main__':

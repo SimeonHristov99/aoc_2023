@@ -11,8 +11,7 @@ class TestDay09(unittest.TestCase):
         """
         # Arrange
         filename = 'aoc_2023/day09/sample.txt'
-        expected = [[0, 3, 6, 9, 12, 15], [1, 3, 6, 10, 15, 21],
-                    [10, 13, 16, 21, 30, 45]]
+        expected = [[0, 3, 6, 9, 12, 15], [1, 3, 6, 10, 15, 21], [10, 13, 16, 21, 30, 45]]
 
         # Act
         actual = main.parse_input(filename)

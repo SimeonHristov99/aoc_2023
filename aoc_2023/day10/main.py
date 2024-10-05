@@ -17,49 +17,40 @@ def find_start(matrix: list[list[str]]) -> tuple[int, int]:
     raise NotImplementedError('Coordinates of starting point not found.')
 
 
-def up(
-    coords: tuple[int, int], stack: list[list[tuple[int, int]]],
-    seen: set[tuple[int, int]], path: list[tuple[int, int]]
-):
+def up(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
+       path: list[tuple[int, int]]):
     x, y = coords
     next_ = (x - 1, y)
     if 0 < x and next_ not in seen:
         stack.append(path + [next_])
 
 
-def down(
-    coords: tuple[int, int], stack: list[list[tuple[int, int]]],
-    seen: set[tuple[int, int]], path: list[tuple[int, int]], num_rows: int
-):
+def down(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
+         path: list[tuple[int, int]], num_rows: int):
     x, y = coords
     next_ = (x + 1, y)
     if x < num_rows - 1 and next_ not in seen:
         stack.append(path + [next_])
 
 
-def left(
-    coords: tuple[int, int], stack: list[list[tuple[int, int]]],
-    seen: set[tuple[int, int]], path: list[tuple[int, int]]
-):
+def left(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
+         path: list[tuple[int, int]]):
     x, y = coords
     next_ = (x, y - 1)
     if 0 < y and next_ not in seen:
         stack.append(path + [next_])
 
 
-def right(
-    coords: tuple[int, int], stack: list[list[tuple[int, int]]],
-    seen: set[tuple[int, int]], path: list[tuple[int, int]], num_cols: int
-):
+def right(coords: tuple[int, int], stack: list[list[tuple[int, int]]], seen: set[tuple[int, int]],
+          path: list[tuple[int, int]], num_cols: int):
     x, y = coords
     next_ = (x, y + 1)
     if y < num_cols - 1 and next_ not in seen:
         stack.append(path + [next_])
 
 
-def initialize_stack(
-    matrix: list[list[str]], start_coords: tuple[int, int]
-) -> list[list[tuple[int, int]]]:
+def initialize_stack(matrix: list[list[str]],
+                     start_coords: tuple[int, int]) -> list[list[tuple[int, int]]]:
     result = []
     x, y = start_coords
     if 0 < y and matrix[x][y - 1] == '-':  # left
@@ -73,8 +64,7 @@ def initialize_stack(
     return result
 
 
-def num_steps_farthest(matrix: list[list[str]],
-                       start_coords: tuple[int, int]) -> tuple[int, list]:
+def num_steps_farthest(matrix: list[list[str]], start_coords: tuple[int, int]) -> tuple[int, list]:
     num_rows = len(matrix)
     num_cols = len(matrix[0])
     stack = initialize_stack(matrix, start_coords)
@@ -112,9 +102,7 @@ def num_steps_farthest(matrix: list[list[str]],
             down((x, y), stack, seen, path, num_rows)
             right((x, y), stack, seen, path, num_cols)
 
-    longest_path = functools.reduce(
-        lambda acc, xs: xs if len(acc) < len(xs) else acc, paths, []
-    )
+    longest_path = functools.reduce(lambda acc, xs: xs if len(acc) < len(xs) else acc, paths, [])
 
     return (max(lens) - 1) // 2, longest_path
 
@@ -127,30 +115,7 @@ def part1(filename: str) -> int:
 
 def is_encompassed(p: tuple[int, int], matrix: list[list[str]]) -> bool:
     start_coords = find_start(matrix)
-    longest_path: set[tuple[int,
-                            int]] = num_steps_farthest(matrix, start_coords)[1]
-
-    if p in longest_path:
-        return False
-
-    x, y = p
-
-    left_points = sum(1 if (x, y1) in longest_path else 0 for y1 in range(y))
-    right_points = sum(
-        1 if (x, y1) in longest_path else 0
-        for y1 in range(y + 1, len(matrix[0]))
-    )
-    up_points = sum(1 if (x1, y) in longest_path else 0 for x1 in range(x))
-    down_points = sum(
-        1 if (x1, y) in longest_path else 0
-        for x1 in range(x + 1, len(matrix))
-    )
-
-    return left_points > 0 and right_points > 0 and up_points > 0 and down_points > 0 and (
-        left_points % 2 == 1 and right_points % 2 == 1
-        or left_points % 2 == 1 and right_points % 2 != 1
-        or left_points % 2 != 1 and right_points % 2 == 1
-    )
+    longest_path: set[tuple[int, int]] = num_steps_farthest(matrix, start_coords)[1]
 
 
 def part2(filename: str) -> int:
