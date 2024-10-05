@@ -127,3 +127,24 @@ class TestDay10New(unittest.TestCase):
 
         # Assert
         self.assertListEqual(actual, expected)
+
+    def test_manhattan_distance(self):
+        """
+        Tests the manhattan distance between two points is calculated correctly.
+        """
+        # Arrange
+        expecteds = [0, 1, 2, 41]
+        inputs = [
+            ((1, 0), (1, 0)),
+            ((1, 1), (1, 0)),
+            ((0, 0), (1, 1)),
+            ((31, 10), (32, 50)),
+        ]
+        actuals = []
+
+        # Act
+        for p1, p2 in inputs:
+            actuals.append(main.manhattan_distance(p1, p2))
+
+        # Assert
+        self.assertListEqual(actuals, expecteds)
