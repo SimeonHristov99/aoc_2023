@@ -144,3 +144,26 @@ class TestDay10New(unittest.TestCase):
 
         # Assert
         self.assertListEqual(actuals, expecteds)
+
+    def test_part2(self):
+        """
+        Tests that part 2 returns correct calculations.
+        """
+        # Arrange
+        inputs = [
+            'tests/resources/d10_s1.txt',
+            'tests/resources/d10_s2.txt',
+            # 'tests/resources/d10_s3.txt',
+            'tests/resources/d10_s4.txt',
+            './aoc_2023/day10/sample.txt',
+            # './aoc_2023/day10/input.txt',
+        ]
+        expecteds = [1, 4, 10, 1, ]
+        actuals = []
+
+        # Act
+        for filename in inputs:
+            actuals.append(main.part2(filename))
+
+        # Assert
+        self.assertListEqual(actuals, expecteds)
