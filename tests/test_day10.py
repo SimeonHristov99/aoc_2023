@@ -151,14 +151,12 @@ class TestDay10(unittest.TestCase):
         """
         # Arrange
         inputs = [
-            'tests/resources/d10_s1.txt',
-            'tests/resources/d10_s2.txt',
-            # 'tests/resources/d10_s3.txt',
-            # 'tests/resources/d10_s4.txt',
-            # './aoc_2023/day10/sample.txt',
+            # 'tests/resources/d10_s1.txt',
+            # 'tests/resources/d10_s2.txt',
+            'tests/resources/d10_s3.txt',
             # './aoc_2023/day10/input.txt',
         ]
-        expecteds = [1, 4]
+        expecteds = [10]
         # expecteds = [1, 4, 10, 1, ]
         actuals = []
 

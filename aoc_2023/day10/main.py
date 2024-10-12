@@ -79,6 +79,14 @@ def part2(filename: str) -> int:
     pipe_map = parse_input(filename)
     loop = get_loop_coordinates(pipe_map)
 
+    for i in range(len(pipe_map)):
+        num_os = 0
+        for j in range(len(pipe_map[0])):
+            if (i, j) in loop:
+                pipe_map[i][j] = 'L'
+            else:
+                pipe_map[i][j] = '.'
+
     count_ins = 0
     in_loop = False
 
@@ -93,7 +101,7 @@ def part2(filename: str) -> int:
             if in_loop:
                 pipe_map[i][j] = 'O'
                 num_os += 1
-            elif (num_os % 2 == 1 and (pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O'
+            elif ((num_os // 2) % 2 == 1 and (pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O'
                 or pipe_map[i][j - 1] == 'I')):
                 pipe_map[i][j] = 'I'
                 count_ins += 1
