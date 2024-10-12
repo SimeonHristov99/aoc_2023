@@ -83,6 +83,7 @@ def part2(filename: str) -> int:
     in_loop = False
 
     for i in range(len(pipe_map)):
+        num_os = 0
         for j in range(len(pipe_map[0])):
             if (i, j) in loop:
                 in_loop = True
@@ -91,7 +92,9 @@ def part2(filename: str) -> int:
 
             if in_loop:
                 pipe_map[i][j] = 'O'
-            elif pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O':
+                num_os += 1
+            elif (num_os % 2 == 1 and (pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O'
+                or pipe_map[i][j - 1] == 'I')):
                 pipe_map[i][j] = 'I'
                 count_ins += 1
             else:
