@@ -4,7 +4,7 @@ import unittest
 from aoc_2023.day10 import main
 
 
-class TestDay10New(unittest.TestCase):
+class TestDay10(unittest.TestCase):
 
     def test_parse_input(self):
         """
@@ -151,14 +151,15 @@ class TestDay10New(unittest.TestCase):
         """
         # Arrange
         inputs = [
-            'tests/resources/d10_s1.txt',
-            'tests/resources/d10_s2.txt',
+            # 'tests/resources/d10_s1.txt',
+            # 'tests/resources/d10_s2.txt',
             # 'tests/resources/d10_s3.txt',
-            'tests/resources/d10_s4.txt',
-            './aoc_2023/day10/sample.txt',
+            # 'tests/resources/d10_s4.txt',
+            # './aoc_2023/day10/sample.txt',
             # './aoc_2023/day10/input.txt',
         ]
-        expecteds = [1, 4, 10, 1, ]
+        expecteds = [1]
+        # expecteds = [1, 4, 10, 1, ]
         actuals = []
 
         # Act

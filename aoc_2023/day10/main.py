@@ -1,5 +1,5 @@
 import copy
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 
 def parse_input(filename: str) -> List[List[str]]:
@@ -16,8 +16,10 @@ def find_start(pipe_map: List[List[str]]) -> Tuple[int, int]:
     return (-1, -1)
 
 
-def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
-                                                                  int]) -> List[Tuple[int, int]]:
+def get_loop_coordinates(input_map: List[List[str]], start: Optional[Tuple[int, int]]=None) -> List[Tuple[int, int]]:
+    if not start:
+        start = find_start(input_map)
+    
     result = [start]
 
     input_map_copy = copy.deepcopy(input_map)
@@ -70,14 +72,30 @@ def get_loop_coordinates(input_map: List[List[str]], start: Tuple[int,
 
 
 def part1(filename: str) -> int:
-    pipe_map = parse_input(filename)
-    start = find_start(pipe_map)
-    loop = get_loop_coordinates(pipe_map, start)
-    return len(loop) // 2
+    return len(get_loop_coordinates(parse_input(filename))) // 2
 
 
 def part2(filename: str) -> int:
-    return 42
+    pipe_map = parse_input(filename)
+    loop = get_loop_coordinates(pipe_map)
+
+    count_ins = 0
+    in_loop = False
+
+    for i in range(len(pipe_map)):
+        for j in range(len(pipe_map[0])):
+            if (i, j) in loop:
+                in_loop = True
+            elif in_loop:
+                in_loop = False
+
+            if in_loop:
+                pipe_map[i][j] = 'O'
+                count_ins += 1
+            else:
+                pipe_map[i][j] = 'X'
+    
+    return count_ins
 
 
 def main() -> None:
