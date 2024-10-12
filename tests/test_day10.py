@@ -151,7 +151,7 @@ class TestDay10(unittest.TestCase):
         """
         # Arrange
         inputs = [
-            # 'tests/resources/d10_s1.txt',
+            'tests/resources/d10_s1.txt',
             # 'tests/resources/d10_s2.txt',
             # 'tests/resources/d10_s3.txt',
             # 'tests/resources/d10_s4.txt',

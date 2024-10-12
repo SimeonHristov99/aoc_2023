@@ -91,6 +91,8 @@ def part2(filename: str) -> int:
 
             if in_loop:
                 pipe_map[i][j] = 'O'
+            elif pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O':
+                pipe_map[i][j] = 'I'
                 count_ins += 1
             else:
                 pipe_map[i][j] = 'X'
