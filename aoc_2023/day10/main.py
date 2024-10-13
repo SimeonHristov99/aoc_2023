@@ -25,7 +25,6 @@ def get_loop_coordinates(input_map: List[List[str]], start: Optional[Tuple[int, 
     input_map_copy = copy.deepcopy(input_map)
 
     num_cols = len(input_map_copy[0])
-    num_rows = len(input_map_copy)
 
     possible_right = {'-', 'J', '7'}
     possible_up = {'|', '7', 'F'}
@@ -76,15 +75,16 @@ def part1(filename: str) -> int:
 
 
 def part2(filename: str) -> int:
+    # The key here is to use the direction.
+    # On one side of the loop the points will be inside,
+    # on the other side - on the outside.
     pipe_map = parse_input(filename)
     loop = get_loop_coordinates(pipe_map)
 
     for i in range(len(pipe_map)):
         num_os = 0
         for j in range(len(pipe_map[0])):
-            if (i, j) in loop:
-                pipe_map[i][j] = 'L'
-            else:
+            if (i, j) not in loop:
                 pipe_map[i][j] = '.'
 
     count_ins = 0
