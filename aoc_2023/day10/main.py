@@ -75,6 +75,7 @@ def part1(filename: str) -> int:
 
 
 def to_differences(loop_coords: List[Tuple[int, int]]) -> List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]]:
+    loop_coords += [loop_coords[0]]
     return [(p1, p2, (p2[0] - p1[0], p2[1] - p1[1])) for p1, p2 in zip(loop_coords, loop_coords[1:])]
 
 
