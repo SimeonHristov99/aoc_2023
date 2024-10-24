@@ -250,8 +250,6 @@ class TestDay10(unittest.TestCase):
         actual = actual - set(loop_coords)
 
         # Assert
-        print(expected - actual)  # (4, 4), (4, 5)
-        print(actual - expected)
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
 
