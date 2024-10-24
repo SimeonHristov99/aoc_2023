@@ -74,6 +74,10 @@ def part1(filename: str) -> int:
     return len(get_loop_coordinates(parse_input(filename))) // 2
 
 
+def to_differences(loop_coords: List[Tuple[int, int]]) -> List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]]:
+    return [(p1, p2, (p2[0] - p1[0], p2[1] - p1[1])) for p1, p2 in zip(loop_coords, loop_coords[1:])]
+
+
 def part2(filename: str) -> int:
     # The key here is to use the direction.
     # On one side of the loop the points will be inside,
