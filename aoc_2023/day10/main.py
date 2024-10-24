@@ -1,5 +1,5 @@
 import copy
-from typing import List, Set, Tuple, Optional
+from typing import List, Optional, Set, Tuple
 
 
 def parse_input(filename: str) -> List[List[str]]:
@@ -16,10 +16,11 @@ def find_start(pipe_map: List[List[str]]) -> Tuple[int, int]:
     return (-1, -1)
 
 
-def get_loop_coordinates(input_map: List[List[str]], start: Optional[Tuple[int, int]]=None) -> List[Tuple[int, int]]:
+def get_loop_coordinates(input_map: List[List[str]],
+                         start: Optional[Tuple[int, int]] = None) -> List[Tuple[int, int]]:
     if not start:
         start = find_start(input_map)
-    
+
     result = [start]
 
     input_map_copy = copy.deepcopy(input_map)
@@ -74,46 +75,50 @@ def part1(filename: str) -> int:
     return len(get_loop_coordinates(parse_input(filename))) // 2
 
 
-def to_differences(loop_coords: List[Tuple[int, int]]) -> List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]]:
+def to_differences(
+    loop_coords: List[Tuple[int, int]]
+) -> List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]]:
     loop_coords += [loop_coords[0]]
-    return [(p1, p2, (p2[0] - p1[0], p2[1] - p1[1])) for p1, p2 in zip(loop_coords, loop_coords[1:])]
+    return [(p1, p2, (p2[0] - p1[0], p2[1] - p1[1]))
+            for p1, p2 in zip(loop_coords, loop_coords[1:])]
 
 
-def to_candidates(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]], side: str) -> Set[Tuple[int, int]]:
+def to_candidates(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]],
+                  side: str) -> Set[Tuple[int, int]]:
     result = set()
     previous_direction = None
 
     for (x, y), _, diff in differences:
-        if diff == (0, 1) and side == 'right': # right
+        if diff == (0, 1) and side == 'right':  # right
             result.add((x + 1, y))
             previous_direction = 'right'
-        elif diff == (0, 1) and side == 'left': # right
-            if previous_direction and previous_direction == 'up': # we have a corner (up-right)
+        elif diff == (0, 1) and side == 'left':  # right
+            if previous_direction and previous_direction == 'up':  # we have a corner (up-right)
                 result.add((x, y - 1))
                 result.add((x - 1, y - 1))
 
             result.add((x - 1, y))
             previous_direction = 'right'
-        elif diff == (0, -1) and side == 'right': # left
+        elif diff == (0, -1) and side == 'right':  # left
             result.add((x - 1, y))
             previous_direction = 'left'
-        elif diff == (0, -1) and side == 'left': # left
+        elif diff == (0, -1) and side == 'left':  # left
             result.add((x + 1, y))
             previous_direction = 'left'
-        elif diff == (1, 0) and side == 'right': # down
+        elif diff == (1, 0) and side == 'right':  # down
             result.add((x, y - 1))
             previous_direction = 'down'
-        elif diff == (1, 0) and side == 'left': # down
+        elif diff == (1, 0) and side == 'left':  # down
             result.add((x, y + 1))
             previous_direction = 'down'
-        elif diff == (-1, 0) and side == 'right': # up
-            if previous_direction and previous_direction == 'right': # we have a corner (right-up)
+        elif diff == (-1, 0) and side == 'right':  # up
+            if previous_direction and previous_direction == 'right':  # we have a corner (right-up)
                 result.add((x + 1, y))
                 result.add((x + 1, y + 1))
 
             result.add((x, y + 1))
             previous_direction = 'up'
-        elif diff == (-1, 0) and side == 'left': # up
+        elif diff == (-1, 0) and side == 'left':  # up
             result.add((x, y - 1))
             previous_direction = 'up'
 
@@ -147,13 +152,13 @@ def part2(filename: str) -> int:
             if in_loop:
                 pipe_map[i][j] = 'O'
                 num_os += 1
-            elif ((num_os // 2) % 2 == 1 and (pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O'
-                or pipe_map[i][j - 1] == 'I')):
+            elif ((num_os // 2) % 2 == 1 and
+                  (pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O' or pipe_map[i][j - 1] == 'I')):
                 pipe_map[i][j] = 'I'
                 count_ins += 1
             else:
                 pipe_map[i][j] = 'X'
-    
+
     return count_ins
 
 
