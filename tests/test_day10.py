@@ -175,7 +175,7 @@ class TestDay10(unittest.TestCase):
 
     def test_loop_coords_with_difference_only_edges_corner_up_right(self):
         """
-        Tests that coordinates of an upper-left corner get added successfully.
+        Tests that coordinates of an upper-right corner get added successfully when looking to the left.
         """
         # Arrange
         side = 'left'
@@ -191,24 +191,27 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
-    # def test_loop_coords_with_difference_only_edges_corner_up_left(self):
-    #     """
-    #     Tests that coordinates of an upper-left corner get added successfully.
-    #     """
-    #     # Arrange
-    #     side = 'left'
-    #     input_map = main.parse_input('tests/resources/d10_s2_corner_up_right.txt')
-    #     loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
-    #     diffs = main.to_differences(loop_coords)
-    #     expected = set()
+    def test_loop_coords_with_difference_only_edges_corner_right_up(self):
+        """
+        Tests that coordinates of an bottom-right corner get added successfully when looking to the right.
+        """
+        # Arrange
+        side = 'right'
+        input_map = main.parse_input('tests/resources/d10_s2_corner_right_up.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        diffs = main.to_differences(loop_coords)
+        expected = {(2, 5), (2, 6), (3, 5), (3, 6), (4, 3), (4, 4), (4, 5), (4, 6), (5, 3), (5, 4), (5, 5), (5, 6)}
 
-    #     # Act
-    #     actual = main.to_candidates(diffs, side)
-    #     actual = actual - set(loop_coords)
+        # Act
+        actual = main.to_candidates(diffs, side)
+        actual = actual - set(loop_coords)
 
-    #     # Assert
-        # print(expecteds[0] - actuals[0])
-    #     self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+        # Assert
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+
+#     def test_loop_coords_with_difference_only_edges_corner_right_up(self):
+        # print(expected - actual)
+        # print(actual - expected)
 
     def test_get_candidates(self):
         """
