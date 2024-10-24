@@ -89,36 +89,40 @@ def to_candidates(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tupl
     previous_direction = None
 
     for (x, y), _, diff in differences:
-        if diff == (0, 1) and side == 'right':  # right
+        if diff == (0, 1) and side == 'right':
+            if previous_direction and previous_direction == 'down':  # we have a corner (down->right)
+                result.add((x, y - 1))
+                result.add((x + 1, y - 1))
+            
             result.add((x + 1, y))
             previous_direction = 'right'
-        elif diff == (0, 1) and side == 'left':  # right
-            if previous_direction and previous_direction == 'up':  # we have a corner (up-right)
+        elif diff == (0, 1) and side == 'left':
+            if previous_direction and previous_direction == 'up':  # we have a corner (up->right)
                 result.add((x, y - 1))
                 result.add((x - 1, y - 1))
 
             result.add((x - 1, y))
             previous_direction = 'right'
-        elif diff == (0, -1) and side == 'right':  # left
+        elif diff == (0, -1) and side == 'right':
             result.add((x - 1, y))
             previous_direction = 'left'
-        elif diff == (0, -1) and side == 'left':  # left
+        elif diff == (0, -1) and side == 'left':
             result.add((x + 1, y))
             previous_direction = 'left'
-        elif diff == (1, 0) and side == 'right':  # down
+        elif diff == (1, 0) and side == 'right':
             result.add((x, y - 1))
             previous_direction = 'down'
-        elif diff == (1, 0) and side == 'left':  # down
+        elif diff == (1, 0) and side == 'left':
             result.add((x, y + 1))
             previous_direction = 'down'
-        elif diff == (-1, 0) and side == 'right':  # up
+        elif diff == (-1, 0) and side == 'right':
             if previous_direction and previous_direction == 'right':  # we have a corner (right->up)
                 result.add((x + 1, y))
                 result.add((x + 1, y + 1))
 
             result.add((x, y + 1))
             previous_direction = 'up'
-        elif diff == (-1, 0) and side == 'left':  # up
+        elif diff == (-1, 0) and side == 'left':
             if previous_direction and previous_direction == 'left':  # we have a corner (left->up)
                 result.add((x + 1, y))
                 result.add((x + 1, y - 1))
