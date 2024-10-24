@@ -81,24 +81,37 @@ def to_differences(loop_coords: List[Tuple[int, int]]) -> List[Tuple[Tuple[int, 
 
 def to_candidates(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]], side: str) -> Set[Tuple[int, int]]:
     result = set()
+    previous_direction = None
 
     for (x, y), _, diff in differences:
         if diff == (0, 1) and side == 'right': # right
             result.add((x + 1, y))
+            previous_direction = 'right'
         elif diff == (0, 1) and side == 'left': # right
+            if previous_direction and previous_direction == 'up': # we have a corner (up-right)
+                result.add((x, y - 1))
+                result.add((x - 1, y - 1))
+
             result.add((x - 1, y))
+            previous_direction = 'right'
         elif diff == (0, -1) and side == 'right': # left
             result.add((x - 1, y))
+            previous_direction = 'left'
         elif diff == (0, -1) and side == 'left': # left
             result.add((x + 1, y))
+            previous_direction = 'left'
         elif diff == (1, 0) and side == 'right': # down
             result.add((x, y - 1))
+            previous_direction = 'down'
         elif diff == (1, 0) and side == 'left': # down
             result.add((x, y + 1))
+            previous_direction = 'down'
         elif diff == (-1, 0) and side == 'right': # up
             result.add((x, y + 1))
+            previous_direction = 'up'
         elif diff == (-1, 0) and side == 'left': # up
             result.add((x, y - 1))
+            previous_direction = 'up'
 
     return result
 
