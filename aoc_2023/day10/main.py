@@ -1,5 +1,5 @@
 import copy
-from typing import List, Tuple, Optional
+from typing import List, Set, Tuple, Optional
 
 
 def parse_input(filename: str) -> List[List[str]]:
@@ -76,6 +76,30 @@ def part1(filename: str) -> int:
 
 def to_differences(loop_coords: List[Tuple[int, int]]) -> List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]]:
     return [(p1, p2, (p2[0] - p1[0], p2[1] - p1[1])) for p1, p2 in zip(loop_coords, loop_coords[1:])]
+
+
+def to_candidates(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]], side: str) -> Set[Tuple[int, int]]:
+    result = set()
+
+    for (x, y), _, diff in differences:
+        if diff == (0, 1) and side == 'right': # right
+            result.add((x + 1, y))
+        elif diff == (0, 1) and side == 'left': # right
+            result.add((x - 1, y))
+        elif diff == (0, -1) and side == 'right': # left
+            result.add((x - 1, y))
+        elif diff == (0, -1) and side == 'left': # left
+            result.add((x + 1, y))
+        elif diff == (1, 0) and side == 'right': # down
+            result.add((x, y - 1))
+        elif diff == (1, 0) and side == 'left': # down
+            result.add((x, y + 1))
+        elif diff == (-1, 0) and side == 'right': # up
+            result.add((x, y + 1))
+        elif diff == (-1, 0) and side == 'left': # up
+            result.add((x, y - 1))
+
+    return result
 
 
 def part2(filename: str) -> int:
