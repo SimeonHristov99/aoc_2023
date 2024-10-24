@@ -154,7 +154,7 @@ class TestDay10(unittest.TestCase):
         inputs = [
             main.parse_input('tests/resources/d10_s1.txt'),
             main.parse_input('tests/resources/d10_s2.txt'),
-            main.parse_input('tests/resources/d10_s2_upside.txt'),
+            main.parse_input('tests/resources/d10_s2_corner_up_right.txt'),
         ]
         loops = []
         for input_map in inputs:
