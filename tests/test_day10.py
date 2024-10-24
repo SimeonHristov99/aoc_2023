@@ -209,6 +209,26 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
+    def test_loop_coords_with_difference_only_edges_corner_left_up(self):
+        """
+        Tests that coordinates of an bottom-left corner get added successfully when looking to the left.
+        """
+        # Arrange
+        side = 'left'
+        input_map = main.parse_input('tests/resources/d10_s2_corner_left_up.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        diffs = main.to_differences(loop_coords)
+        expected = {(2, 3), (2, 4), (3, 3), (3, 4), (4, 3), (4, 4), (4, 5), (4, 6), (5, 3), (5, 4), (5, 5), (5, 6)}
+
+        # Act
+        actual = main.to_candidates(diffs, side)
+        actual = actual - set(loop_coords)
+
+        # Assert
+        print(expected - actual) # (4, 4), (4, 5)
+        print(actual - expected)
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+
 #     def test_loop_coords_with_difference_only_edges_corner_right_up(self):
         # print(expected - actual)
         # print(actual - expected)
