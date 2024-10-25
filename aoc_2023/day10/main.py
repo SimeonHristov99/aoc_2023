@@ -83,8 +83,9 @@ def to_differences(
             for p1, p2 in zip(loop_coords, loop_coords[1:])]
 
 
-def get_edge_points(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]],
-                    side: str) -> Set[Tuple[int, int]]:
+def get_internal_and_border_points(differences: List[Tuple[Tuple[int, int], Tuple[int, int],
+                                                           Tuple[int, int]]],
+                                   side: str) -> Set[Tuple[int, int]]:
     result = set()
     previous_direction = None
 

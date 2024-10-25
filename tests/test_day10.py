@@ -208,7 +208,7 @@ class TestDay10(unittest.TestCase):
                     (5, 3), (5, 4)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -227,7 +227,7 @@ class TestDay10(unittest.TestCase):
                     (5, 5), (5, 6)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -246,7 +246,7 @@ class TestDay10(unittest.TestCase):
                     (5, 5), (5, 6)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -265,7 +265,7 @@ class TestDay10(unittest.TestCase):
                     (5, 4), (5, 5)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -284,7 +284,7 @@ class TestDay10(unittest.TestCase):
                     (5, 3), (5, 4)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -303,7 +303,7 @@ class TestDay10(unittest.TestCase):
                     (7, 6), (7, 7)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -323,7 +323,7 @@ class TestDay10(unittest.TestCase):
                     (6, 4), (6, 5), (7, 2), (7, 3), (7, 4), (7, 5)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -342,7 +342,7 @@ class TestDay10(unittest.TestCase):
                     (5, 5), (5, 6), (6, 5), (6, 6)}
 
         # Act
-        actual = main.get_edge_points(diffs, side)
+        actual = main.get_internal_and_border_points(diffs, side)
         actual = actual - set(loop_coords)
 
         # Assert
@@ -358,10 +358,10 @@ class TestDay10(unittest.TestCase):
     #     loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
     #     diffs = main.to_differences(loop_coords)
     #     expected = {(2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (6, 2), (6, 3), (6, 4), (7, 2), (7, 3), (7, 4)}
+    #     border_points = main.get_internal_and_border_points(diffs, side) - set(loop_coords)
 
     #     # Act
-    #     actual = main.get_edge_points(diffs, side)
-    #     actual = actual - set(loop_coords)
+    #     actual = main.add_internal_points(diffs, side)
 
     #     # Assert
     #     self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
@@ -399,7 +399,8 @@ class TestDay10(unittest.TestCase):
 
         # Act
         actuals = [
-            main.get_edge_points(difference, side) for (difference, side) in zip(inputs, sides)
+            main.get_internal_and_border_points(difference, side)
+            for (difference, side) in zip(inputs, sides)
         ]
         actuals = [
             actual - {p1
