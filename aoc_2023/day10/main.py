@@ -117,6 +117,10 @@ def to_candidates(differences: List[Tuple[Tuple[int, int], Tuple[int, int], Tupl
             result.add((x, y - 1))
             previous_direction = 'down'
         elif diff == (1, 0) and side == 'left':
+            if previous_direction and previous_direction == 'right':  # we have a corner (right->down)
+                result.add((x - 1, y))
+                result.add((x - 1, y + 1))
+
             result.add((x, y + 1))
             previous_direction = 'down'
         elif diff == (-1, 0) and side == 'right':
