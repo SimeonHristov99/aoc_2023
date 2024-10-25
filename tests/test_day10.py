@@ -271,7 +271,7 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
-    def test_loop_coords_with_difference_only_edges_corner_down_left_down(self):
+    def test_loop_coords_with_difference_only_edges_corner_down_left_down_looking_right(self):
         """
         Tests that corners of type down->left->down are captured when looking to the right.
         """
