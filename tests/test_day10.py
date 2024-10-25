@@ -261,7 +261,8 @@ class TestDay10(unittest.TestCase):
         input_map = main.parse_input('tests/resources/d10_s2_corner_down_right.txt')
         loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
         diffs = main.to_differences(loop_coords)
-        expected = {(2, 2), (2, 3), (3, 2), (3, 3), (4, 2), (4, 3), (4, 4), (4, 5), (5, 2), (5, 3), (5, 4), (5, 5)}
+        expected = {(2, 2), (2, 3), (3, 2), (3, 3), (4, 2), (4, 3), (4, 4), (4, 5), (5, 2), (5, 3),
+                    (5, 4), (5, 5)}
 
         # Act
         actual = main.to_candidates(diffs, side)
@@ -279,7 +280,8 @@ class TestDay10(unittest.TestCase):
         input_map = main.parse_input('tests/resources/d10_s2_corner_down_left_down.txt')
         loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
         diffs = main.to_differences(loop_coords)
-        expected = {(2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (4, 3), (4, 4), (5, 3), (5, 4)}
+        expected = {(2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (4, 3), (4, 4),
+                    (5, 3), (5, 4)}
 
         # Act
         actual = main.to_candidates(diffs, side)
@@ -297,7 +299,8 @@ class TestDay10(unittest.TestCase):
         input_map = main.parse_input('tests/resources/d10_s2_corner_down_right_down.txt')
         loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
         diffs = main.to_differences(loop_coords)
-        expected = {(4, 4), (4, 5), (4, 6), (4, 7), (5, 4), (5, 5), (5, 6), (5, 7), (6, 6), (6, 7), (7, 6), (7, 7)}
+        expected = {(4, 4), (4, 5), (4, 6), (4, 7), (5, 4), (5, 5), (5, 6), (5, 7), (6, 6), (6, 7),
+                    (7, 6), (7, 7)}
 
         # Act
         actual = main.to_candidates(diffs, side)
@@ -312,10 +315,12 @@ class TestDay10(unittest.TestCase):
         """
         # Arrange
         side = 'left'
-        input_map = main.parse_input('tests/resources/d10_s2_corner_down_left_down_looking_left.txt')
+        input_map = main.parse_input(
+            'tests/resources/d10_s2_corner_down_left_down_looking_left.txt')
         loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
         diffs = main.to_differences(loop_coords)
-        expected = {(2, 4), (2, 5), (3, 4), (3, 5), (4, 4), (4, 5), (5, 4), (5, 5), (6, 2), (6, 3), (6, 4), (6, 5), (7, 2), (7, 3), (7, 4), (7, 5)}
+        expected = {(2, 4), (2, 5), (3, 4), (3, 5), (4, 4), (4, 5), (5, 4), (5, 5), (6, 2), (6, 3),
+                    (6, 4), (6, 5), (7, 2), (7, 3), (7, 4), (7, 5)}
 
         # Act
         actual = main.to_candidates(diffs, side)
@@ -324,9 +329,24 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
-# def test_loop_coords_with_difference_only_edges_corner_right_up(self):
-# print(expected - actual)
-# print(actual - expected)
+    def test_loop_coords_with_difference_only_edges_corner_up_left_up(self):
+        """
+        Tests that corners of type up->left->up are captured when looking to the right.
+        """
+        # Arrange
+        side = 'right'
+        input_map = main.parse_input('tests/resources/d10_s2_corner_up_left_up_looking_right.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        diffs = main.to_differences(loop_coords)
+        expected = {(2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (4, 5), (4, 6),
+                    (5, 5), (5, 6), (6, 5), (6, 6)}
+
+        # Act
+        actual = main.to_candidates(diffs, side)
+        actual = actual - set(loop_coords)
+
+        # Assert
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
     def test_get_candidates(self):
         """
