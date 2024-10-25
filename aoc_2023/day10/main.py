@@ -150,6 +150,38 @@ def get_internal_and_border_points(differences: List[Tuple[Tuple[int, int], Tupl
     return result
 
 
+def add_inner_points(internal_to_border_points: Set[Tuple[int, int]],
+                     loop_coords: List[Tuple[int, int]],
+                     input_map=None) -> Set[Tuple[int, int]]:
+    result = set()
+    random_start = next(iter(internal_to_border_points))
+    stack = [random_start]
+    borders = set(loop_coords) | internal_to_border_points
+    visited = set(loop_coords) | internal_to_border_points
+
+    while len(stack) > 0:
+        x, y = stack.pop()
+
+        if (x, y) not in borders:
+            result.add((x, y))
+            if input_map:
+                input_map[x][y] = 'X'
+
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                new_point = (x + i, y + j)
+                if new_point not in visited and (i, j) != (0, 0):
+                    stack.append((x + i, y + j))
+                    if input_map:
+                        input_map[x + i][y + j] = 'Z'
+
+        visited.add((x, y))
+        if input_map:
+            input_map[x][y] = 'Y'
+
+    return (result - {random_start}) | internal_to_border_points
+
+
 def part2(filename: str) -> int:
     # The key here is to use the direction.
     # On one side of the loop the points will be inside,

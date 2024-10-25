@@ -348,23 +348,24 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
-    # def test_loop_coords_with_difference_internal_points(self):
-    #     """
-    #     Tests that internal points are also captured
-    #     """
-    #     # Arrange
-    #     side = 'right'
-    #     input_map = main.parse_input('tests/resources/d10_internal_points.txt')
-    #     loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
-    #     diffs = main.to_differences(loop_coords)
-    #     expected = {(2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (6, 2), (6, 3), (6, 4), (7, 2), (7, 3), (7, 4)}
-    #     border_points = main.get_internal_and_border_points(diffs, side) - set(loop_coords)
+    def test_loop_coords_with_difference_internal_points(self):
+        """
+        Tests that inner points are also captured.
+        """
+        # Arrange
+        input_map = main.parse_input('tests/resources/d10_internal_points.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        internal_to_border_points = main.get_internal_and_border_points(
+            main.to_differences(loop_coords), 'right') - set(loop_coords)
+        expected = {(2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (3, 2), (3, 3), (3, 4), (3, 5),
+                    (3, 6), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (5, 2), (5, 3),
+                    (5, 4), (5, 5), (5, 6), (5, 7), (6, 2), (6, 3), (6, 4), (7, 2), (7, 3), (7, 4)}
 
-    #     # Act
-    #     actual = main.add_internal_points(diffs, side)
+        # Act
+        actual = main.add_inner_points(internal_to_border_points, loop_coords, input_map)
 
-    #     # Assert
-    #     self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+        # Assert
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
     def test_get_candidates(self):
         """
