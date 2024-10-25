@@ -12,3 +12,4 @@ yapf -ir . --exclude '*ipynb*' --exclude .venv
 isort . --atomic --skip-glob "*ipynb*" --line-width 99
 end_lint=$(date +%s)
 printf "%s\n" "Linting completed for "$(($end_lint-$start_lint))" seconds."
+pytest -x
