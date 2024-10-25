@@ -268,8 +268,24 @@ class TestDay10(unittest.TestCase):
         actual = actual - set(loop_coords)
 
         # Assert
-        print(expected - actual)
-        print(actual - expected)
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+
+    def test_loop_coords_with_difference_only_edges_corner_down_left_down(self):
+        """
+        Tests that corners of type down->left->down are captured when looking to the right.
+        """
+        # Arrange
+        side = 'right'
+        input_map = main.parse_input('tests/resources/d10_s2_corner_down_left_down.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        diffs = main.to_differences(loop_coords)
+        expected = {(2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (4, 3), (4, 4), (5, 3), (5, 4)}
+
+        # Act
+        actual = main.to_candidates(diffs, side)
+        actual = actual - set(loop_coords)
+
+        # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
 
