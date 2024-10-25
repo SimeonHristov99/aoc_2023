@@ -83,6 +83,18 @@ def to_differences(
             for p1, p2 in zip(loop_coords, loop_coords[1:])]
 
 
+def determine_side(loop_coords: List[Tuple[int, int]]) -> str:
+    num_turns_right = 0
+    num_turns_left = 0
+    for _, _, diff in to_differences(loop_coords):
+        if diff == (1, 0):  # initial direction is 'right'
+            num_turns_right += 1
+        elif diff == (0, 1):
+            num_turns_left += 1
+
+    return 'left' if num_turns_left > num_turns_right else 'right'
+
+
 def get_internal_and_border_points(differences: List[Tuple[Tuple[int, int], Tuple[int, int],
                                                            Tuple[int, int]]],
                                    side: str) -> Set[Tuple[int, int]]:
