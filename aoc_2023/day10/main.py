@@ -231,15 +231,18 @@ def part2(filename: str) -> int:
 
     differences = to_differences(loop_coords)
     side = determine_side(loop_coords)
-    inner_points = add_inner_points(get_internal_and_border_points(differences, side), loop_coords, input_map)
+    inner_points = add_inner_points(get_internal_and_border_points(differences, side), loop_coords,
+                                    input_map)
     return len(inner_points)
 
 
 def main() -> None:
-    # print(f'Part 1, Sample: {part1("./aoc_2023/day10/sample.txt")}')
-    # print(f'Part 1, Input: {part1("./aoc_2023/day10/input.txt")}')
+    print(f'Part 1, Sample: {part1("./aoc_2023/day10/sample.txt")}')
+    print(f'Part 1, Input: {part1("./aoc_2023/day10/input.txt")}')
 
-    # print(f'Part 2, Sample: {part2("./aoc_2023/day10/sample.txt")}')
+    print(f'Part 2, Sample: {part2("./aoc_2023/day10/sample.txt")}')
+
+    # Next step visualize loop. Maybe in a new repo.
     print(f'Part 2, Input: {part2("./aoc_2023/day10/input.txt")}')
 
 

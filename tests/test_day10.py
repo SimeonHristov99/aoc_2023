@@ -487,6 +487,7 @@ class TestDay10(unittest.TestCase):
             ('tests/resources/d10_tricky.txt', 10),
             ('tests/resources/d10_bigger.txt', 10),
             ('tests/resources/d10_bigger2.txt', 8),
+            ('tests/resources/d10_up_tricky.txt', 8),
         ]
 
         for idx, (filename, expected_side) in enumerate(expectations):
