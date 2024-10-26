@@ -86,11 +86,32 @@ def to_differences(
 def determine_side(loop_coords: List[Tuple[int, int]]) -> str:
     num_turns_right = 0
     num_turns_left = 0
+    current_direction = 'right'
     for _, _, diff in to_differences(loop_coords):
-        if diff == (1, 0):  # initial direction is 'right'
+        if current_direction == 'right' and diff == (1, 0):
             num_turns_right += 1
-        elif diff == (0, 1):
+            current_direction = 'down'
+        elif current_direction == 'right' and diff == (-1, 0):
             num_turns_left += 1
+            current_direction = 'up'
+        elif current_direction == 'down' and diff == (0, -1):
+            num_turns_right += 1
+            current_direction = 'left'
+        elif current_direction == 'down' and diff == (0, 1):
+            num_turns_left += 1
+            current_direction = 'right'
+        elif current_direction == 'left' and diff == (-1, 0):
+            num_turns_right += 1
+            current_direction = 'up'
+        elif current_direction == 'left' and diff == (1, 0):
+            num_turns_left += 1
+            current_direction = 'down'
+        elif current_direction == 'up' and diff == (0, 1):
+            num_turns_right += 1
+            current_direction = 'right'
+        elif current_direction == 'up' and diff == (0, -1):
+            num_turns_left += 1
+            current_direction = 'left'
 
     return 'left' if num_turns_left > num_turns_right else 'right'
 
