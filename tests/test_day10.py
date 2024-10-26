@@ -356,10 +356,27 @@ class TestDay10(unittest.TestCase):
         input_map = main.parse_input('tests/resources/d10_internal_points.txt')
         loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
         internal_to_border_points = main.get_internal_and_border_points(
-            main.to_differences(loop_coords), 'right') - set(loop_coords)
+            main.to_differences(loop_coords), 'right')
         expected = {(2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (3, 2), (3, 3), (3, 4), (3, 5),
                     (3, 6), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (5, 2), (5, 3),
                     (5, 4), (5, 5), (5, 6), (5, 7), (6, 2), (6, 3), (6, 4), (7, 2), (7, 3), (7, 4)}
+
+        # Act
+        actual = main.add_inner_points(internal_to_border_points, loop_coords, input_map)
+
+        # Assert
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+
+    def test_loop_coords_with_difference_internal_points_no_internal_points(self):
+        """
+        Tests that when there are no inner points nothing new gets added
+        """
+        # Arrange
+        input_map = main.parse_input('tests/resources/d10_s1.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        internal_to_border_points = main.get_internal_and_border_points(
+            main.to_differences(loop_coords), 'right')
+        expected = {(2, 2)}
 
         # Act
         actual = main.add_inner_points(internal_to_border_points, loop_coords, input_map)
@@ -450,23 +467,32 @@ class TestDay10(unittest.TestCase):
 
     def test_part2(self):
         """
-        Tests that part 2 returns correct calculations.
+        Tests that part 2 returns the correct number of enclosed points.
         """
         # Arrange
-        inputs = [
-            # 'tests/resources/d10_s1.txt',
-            # 'tests/resources/d10_s2.txt',
-            # 'tests/resources/d10_s3.txt',
-            # './aoc_2023/day10/input.txt',
+        expectations = [
+            ('tests/resources/d10_s1.txt', 1),
+            ('tests/resources/d10_s1_multiple.txt', 9),
+            ('tests/resources/d10_s2.txt', 4),
+            ('tests/resources/d10_s4.txt', 1),
+            ('tests/resources/d10_internal_points.txt', 30),
+            ('tests/resources/d10_s2_corner_down_left_down.txt', 12),
+            ('tests/resources/d10_s2_corner_right_up.txt', 12),
+            ('tests/resources/d10_s2_corner_left_up.txt', 12),
+            ('tests/resources/d10_s2_corner_up_left_up_looking_right.txt', 14),
+            ('tests/resources/d10_s2_corner_down_right_down.txt', 12),
+            ('tests/resources/d10_s2_corner_up_right.txt', 12),
+            ('tests/resources/d10_s2_corner_down_right.txt', 12),
+            ('tests/resources/d10_s2_corner_down_left_down_looking_left.txt', 16),
+            ('tests/resources/d10_tricky.txt', 10),
         ]
-        # expecteds = [10]
-        expecteds = []
-        # expecteds = [1, 4, 10, 1, ]
-        actuals = []
 
-        # Act
-        for filename in inputs:
-            actuals.append(main.part2(filename))
+        for idx, (filename, expected_side) in enumerate(expectations):
+            # Act
+            actual_side = main.part2(filename)
 
-        # Assert
-        self.assertListEqual(actuals, expecteds)
+            # Assert
+            self.assertEqual(
+                actual_side, expected_side,
+                f'Test case {idx:02d}: For "{filename}" expected to get "{expected_side}", but got "{actual_side}".'
+            )
