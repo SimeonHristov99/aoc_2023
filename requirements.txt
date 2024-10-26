@@ -16,3 +16,4 @@ tomli==2.0.1
 virtualenv==20.26.3
 yapf==0.40.2
 zipp==3.19.2
+coverage
