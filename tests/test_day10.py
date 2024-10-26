@@ -421,7 +421,7 @@ class TestDay10(unittest.TestCase):
         expectations = [
             (main.get_loop_coordinates(main.parse_input(f'tests/resources/{filename}')),
              expected_side) for filename, expected_side in [
-                 # ('d10_s1.txt', 'right'),
+                 ('d10_s1.txt', 'right'),
                  ('d10_s1_multiple.txt', 'right'),
                  ('d10_s2.txt', 'right'),
                  ('d10_s4.txt', 'right'),
