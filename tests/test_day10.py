@@ -413,44 +413,40 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(actuals, expecteds, f'Expected: {expecteds}. Got: {actuals}')
 
-    # def test_determine_side(self):
-    #     """
-    #     Test that the side towards which to consider points as internal to the border is correctly determined.
-    #     """
-    #     # Arrange
-    #     inputs = [
-    #         main.get_loop_coordinates(main.parse_input(f'tests/resources/{filename}'))
-    #         for filename in [
-    #             'd10_s1.txt', 'd10_s1_multiple.txt', 'd10_s2.txt', 'd10_s4.txt',
-    #             'd10_internal_points.txt', 'd10_s2_corner_down_left_down.txt',
-    #             'd10_s2_corner_right_up.txt', 'd10_s2_corner_left_up.txt',
-    #             'd10_s2_corner_up_left_up_looking_right.txt', 'd10_s2_corner_down_right_down.txt',
-    #             'd10_s2_corner_up_right.txt', 'd10_s2_corner_down_right.txt',
-    #             'd10_s2_corner_down_left_down_looking_left.txt','d10_tricky.txt',
-    #         ]
-    #     ]
-    #     expecteds = [
-    #         'right',
-    #         'right',
-    #         'right',
-    #         'right',
-    #         'right',
-    #         'right',
-    #         'right',
-    #         'left',
-    #         'right',
-    #         'left',
-    #         'left',
-    #         'right',
-    #         'left',
-    #         'left',
-    #     ]
+    def test_determine_side(self):
+        """
+        Test that the side towards which to consider points as internal to the border is correctly determined.
+        """
+        # Arrange
+        expectations = [
+            (main.get_loop_coordinates(main.parse_input(f'tests/resources/{filename}')),
+             expected_side) for filename, expected_side in [
+                 # ('d10_s1.txt', 'right'),
+                 ('d10_s1_multiple.txt', 'right'),
+                 ('d10_s2.txt', 'right'),
+                 ('d10_s4.txt', 'right'),
+                 ('d10_internal_points.txt', 'right'),
+                 ('d10_s2_corner_down_left_down.txt', 'right'),
+                 ('d10_s2_corner_right_up.txt', 'right'),
+                 ('d10_s2_corner_left_up.txt', 'left'),
+                 ('d10_s2_corner_up_left_up_looking_right.txt', 'right'),
+                 ('d10_s2_corner_down_right_down.txt', 'left'),
+                 ('d10_s2_corner_up_right.txt', 'left'),
+                 ('d10_s2_corner_down_right.txt', 'right'),
+                 ('d10_s2_corner_down_left_down_looking_left.txt', 'left'),
+                 ('d10_tricky.txt', 'left'),
+             ]
+        ]
 
-    #     # Act
-    #     actuals = [main.determine_side(inp) for inp in inputs]
+        for idx, (loop_coords, expected_side) in enumerate(expectations):
+            # Act
+            actual_side = main.determine_side(loop_coords)
 
-    #     # Assert
-    #     self.assertListEqual(actuals, expecteds, f'Expected: {expecteds}. Got: {actuals}')
+            # Assert
+            self.assertEqual(
+                actual_side, expected_side,
+                f'Test case {idx:02d}: For {loop_coords=} expected to get "{expected_side}", but got "{actual_side}".'
+            )
 
     def test_part2(self):
         """
