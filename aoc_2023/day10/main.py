@@ -220,18 +220,26 @@ def part2(filename: str) -> int:
     # The key here is to use the direction.
     # On one side of the loop the points will be inside,
     # on the other side - on the outside.
-    loop_coords = get_loop_coordinates(parse_input(filename))
+    input_map = parse_input(filename)
+    start_coords = find_start(input_map)
+    loop_coords = get_loop_coordinates(input_map)
+
+    for i in range(len(input_map)):
+        for j in range(len(input_map[0])):
+            if (i, j) not in loop_coords:
+                input_map[i][j] = '.'
+
     differences = to_differences(loop_coords)
-    inner_points = add_inner_points(
-        get_internal_and_border_points(differences, determine_side(loop_coords)), loop_coords)
+    side = determine_side(loop_coords)
+    inner_points = add_inner_points(get_internal_and_border_points(differences, side), loop_coords, input_map)
     return len(inner_points)
 
 
 def main() -> None:
-    print(f'Part 1, Sample: {part1("./aoc_2023/day10/sample.txt")}')
-    print(f'Part 1, Input: {part1("./aoc_2023/day10/input.txt")}')
+    # print(f'Part 1, Sample: {part1("./aoc_2023/day10/sample.txt")}')
+    # print(f'Part 1, Input: {part1("./aoc_2023/day10/input.txt")}')
 
-    print(f'Part 2, Sample: {part2("./aoc_2023/day10/sample.txt")}')
+    # print(f'Part 2, Sample: {part2("./aoc_2023/day10/sample.txt")}')
     print(f'Part 2, Input: {part2("./aoc_2023/day10/input.txt")}')
 
 
