@@ -187,6 +187,7 @@ def add_inner_points(internal_to_border_points: Set[Tuple[int, int]],
                      loop_coords: List[Tuple[int, int]],
                      input_map=None) -> Set[Tuple[int, int]]:
     result = set()
+    internal_to_border_points = internal_to_border_points - set(loop_coords)
     random_start = next(iter(internal_to_border_points))
     stack = [random_start]
     borders = set(loop_coords) | internal_to_border_points
@@ -219,37 +220,11 @@ def part2(filename: str) -> int:
     # The key here is to use the direction.
     # On one side of the loop the points will be inside,
     # on the other side - on the outside.
-    pipe_map = parse_input(filename)
-    loop = get_loop_coordinates(pipe_map)
-
-    for i in range(len(pipe_map)):
-        num_os = 0
-        for j in range(len(pipe_map[0])):
-            if (i, j) not in loop:
-                pipe_map[i][j] = '.'
-
-    count_ins = 0
-    in_loop = False
-
-    for i in range(len(pipe_map)):
-        num_os = 0
-        for j in range(len(pipe_map[0])):
-            if (i, j) in loop:
-                in_loop = True
-            elif in_loop:
-                in_loop = False
-
-            if in_loop:
-                pipe_map[i][j] = 'O'
-                num_os += 1
-            elif ((num_os // 2) % 2 == 1 and
-                  (pipe_map[i][j - 1] == pipe_map[i - 1][j] == 'O' or pipe_map[i][j - 1] == 'I')):
-                pipe_map[i][j] = 'I'
-                count_ins += 1
-            else:
-                pipe_map[i][j] = 'X'
-
-    return count_ins
+    loop_coords = get_loop_coordinates(parse_input(filename))
+    differences = to_differences(loop_coords)
+    inner_points = add_inner_points(
+        get_internal_and_border_points(differences, determine_side(loop_coords)), loop_coords)
+    return len(inner_points)
 
 
 def main() -> None:
