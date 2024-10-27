@@ -384,6 +384,62 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
 
+    def test_loop_coords_with_difference_internal_points_start_point_is_entirely_surrounded(self):
+        """
+        Tests that inner points are also captured even if we have islands of them.
+        """
+        # Arrange
+        input_map = main.parse_input('tests/resources/d10_internal_points_start_surrounded.txt')
+        loop_coords = main.get_loop_coordinates(input_map, main.find_start(input_map))
+        internal_to_border_points = main.get_internal_and_border_points(
+            main.to_differences(loop_coords), 'right')
+        expected = {
+            (2, 2),
+            (2, 3),
+            (2, 4),
+            (2, 5),
+            (2, 6),
+            (2, 7),
+            (2, 8),
+            (2, 9),
+            (3, 2),
+            (3, 3),
+            (3, 4),
+            (3, 5),
+            (3, 6),
+            (3, 7),
+            (3, 8),
+            (3, 9),
+            (4, 2),
+            (4, 3),
+            (4, 4),
+            (4, 5),
+            (4, 6),
+            (4, 7),
+            (4, 8),
+            (4, 9),
+            (5, 2),
+            (6, 2),
+            (7, 2),
+            (7, 7),
+            (7, 8),
+            (7, 9),
+            (8, 2),
+            (8, 7),
+            (8, 8),
+            (8, 9),
+            (9, 2),
+            (9, 7),
+            (9, 8),
+            (9, 9),
+        }
+
+        # Act
+        actual = main.add_inner_points(internal_to_border_points, loop_coords, input_map)
+
+        # Assert
+        self.assertSetEqual(actual, expected, f'Expected: {expected}. Got: {actual}')
+
     def test_get_candidates(self):
         """
         Tests that points near the border are identified correctly.
@@ -465,6 +521,29 @@ class TestDay10(unittest.TestCase):
                 f'Test case {idx:02d}: For {loop_coords=} expected to get "{expected_side}", but got "{actual_side}".'
             )
 
+    def test_display_map(self):
+        """
+        Test that two strings that can be used to visualize the loop can also be produced.
+
+        Useful for debugging!
+        """
+        # Arrange
+        input_map = main.parse_input('tests/resources/d10_internal_points_start_surrounded.txt')
+        loop_coords = main.get_loop_coordinates(input_map)
+        inner_points = main.add_inner_points(
+            main.get_internal_and_border_points(main.to_differences(loop_coords),
+                                                main.determine_side(loop_coords)), loop_coords,
+            input_map)
+        expected_before = '            \n S--------7 \n |████████| \n |████████| \n |████████| \n |█F------J \n |█|  F---7 \n |█|  |███| \n |█|  |███| \n |█L--J███| \n L--------J \n            '
+        expected_after = '            \n S────────┐ \n │IIIIIIII│ \n │IIIIIIII│ \n │IIIIIIII│ \n │I┌──────┘ \n │I│  ┌───┐ \n │I│  │III│ \n │I│  │III│ \n │I└──┘III│ \n └────────┘ \n            '
+
+        # Act
+        before, after = main.display_map(input_map, loop_coords, inner_points)
+
+        # Assert
+        self.assertEqual(before, expected_before)
+        self.assertEqual(after, expected_after)
+
     def test_part2(self):
         """
         Tests that part 2 returns the correct number of enclosed points.
@@ -488,6 +567,8 @@ class TestDay10(unittest.TestCase):
             ('tests/resources/d10_bigger.txt', 10),
             ('tests/resources/d10_bigger2.txt', 8),
             ('tests/resources/d10_up_tricky.txt', 8),
+            ('aoc_2023/day10/sample.txt', 1),
+            ('aoc_2023/day10/input.txt', 459),
         ]
 
         for idx, (filename, expected_side) in enumerate(expectations):

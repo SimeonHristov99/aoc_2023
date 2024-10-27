@@ -188,8 +188,7 @@ def add_inner_points(internal_to_border_points: Set[Tuple[int, int]],
                      input_map=None) -> Set[Tuple[int, int]]:
     result = set()
     internal_to_border_points = internal_to_border_points - set(loop_coords)
-    random_start = next(iter(internal_to_border_points))
-    stack = [random_start]
+    stack = list(internal_to_border_points)
     borders = set(loop_coords) | internal_to_border_points
     visited = set(loop_coords) | internal_to_border_points
 
@@ -213,7 +212,7 @@ def add_inner_points(internal_to_border_points: Set[Tuple[int, int]],
         if input_map:
             input_map[x][y] = 'Y'
 
-    return (result - {random_start}) | internal_to_border_points
+    return result | internal_to_border_points
 
 
 def part2(filename: str) -> int:
@@ -236,13 +235,51 @@ def part2(filename: str) -> int:
     return len(inner_points)
 
 
+def display_map(input_map: List[List[str]], loop_coords: List[Tuple[int, int]],
+                inner_points: Set[Tuple[int, int]]) -> Tuple[str, str]:
+    input_map_copy = copy.deepcopy(input_map)
+    for i in range(len(input_map_copy)):
+        for j in range(len(input_map_copy[0])):
+            if (i, j) in inner_points:
+                input_map_copy[i][j] = '█'
+            elif (i, j) not in loop_coords:
+                input_map_copy[i][j] = ' '
+
+    before = '\n'.join([''.join(row) for row in input_map_copy])
+
+    # Characters taken from "https://symbl.cc/en/unicode/blocks/box-drawing/".
+    character_map = {
+        'F': '┌',
+        '7': '┐',
+        '-': '─',
+        '|': '│',
+        'L': '└',
+        'J': '┘',
+    }
+
+    for i in range(len(input_map)):
+        for j in range(len(input_map[0])):
+            if input_map[i][j] == 'S':
+                continue
+
+            if input_map[i][j] not in character_map and (i, j) not in inner_points:
+                input_map[i][j] = ' '
+            elif (i, j) in inner_points:
+                input_map[i][j] = 'I'
+            elif (i, j) in loop_coords:
+                input_map[i][j] = character_map[input_map[i][j]]
+            else:
+                input_map[i][j] = 'O'
+
+    after = '\n'.join([''.join(row) for row in input_map])
+    return before, after
+
+
 def main() -> None:
     print(f'Part 1, Sample: {part1("./aoc_2023/day10/sample.txt")}')
     print(f'Part 1, Input: {part1("./aoc_2023/day10/input.txt")}')
 
     print(f'Part 2, Sample: {part2("./aoc_2023/day10/sample.txt")}')
-
-    # Next step visualize loop. Maybe in a new repo.
     print(f'Part 2, Input: {part2("./aoc_2023/day10/input.txt")}')
 
 
