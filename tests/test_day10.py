@@ -55,6 +55,22 @@ class TestDay10(unittest.TestCase):
         # Assert
         self.assertListEqual(actuals, expecteds)
 
+    def test_find_start_no_start(self):
+        """
+        Tests that when the symbol, marking the starting pipe - S, is not found, (-1, -1) is returned.
+        """
+        # Arrange
+        input_map = [['-', 'L', '|', 'F', '7'], ['7', 'L', '-', '7',
+                                                 '|'], ['L', '|', '7', '|', '|'],
+                     ['-', 'L', '-', 'J', '|'], ['L', '|', '-', 'J', 'F']]
+        expected = (-1, -1)
+
+        # Act
+        actual = main.find_start(input_map)
+
+        # Assert
+        self.assertTupleEqual(actual, expected)
+
     def test_get_loop_coordinates_simple_cases(self):
         """
         Tests the loop coordinates are obtained successfully for simple pipe maps.
