@@ -116,3 +116,37 @@ class TestExpand(unittest.TestCase):
 
         # Assert
         self.assertListEqual(actual_after_expansion, expected_after_expansion)
+
+
+class TestGetGalaxiesCoordinates(unittest.TestCase):
+    """
+    Class for testing the function that returns the coordinates of the galaxies.
+    """
+
+    def test_finds_galaxies_in_sample_correctly(self):
+        """
+        Tests that the function correctly finds the coordinates of the galaxies in the sample.
+        """
+        # Arrange
+        universe = [
+            ['.', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
+            ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '.'],
+            ['.', '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
+            ['#', '.', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '.'],
+        ]
+        expected_coordinates = [(0, 4), (1, 9), (2, 0), (5, 8), (6, 1), (7, 12), (10, 9), (11, 0),
+                                (11, 5)]
+
+        # Act
+        actual_coordinates = main.get_galaxy_coordinates(universe)
+
+        # Assert
+        self.assertListEqual(actual_coordinates, expected_coordinates)
