@@ -54,7 +54,7 @@ def part1(filename: str) -> int:
     parsed = parse(filename)
     expanded = expand(parsed)
     galaxy_coordinates = get_galaxy_coordinates(expanded)
-    return len(galaxy_coordinates)
+    return sum(manhattan_distance(p1, p2) for p1, p2 in get_pairs(galaxy_coordinates))
 
 
 def main() -> None:

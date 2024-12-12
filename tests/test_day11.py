@@ -210,13 +210,13 @@ class TestPart1(unittest.TestCase):
     Class for testing the function that solves part 1.
     """
 
-    def test_outputs_correct_number_of_galaxies_for_sample(self):
+    def test_outputs_correct_sum_distances_for_sample(self):
         """
-        Tests that the function correctly finds the number of galaxies in the sample.
+        Tests that the function correctly finds the total sum of distances for the sample.
         """
         # Arrange
         filename = './aoc_2023/day11/sample.txt'
-        expected = 9
+        expected = 374
 
         # Act
         actual = main.part1(filename)
@@ -224,16 +224,16 @@ class TestPart1(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_outputs_correct_number_of_galaxies_for_input(self):
-        """
-        Tests that the function correctly finds the number of galaxies in the input.
-        """
-        # Arrange
-        filename = './aoc_2023/day11/input.txt'
-        expected = 439
+    # def test_outputs_correct_sum_distances_for_input(self):
+    #     """
+    #     Tests that the function correctly finds the total sum of distances for the input.
+    #     """
+    #     # Arrange
+    #     filename = './aoc_2023/day11/input.txt'
+    #     expected = 374
 
-        # Act
-        actual = main.part1(filename)
+    #     # Act
+    #     actual = main.part1(filename)
 
-        # Assert
-        self.assertEqual(actual, expected)
+    #     # Assert
+    #     self.assertEqual(actual, expected)

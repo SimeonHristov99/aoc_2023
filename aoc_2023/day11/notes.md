@@ -56,12 +56,17 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] Look at the code you've written and try to identify any edge cases that are not tested.
 - [X] `pre-push` hook passes.
 - [X] Commit all changes.
+
+### Take the sum of the lengths
+
+- [X] Make tests for the function `part1` fail by adding the requirement for the sum of the lengths.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
+
 ### Submit answers
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [ ] Run on input.
 - [ ] In case brute force is not enough, brainstorm next steps:
   - [ ] Calculate the Manhattan distance between counting how many special cells.
