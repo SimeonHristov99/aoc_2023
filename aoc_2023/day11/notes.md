@@ -67,6 +67,7 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 
 ### Submit answers
 
-- [ ] Run on input.
-- [ ] In case brute force is not enough, brainstorm next steps:
-  - [ ] Calculate the Manhattan distance between counting how many special cells.
+- [X] Run on input.
+- [X] In case brute force is not enough, brainstorm next steps:
+  - Calculate the Manhattan distance between counting how many special cells.
+  - Brute force worked.

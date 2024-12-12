@@ -224,16 +224,16 @@ class TestPart1(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_outputs_correct_sum_distances_for_input(self):
-    #     """
-    #     Tests that the function correctly finds the total sum of distances for the input.
-    #     """
-    #     # Arrange
-    #     filename = './aoc_2023/day11/input.txt'
-    #     expected = 374
+    def test_outputs_correct_sum_distances_for_input(self):
+        """
+        Tests that the function correctly finds the total sum of distances for the input.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/input.txt'
+        expected = 9686930
 
-    #     # Act
-    #     actual = main.part1(filename)
+        # Act
+        actual = main.part1(filename)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
