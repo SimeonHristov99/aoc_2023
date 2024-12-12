@@ -166,10 +166,6 @@ class TestExpand(unittest.TestCase):
         # Assert
         self.assertListEqual(sorted(actual), sorted(expected))
 
-    # test_expand_sample_with_coefficient_10
-    # test_expand_sample_with_coefficient_100
-    # test_expand_sample_with_coefficient_1000000
-
 
 class TestGetGalaxiesCoordinates(unittest.TestCase):
     """
@@ -256,6 +252,57 @@ class TestManhattanDistance(unittest.TestCase):
 
         # Assert
         self.assertListEqual(actual, expected)
+
+
+class TestExpandAndSumTotal(unittest.TestCase):
+    """
+    Class for testing the function that solves part 1.
+    """
+
+    def test_works_with_coefficient_1(self):
+        """
+        Tests that the function works correctly when the coefficient of expansion is 1.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/sample.txt'
+        coefficient_of_expansion = 1
+        expected = 374
+
+        # Act
+        actual = main.expand_and_sum_total(filename, coefficient_of_expansion)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_with_coefficient_10(self):
+        """
+        Tests that the function works correctly when the coefficient of expansion is 10.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/sample.txt'
+        coefficient_of_expansion = 10
+        expected = 1030
+
+        # Act
+        actual = main.expand_and_sum_total(filename, coefficient_of_expansion)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_with_coefficient_100(self):
+        """
+        Tests that the function works correctly when the coefficient of expansion is 100.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/sample.txt'
+        coefficient_of_expansion = 100
+        expected = 8410
+
+        # Act
+        actual = main.expand_and_sum_total(filename, coefficient_of_expansion)
+
+        # Assert
+        self.assertEqual(actual, expected)
 
 
 class TestPart1(unittest.TestCase):

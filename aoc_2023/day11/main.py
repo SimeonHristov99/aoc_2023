@@ -57,12 +57,20 @@ def manhattan_distance(p1: tuple[int, int], p2: tuple[int, int]) -> int:
     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
 
 
-def part1(filename: str) -> int:
+def expand_and_sum_total(filename: str, coefficient_of_expansion: int) -> int:
     universe = parse(filename)
     initial_coords = get_galaxy_coordinates(universe)
-    expanded = expand(initial_coords, 1, get_empty_lines(universe, 0),
-                      get_empty_lines(universe, 1))
+    if coefficient_of_expansion > 1:
+        expanded = expand(initial_coords, coefficient_of_expansion - 1,
+                          get_empty_lines(universe, 0), get_empty_lines(universe, 1))
+    else:
+        expanded = expand(initial_coords, coefficient_of_expansion, get_empty_lines(universe, 0),
+                          get_empty_lines(universe, 1))
     return sum(manhattan_distance(p1, p2) for p1, p2 in get_pairs(expanded))
+
+
+def part1(filename: str) -> int:
+    return expand_and_sum_total(filename, 1)
 
 
 def main() -> None:
