@@ -93,11 +93,11 @@ A question might arise *Why didn't you make it like that (i.e. parametrized and 
 
 ### Parametrize expand
 
-- [ ] Make tests fail.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Make tests fail.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Submit answers for part 2
 

@@ -1,5 +1,7 @@
 import unittest
 
+import pytest
+
 from aoc_2023.day11 import main
 
 
@@ -74,6 +76,77 @@ class TestTranspose(unittest.TestCase):
         self.assertListEqual(actual, expected)
 
 
+class TestGetEmptyLines(unittest.TestCase):
+    """
+    Class for testing the function that can be used to return the indices of the rows and columns with no galaxies.
+    """
+
+    def test_finds_empty_rows_correctly(self):
+        """
+        Tests that the function returns the correct indices of empty rows.
+        """
+        # Arrange
+        universe = [
+            ['.', '.', '.', '#', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '#', '.', '.'],
+            ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
+            ['.', '#', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '#', '.', '.'],
+            ['#', '.', '.', '.', '#', '.', '.', '.', '.', '.'],
+        ]
+        expected = [3, 7]
+
+        # Act
+        actual = main.get_empty_lines(universe, axis=0)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+    def test_finds_empty_columns_correctly(self):
+        """
+        Tests that the function returns the correct indices of empty columns.
+        """
+        # Arrange
+        universe = [
+            ['.', '.', '.', '#', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '#', '.', '.'],
+            ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
+            ['.', '#', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '#', '.', '.'],
+            ['#', '.', '.', '.', '#', '.', '.', '.', '.', '.'],
+        ]
+        expected = [2, 5, 8]
+
+        # Act
+        actual = main.get_empty_lines(universe, axis=1)
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+    def test_throws_when_axis_is_not_zero_or_one(self):
+        """
+        Tests that the function raises an exception when the axis is not 0 or 1.
+        """
+        # Arrange
+        expected_log = 'Axis=100 is not supported. The axis value must be either 0 or 1.'
+        excinfo = None
+
+        # Act
+        with pytest.raises(ValueError) as excinfo:
+            main.get_empty_lines([['.', '.', '.']], 100)
+
+        # Assert
+        self.assertIn(expected_log, str(excinfo.value))
+
+
 class TestExpand(unittest.TestCase):
     """
     Class for testing the function that expands the universe.
@@ -86,7 +159,7 @@ class TestExpand(unittest.TestCase):
         # Arrange
         coords = [(0, 3), (1, 7), (2, 0), (4, 6), (5, 1), (6, 9), (8, 7), (9, 0), (9, 4)]
         expected = [(0, 4), (1, 9), (2, 0), (5, 8), (6, 1), (7, 12), (10, 9), (11, 0), (11, 5)]
-        
+
         # Act
         actual = main.expand(coords, 1, [3, 7], [2, 5, 8])
 
@@ -96,6 +169,7 @@ class TestExpand(unittest.TestCase):
     # test_expand_sample_with_coefficient_10
     # test_expand_sample_with_coefficient_100
     # test_expand_sample_with_coefficient_1000000
+
 
 class TestGetGalaxiesCoordinates(unittest.TestCase):
     """
