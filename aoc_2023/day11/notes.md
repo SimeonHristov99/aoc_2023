@@ -99,6 +99,14 @@ A question might arise *Why didn't you make it like that (i.e. parametrized and 
 - [X] `pre-push` hook passes.
 - [X] Commit all changes.
 
+### Move the common logic for parts 1 and 2 into a new function and test it with different levels of expansion
+
+- [ ] Make tests fail.
+- [ ] Make tests pass.
+- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
+- [ ] `pre-push` hook passes.
+- [ ] Commit all changes.
+
 ### Submit answers for part 2
 
 - [ ] Run on input.
