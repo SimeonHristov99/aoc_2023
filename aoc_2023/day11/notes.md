@@ -8,21 +8,15 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 2. Get all the points.
 3. Find the Manhattan distance between them (I think it should be equivalent).
 
-## Create a plan of attack
+## Part 1
+
+### Create a plan of attack
 
 - [X] Main steps outlined and vision for the end result is written down.
 
-## Expand the input after parsing
+### Expand the input after parsing
 
-### Parse the input
-
-- [X] Add failing tests.
-- [X] Make tests pass.
-- [X] Look at the code you've written and try to identify any edge cases that are not tested.
-- [X] `pre-push` hook passes.
-- [X] Commit all changes.
-
-### Expand the universe
+#### Parse the input
 
 - [X] Add failing tests.
 - [X] Make tests pass.
@@ -30,7 +24,15 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] `pre-push` hook passes.
 - [X] Commit all changes.
 
-## Get all the galaxies as coordinates
+#### Expand the universe
+
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
+
+### Get all the galaxies as coordinates
 
 - [X] Add failing tests.
 - [X] Make tests pass.
@@ -39,7 +41,7 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] Test that the function `main` reports the number of galaxies found in each input.
 - [X] Commit all changes.
 
-## Calculate the Manhattan distance between them
+### Calculate the Manhattan distance between them
 
 - [X] Add failing tests.
 - [X] Make tests pass.
@@ -47,9 +49,9 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] `pre-push` hook passes.
 - [X] Commit all changes.
 
-## Working part 1
+### Working part 1
 
-### Count each pair once
+#### Count each pair once
 
 - [X] Add failing tests.
 - [X] Make tests pass.
@@ -57,7 +59,7 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] `pre-push` hook passes.
 - [X] Commit all changes.
 
-### Take the sum of the lengths
+#### Take the sum of the lengths
 
 - [X] Make tests for the function `part1` fail by adding the requirement for the sum of the lengths.
 - [X] Make tests pass.
@@ -65,9 +67,15 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] `pre-push` hook passes.
 - [X] Commit all changes.
 
-### Submit answers
+#### Submit answers
 
 - [X] Run on input.
 - [X] In case brute force is not enough, brainstorm next steps:
   - Calculate the Manhattan distance between counting how many special cells.
   - Brute force worked.
+
+## Part 2
+
+### Create a plan of attack
+
+- [ ] Main steps outlined and vision for the end result is written down.
