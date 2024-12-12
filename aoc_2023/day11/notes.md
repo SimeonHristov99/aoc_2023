@@ -109,4 +109,4 @@ A question might arise *Why didn't you make it like that (i.e. parametrized and 
 
 ### Submit answers for part 2
 
-- [ ] Run on input.
+- [X] Run on input.

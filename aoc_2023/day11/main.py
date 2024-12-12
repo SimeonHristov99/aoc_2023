@@ -73,9 +73,16 @@ def part1(filename: str) -> int:
     return expand_and_sum_total(filename, 1)
 
 
+def part2(filename: str) -> int:
+    return expand_and_sum_total(filename, 1000000)
+
+
 def main() -> None:
     print(f'Part 1, Sample: {part1("./aoc_2023/day11/sample.txt")}')
     print(f'Part 1, Input: {part1("./aoc_2023/day11/input.txt")}')
+
+    print(f'Part 2, Sample: {part2("./aoc_2023/day11/sample.txt")}')
+    print(f'Part 2, Input: {part2("./aoc_2023/day11/input.txt")}')
 
 
 if __name__ == '__main__':

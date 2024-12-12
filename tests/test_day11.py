@@ -310,7 +310,7 @@ class TestPart1(unittest.TestCase):
     Class for testing the function that solves part 1.
     """
 
-    def test_outputs_correct_sum_distances_for_sample(self):
+    def test_part1_outputs_correct_sum_distances_for_sample(self):
         """
         Tests that the function correctly finds the total sum of distances for the sample.
         """
@@ -324,7 +324,7 @@ class TestPart1(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_outputs_correct_sum_distances_for_input(self):
+    def test_part1_outputs_correct_sum_distances_for_input(self):
         """
         Tests that the function correctly finds the total sum of distances for the input.
         """
@@ -334,6 +334,40 @@ class TestPart1(unittest.TestCase):
 
         # Act
         actual = main.part1(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
+class TestPart2(unittest.TestCase):
+    """
+    Class for testing the function that solves part 2.
+    """
+
+    def test_part2_outputs_correct_sum_distances_for_sample(self):
+        """
+        Tests that the function correctly finds the total sum of distances for the sample.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/sample.txt'
+        expected = 82000210
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_part2_outputs_correct_sum_distances_for_input(self):
+        """
+        Tests that the function correctly finds the total sum of distances for the input.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/input.txt'
+        expected = 630728425490
+
+        # Act
+        actual = main.part2(filename)
 
         # Assert
         self.assertEqual(actual, expected)
