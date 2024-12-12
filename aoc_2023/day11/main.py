@@ -38,6 +38,10 @@ def get_galaxy_coordinates(universe: list[list[str]]) -> list[tuple[int, int]]:
     return galaxy_coordinates
 
 
+def manhattan_distance(p1: tuple[int, int], p2: tuple[int, int]) -> int:
+    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
+
 def part1(filename: str) -> int:
     parsed = parse(filename)
     expanded = expand(parsed)

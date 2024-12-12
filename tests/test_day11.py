@@ -152,6 +152,31 @@ class TestGetGalaxiesCoordinates(unittest.TestCase):
         self.assertListEqual(actual_coordinates, expected_coordinates)
 
 
+class TestManhattanDistance(unittest.TestCase):
+    """
+    Class for testing the function that calculates the Manhattan distance between two points.
+    """
+
+    def test_calculations_are_correct(self):
+        """
+        Tests that the calculations are correct.
+        """
+        # Arrange
+        coords = [
+            ((6, 1), (11, 5)),  # galaxies 5 and 9
+            ((0, 4), (10, 9)),  # galaxies 1 and 7
+            ((2, 0), (7, 12)),  # galaxies 3 and 6
+            ((11, 0), (11, 5)),  # galaxies 8 and 9
+        ]
+        expected = [9, 15, 17, 5]
+
+        # Act
+        actual = [main.manhattan_distance(p1, p2) for p1, p2 in coords]
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+
 class TestPart1(unittest.TestCase):
     """
     Class for testing the function that solves part 1.
