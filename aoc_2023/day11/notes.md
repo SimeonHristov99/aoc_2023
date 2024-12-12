@@ -49,7 +49,15 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 
 ## Working part 1
 
-- [ ] Take the sum of the lengths.
+### Count each pair once
+
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
+### Submit answers
+
 - [ ] Add failing tests.
 - [ ] Make tests pass.
 - [ ] Look at the code you've written and try to identify any edge cases that are not tested.
