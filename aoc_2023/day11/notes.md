@@ -36,7 +36,7 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 - [X] Make tests pass.
 - [X] Look at the code you've written and try to identify any edge cases that are not tested.
 - [X] `pre-push` hook passes.
-- [ ] Test that the function `main` reports the number of galaxies found in each input.
+- [X] Test that the function `main` reports the number of galaxies found in each input.
 - [ ] Commit all changes.
 
 ## Calculate the Manhattan distance between them

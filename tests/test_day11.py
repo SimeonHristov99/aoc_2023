@@ -150,3 +150,37 @@ class TestGetGalaxiesCoordinates(unittest.TestCase):
 
         # Assert
         self.assertListEqual(actual_coordinates, expected_coordinates)
+
+
+class TestPart1(unittest.TestCase):
+    """
+    Class for testing the function that solves part 1.
+    """
+
+    def test_outputs_correct_number_of_galaxies_for_sample(self):
+        """
+        Tests that the function correctly finds the number of galaxies in the sample.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/sample.txt'
+        expected = 9
+
+        # Act
+        actual = main.part1(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_outputs_correct_number_of_galaxies_for_input(self):
+        """
+        Tests that the function correctly finds the number of galaxies in the input.
+        """
+        # Arrange
+        filename = './aoc_2023/day11/input.txt'
+        expected = 439
+
+        # Act
+        actual = main.part1(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)

@@ -36,3 +36,19 @@ def get_galaxy_coordinates(universe: list[list[str]]) -> list[tuple[int, int]]:
             if universe[i][j] == '#':
                 galaxy_coordinates.append((i, j))
     return galaxy_coordinates
+
+
+def part1(filename: str) -> int:
+    parsed = parse(filename)
+    expanded = expand(parsed)
+    galaxy_coordinates = get_galaxy_coordinates(expanded)
+    return len(galaxy_coordinates)
+
+
+def main() -> None:
+    print(f'Part 1, Sample: {part1("./aoc_2023/day11/sample.txt")}')
+    print(f'Part 1, Input: {part1("./aoc_2023/day11/input.txt")}')
+
+
+if __name__ == '__main__':
+    main()
