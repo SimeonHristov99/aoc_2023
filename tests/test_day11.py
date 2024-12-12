@@ -79,44 +79,23 @@ class TestExpand(unittest.TestCase):
     Class for testing the function that expands the universe.
     """
 
-    def test_expand_sample(self):
+    def test_expand_sample_with_coefficient_1(self):
         """
-        Tests that the function expands the universe in the sample file correctly.
+        Tests that the function expands the universe correctly when the coefficient of expansion is 1.
         """
         # Arrange
-        universe = [
-            ['.', '.', '.', '#', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '#', '.', '.'],
-            ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
-            ['.', '#', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '#', '.', '.'],
-            ['#', '.', '.', '.', '#', '.', '.', '.', '.', '.'],
-        ]
-        expected_after_expansion = [
-            ['.', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
-            ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '.'],
-            ['.', '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.'],
-            ['#', '.', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '.'],
-        ]
-
+        coords = [(0, 3), (1, 7), (2, 0), (4, 6), (5, 1), (6, 9), (8, 7), (9, 0), (9, 4)]
+        expected = [(0, 4), (1, 9), (2, 0), (5, 8), (6, 1), (7, 12), (10, 9), (11, 0), (11, 5)]
+        
         # Act
-        actual_after_expansion = main.expand(universe)
+        actual = main.expand(coords, 1, [3, 7], [2, 5, 8])
 
         # Assert
-        self.assertListEqual(actual_after_expansion, expected_after_expansion)
+        self.assertListEqual(sorted(actual), sorted(expected))
 
+    # test_expand_sample_with_coefficient_10
+    # test_expand_sample_with_coefficient_100
+    # test_expand_sample_with_coefficient_1000000
 
 class TestGetGalaxiesCoordinates(unittest.TestCase):
     """

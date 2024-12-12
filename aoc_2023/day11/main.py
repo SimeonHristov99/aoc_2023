@@ -12,19 +12,10 @@ def transpose(xss: list[list[str]]) -> list[list[str]]:
     return result
 
 
-def expand(universe: list[list[str]]) -> list[list[str]]:
-
-    def helper(matrix: list[list[str]]) -> list[list[str]]:
-        expanded_rows = []
-        for line in matrix:
-            if '#' not in line:
-                expanded_rows.append(line)
-            expanded_rows.append(line)
-        return expanded_rows
-
-    universe_rows_expanded = helper(universe)
-    universe_columns_expanded = helper(transpose(universe_rows_expanded))
-    return transpose(universe_columns_expanded)
+def expand(coords: list[tuple[int, int]], coefficient_of_expansion: int, empty_row_idxs: list[int], empty_col_idxs: list[int]) -> list[tuple[int, int]]:
+    annotated_coords = [(x, y, sum(1 for row in empty_row_idxs if row < x), sum(1 for col in empty_col_idxs if col < y)) for x, y in coords]
+    expanded_coords = [(x + num_expansions_x * coefficient_of_expansion, y + num_expansions_y * coefficient_of_expansion) for x, y, num_expansions_x, num_expansions_y in annotated_coords]
+    return expanded_coords
 
 
 def get_galaxy_coordinates(universe: list[list[str]]) -> list[tuple[int, int]]:
@@ -54,12 +45,13 @@ def part1(filename: str) -> int:
     parsed = parse(filename)
     expanded = expand(parsed)
     galaxy_coordinates = get_galaxy_coordinates(expanded)
-    return sum(manhattan_distance(p1, p2) for p1, p2 in get_pairs(galaxy_coordinates))
+    return galaxy_coordinates
+    # return sum(manhattan_distance(p1, p2) for p1, p2 in get_pairs(galaxy_coordinates))
 
 
 def main() -> None:
     print(f'Part 1, Sample: {part1("./aoc_2023/day11/sample.txt")}')
-    print(f'Part 1, Input: {part1("./aoc_2023/day11/input.txt")}')
+    # print(f'Part 1, Input: {part1("./aoc_2023/day11/input.txt")}')
 
 
 if __name__ == '__main__':
