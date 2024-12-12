@@ -74,7 +74,7 @@ def part1(filename: str) -> int:
 
 
 def part2(filename: str) -> int:
-    return expand_and_sum_total(filename, 1000000)
+    return expand_and_sum_total(filename, 1_000_000)
 
 
 def main() -> None:
