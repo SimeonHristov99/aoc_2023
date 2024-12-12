@@ -8,6 +8,17 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 2. Get all the points.
 3. Find the Manhattan distance between them (I think it should be equivalent).
 
+For part 2, the brute force approach cannot be used. We can utilize the already written code and rewrite the logic for the expansion so that it becomes parametrized. Idea:
+
+1. Parse the input.
+2. Get the coordinates of the initial points.
+3. Change the behavior of the `expand` function:
+   1. It should take a list of coordinates, a parameter with the coefficient of expansion, a list with the indices of the empty rows and a list with the indices of the empty columns.
+   2. It should return a list of the coordinates in the expanded universe.
+   3. Having the indices of the empty rows and columns, one approach to go forward would be to sort the coordinates and increase the corresponding ones after the index of the empty row/column.
+
+A question might arise *Why didn't you make it like that (i.e. parametrized and optimal) in the first place?*. The answer is that that would have been over-engineering. We don't want it. We follow the principle of addressing the problem at hand. Only when there is a need to change something to fulfil another goal, we do the change and account for it.
+
 ## Part 1
 
 ### Create a plan of attack
@@ -76,6 +87,18 @@ Try to solve part 1 naively by doing the steps as they are outlined in the task:
 
 ## Part 2
 
-### Create a plan of attack
+### Create a plan of attack for part 2
 
-- [ ] Main steps outlined and vision for the end result is written down.
+- [X] Main steps outlined and vision for the end result is written down.
+
+### Parametrize expand
+
+- [ ] Make tests fail.
+- [ ] Make tests pass.
+- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
+- [ ] `pre-push` hook passes.
+- [ ] Commit all changes.
+
+### Submit answers for part 2
+
+- [ ] Run on input.
