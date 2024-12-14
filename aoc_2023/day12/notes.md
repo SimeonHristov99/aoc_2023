@@ -31,11 +31,11 @@ The will be several calls when all the values in the resulting string are `.`. A
 
 ### Parse input
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Make it work for the first example
 
