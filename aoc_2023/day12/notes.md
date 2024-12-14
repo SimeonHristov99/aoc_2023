@@ -5,10 +5,10 @@
 In Part 1, the main goal is to create a function that can do the logic for a single line. Then, that function will be applied to every line. We know the length of the target string, so we have an upper limit. We could use that length and the numbers to form all possibilities and then we'll filter using what we already have. My idea is to use a recursive depth-first search with caching.
 
 1. The recursive function can have the following parameters:
-   1. The starting index from which we're checking whether the current string is valid and whether it is a full group.
-   2. The current index that we are on.
-   3. An iterator to the list with the groups.
-   4. The resulting string which initially is empty.
+   1. The resulting string which initially is empty.
+   2. The starting index from which we're checking whether the current string is valid and whether it is a full group.
+   3. The current index that we are on.
+   4. An iterator to the list with the groups.
    5. An iterator on the list with the springs.
 2. Base cases:
    1. If the current index is out of bounds and the list with groups is empty, return `1`.
