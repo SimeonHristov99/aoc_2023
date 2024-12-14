@@ -32,3 +32,24 @@ class TestParse(unittest.TestCase):
 
         # Assert
         self.assertListEqual(actual, expected)
+
+
+class TestGetNumCombinations(unittest.TestCase):
+    """
+    Class for testing the function that produces the number possibilities for broken and working springs.
+    """
+
+    def test_works_for_first_example(self):
+        """
+        Tests that the function works for the first example: "???.###".
+        """
+        # Arrange
+        pattern = ['?', '?', '?', '.', '#', '#', '#']
+        num_broken = [1, 1, 3]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
