@@ -40,6 +40,7 @@ The will be several calls when all the values in the resulting string are `.`. A
 ### Make it work for the first example
 
 - [ ] Add failing tests.
+
 - [ ] Make tests pass.
 - [ ] Look at the code you've written and try to identify any edge cases that are not tested.
 - [ ] `pre-push` hook passes.
