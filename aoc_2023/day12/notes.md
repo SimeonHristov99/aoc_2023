@@ -17,8 +17,8 @@ In Part 1, the main goal is to create a function that can do the logic for a sin
    1. If the current character is `?` and the current substring is valid and a full group, recurse after adding `.` to the result, calling `next` on the iterator of the list and resetting the index for the substring.
    2. If the current character is `?` and the current substring is valid, recursively add the calls after adding `#` and `.` to the result.
    3. If the current character is `?`, return `0`.
-   4. If the current character is not `?` and the current substring is valid and a full group and the next character is not `#` and the current string does not end with `#`, recurse after calling `next` and resetting the index for the substring.
-   5. If the current character is not `?` and the current substring is valid and a full group and the next character is `#` and the current string ends with `#`, return `0`.
+   4. If the current substring is valid and a full group and the next character is not `#` and the current string does not end with `#`, recurse after calling `next` and resetting the index for the substring.
+   5. If the current substring is a full group and the next character is `#` and the current string ends with `#`, return `0`.
    6. If the current character is not `?` and the current substring is valid and not a full group, recurse after adding it to the result.
 
 The will be several calls when all the values in the resulting string are `.`. An option to handle these is to compare the hex values of the current elements in the caching dictionary.

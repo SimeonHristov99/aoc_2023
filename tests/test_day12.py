@@ -34,49 +34,24 @@ class TestParse(unittest.TestCase):
         self.assertListEqual(actual, expected)
 
 
-class TestCountCombinations(unittest.TestCase):
+class TestGetState(unittest.TestCase):
     """
-    Class for testing the function that counts the possibilities for broken and working springs.
+    Class for testing the function that outputs whether a spring arrangement is valid or a full group (i.e. valid and a full group).
     """
 
-    def test_base_case_out_of_bounds_index_and_empty_list_with_groups(self):
+    def test_returns_valid_if_not_yet_a_group(self):
         """
-        Tests that when the current index is out of bounds and the list with groups is empty the output is 1 since that means the group was successfully obtained (we'll always have at least one group).
+        Tests that the function returns "valid" when the substring does not represent a group.
         """
-        # Arrange
-        result = ''
-        idx_start = 0
-        idx_current = 1
-        num_broken = []
-        pattern = []
-        expected = 1
+        # todo
+        pass
 
-        # Act
-        actual = main.create_combinations(num_broken, result, idx_start, idx_current,
-                                          iter(num_broken), iter(pattern))
-
-        # Assert
-        self.assertEqual(actual, expected)
-
-    def test_base_case_out_of_bounds_index_and_non_empty_list_with_groups(self):
+    def test_returns_full_group_if_a_group(self):
         """
-        Tests that when the current index is out of bounds and the list with groups is not empty the output is 0 since that means the last group was not obtained.
+        Tests that the function returns "full_group" when the substring represents a group.
         """
-        # Arrange
-        result = ''
-        idx_start = 0
-        idx_current = 2
-        num_broken = [1]
-        pattern = []
-        expected = 0
-
-        # Act
-        actual = main.create_combinations(num_broken, result, idx_start, idx_current,
-                                          iter(num_broken), iter(pattern))
-
-        # Assert
-        self.assertEqual(actual, expected)
-
+        # todo
+        pass
 
 class TestGetNumCombinations(unittest.TestCase):
     """
