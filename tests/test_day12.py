@@ -75,6 +75,36 @@ class TestGetNumCombinations(unittest.TestCase):
     Class for testing the function that produces the number possibilities for broken and working springs.
     """
 
+    def test_only_pattern_exactly_one_character_and_group_returns_one(self):
+        """
+        Tests that when the pattern is one character and the current group is 1, the output is 1.
+        """
+        # Arrange
+        pattern = ['?']
+        num_broken = [1]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_only_pattern_more_than_one_character_and_group_returns_one(self):
+        """
+        Tests that when the pattern can be entirely filled in with the current group, the output is 1.
+        """
+        # Arrange
+        pattern = ['?', '?', '?']
+        num_broken = [3]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
     def test_works_for_first_example(self):
         """
         Tests that the function works for the first example: "???.###".
