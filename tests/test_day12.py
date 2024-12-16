@@ -43,15 +43,32 @@ class TestGetState(unittest.TestCase):
         """
         Tests that the function returns "valid" when the substring does not represent a group.
         """
-        # todo
-        pass
+        # Arrange
+        substring = '##'
+        current_group = 3
+        expected = 'valid'
+
+        # Act
+        actual = main.get_state(substring, current_group)
+
+        # Assert
+        self.assertEqual(actual, expected)
 
     def test_returns_full_group_if_a_group(self):
         """
         Tests that the function returns "full_group" when the substring represents a group.
         """
-        # todo
-        pass
+        # Arrange
+        substring = '###'
+        current_group = 3
+        expected = 'full_group'
+
+        # Act
+        actual = main.get_state(substring, current_group)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
 
 class TestGetNumCombinations(unittest.TestCase):
     """
