@@ -15,33 +15,34 @@ def get_state(substring: str, current_group: int) -> str:
 
 def get_num_combinations(pattern: list[str], num_broken: list[int]) -> int:
 
-    def dfs(result, idx_start, idx_current, iter_groups, iter_springs) -> int:
-        current_group = next(iter_groups, None)
-        current_character = next(iter_springs, None)
-
-        if not current_character and not current_group:
+    def dfs(result, idx_start, idx_current, idx_groups, idx_springs) -> int:
+        current_character = pattern[idx_springs] if idx_springs < len(pattern) else None
+        if not current_character and idx_groups >= len(num_broken):
             return 1
-        if not current_character and current_group:
-            return 0
 
-        substring = result[idx_start:idx_current]
-        state = get_state(substring, current_group)
+        substring = result[idx_start:]
+        state = get_state(substring, num_broken[idx_groups])
+
+        if not current_character and state != 'full_group':
+            return 0
+        if state == 'full_group':
+            return 1
 
         if current_character == '?' and state == 'full_group':
-            return dfs(result + '.', idx_current + 1, idx_current + 2, iter_groups, iter_springs)
+            return dfs(result + '.', idx_current + 1, idx_current + 2, idx_groups, idx_springs)
         if current_character == '?' and state == 'valid':
             return dfs(
-                result + '.', idx_current + 1, idx_current + 2, iter_groups, iter_springs) + dfs(
-                    result + '#', idx_current + 1, idx_current + 2, iter_groups, iter_springs)
+                result + '.', idx_start, idx_current + 1, idx_groups, idx_springs + 1) + dfs(
+                    result + '#', idx_start, idx_current + 1, idx_groups, idx_springs + 1)
         if current_character == '?':
             return 0
         if state == 'full_group' and substring[-1] != '#' and current_character != '#':
-            return dfs(result + current_character, idx_current + 1, idx_current + 2, iter_groups,
-                       iter_springs)
+            return dfs(result + current_character, idx_current + 1, idx_current + 2, idx_groups,
+                       idx_springs)
         if state == 'full_group' and substring[-1] == '#' and current_character == '#':
             return 0
         if state == 'valid':
-            return dfs(result + current_character, idx_current + 1, idx_current + 2, iter_groups,
-                       iter_springs)
+            return dfs(result + current_character, idx_start, idx_current + 1, idx_groups,
+                       idx_springs)
 
-    return dfs('', 0, 1, iter(num_broken), iter(pattern))
+    return dfs('', 0, 1, 0, 0)
