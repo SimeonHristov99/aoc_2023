@@ -17,8 +17,10 @@ def get_num_combinations(pattern: list[str], num_broken: list[int]) -> int:
 
     def dfs(result, idx_start, idx_current, idx_groups, idx_springs) -> int:
         current_character = pattern[idx_springs] if idx_springs < len(pattern) else None
-        if not current_character and idx_groups >= len(num_broken):
+        if idx_groups >= len(num_broken) and not current_character:
             return 1
+        if idx_groups >= len(num_broken) and current_character:
+            return 0
 
         substring = result[idx_start:]
         state = get_state(substring, num_broken[idx_groups])
@@ -26,10 +28,10 @@ def get_num_combinations(pattern: list[str], num_broken: list[int]) -> int:
         if not current_character and state != 'full_group':
             return 0
         if state == 'full_group':
-            return 1
+            return dfs(result, idx_start + 1, idx_current + 2, idx_groups + 1, idx_springs)
 
         if current_character == '?' and state == 'full_group':
-            return dfs(result + '.', idx_current + 1, idx_current + 2, idx_groups, idx_springs)
+            return dfs(result + '.', idx_start + 1, idx_current + 2, idx_groups + 1, idx_springs)
         if current_character == '?' and state == 'valid':
             return dfs(
                 result + '.', idx_start, idx_current + 1, idx_groups, idx_springs + 1) + dfs(

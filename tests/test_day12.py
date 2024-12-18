@@ -105,6 +105,21 @@ class TestGetNumCombinations(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_one_possibility_with_question_marks_works(self):
+        """
+        Tests that when there are multiple question marks and multiple groups, but the possible grouping is only 1, it gets outputted.
+        """
+        # Arrange
+        pattern = ['?', '?', '?']
+        num_broken = [1, 1]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
     def test_works_for_first_example(self):
         """
         Tests that the function works for the first example: "???.###".
