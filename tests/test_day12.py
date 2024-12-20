@@ -119,15 +119,15 @@ class TestGetNumCombinations(unittest.TestCase):
         Tests that when there is one unknown status and one given, the result is 1.
         """
         # Arrange
-        pattern = '?#'
+        patterns = ['?#', '#?']
         num_broken = [1]
-        expected = 1
+        expecteds = [1, 1]
 
         # Act
-        actual = main.get_num_combinations(pattern, num_broken)
+        actuals = [main.get_num_combinations(pattern, num_broken) for pattern in patterns]
 
         # Assert
-        self.assertEqual(actual, expected)
+        self.assertEqual(actuals, expecteds)
 
 
 #     def test_only_pattern_more_than_one_character_and_group_returns_one(self):
