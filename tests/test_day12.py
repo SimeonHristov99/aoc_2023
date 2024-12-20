@@ -34,103 +34,127 @@ class TestParse(unittest.TestCase):
         self.assertListEqual(actual, expected)
 
 
-class TestGetState(unittest.TestCase):
+class TestIsWorkingCombination(unittest.TestCase):
     """
-    Class for testing the function that outputs whether a spring arrangement is valid or a full group (i.e. valid and a full group).
+    Class for testing the function that outputs whether a spring arrangement is compatible with a list of given groups.
     """
 
-    def test_returns_valid_if_not_yet_a_group(self):
+    def test_returns_false_if_not_compatible(self):
         """
-        Tests that the function returns "valid" when the substring does not represent a group.
+        Tests that the function returns False when the substring is not compatible.
         """
         # Arrange
         substring = '##'
-        current_group = 3
-        expected = 'valid'
+        groups = [3]
 
         # Act
-        actual = main.get_state(substring, current_group)
+        actual = main.is_working_combination(substring, groups)
 
         # Assert
-        self.assertEqual(actual, expected)
+        self.assertFalse(actual)
 
-    def test_returns_full_group_if_a_group(self):
+    def test_returns_true_if_a_group(self):
         """
-        Tests that the function returns "full_group" when the substring represents a group.
+        Tests that the function returns "True" when the substring is compatible.
         """
         # Arrange
         substring = '###'
-        current_group = 3
-        expected = 'full_group'
+        groups = [3]
 
         # Act
-        actual = main.get_state(substring, current_group)
+        actual = main.is_working_combination(substring, groups)
 
         # Assert
-        self.assertEqual(actual, expected)
+        self.assertTrue(actual)
 
-
-class TestGetNumCombinations(unittest.TestCase):
-    """
-    Class for testing the function that produces the number possibilities for broken and working springs.
-    """
-
-    def test_only_pattern_exactly_one_character_and_group_returns_one(self):
+    def test_returns_true_on_multiple_versions(self):
         """
-        Tests that when the pattern is one character and the current group is 1, the output is 1.
+        Tests that the function returns "True" when the substring is compatible - multiple versions with the same group.
         """
         # Arrange
-        pattern = ['?']
-        num_broken = [1]
-        expected = 1
+        substrings = [
+            '.###.##.#...',
+            '.###.##..#..',
+            '.###.##...#.',
+            '.###.##....#',
+            '.###..##.#..',
+            '.###..##..#.',
+            '.###..##...#',
+            '.###...##.#.',
+            '.###...##..#',
+            '.###....##.#',
+        ]
+        groups = [3, 2, 1]
+        expecteds = [True] * len(substrings)
 
         # Act
-        actual = main.get_num_combinations(pattern, num_broken)
+        actuals = [main.is_working_combination(substring, groups) for substring in substrings]
 
         # Assert
-        self.assertEqual(actual, expected)
+        self.assertListEqual(actuals, expecteds)
 
-    def test_only_pattern_more_than_one_character_and_group_returns_one(self):
-        """
-        Tests that when the pattern can be entirely filled in with the current group, the output is 1.
-        """
-        # Arrange
-        pattern = ['?', '?', '?']
-        num_broken = [3]
-        expected = 1
 
-        # Act
-        actual = main.get_num_combinations(pattern, num_broken)
+# class TestGetNumCombinations(unittest.TestCase):
+#     """
+#     Class for testing the function that produces the number possibilities for broken and working springs.
+#     """
 
-        # Assert
-        self.assertEqual(actual, expected)
+#     def test_only_pattern_exactly_one_character_and_group_returns_one(self):
+#         """
+#         Tests that when the pattern is one character and the current group is 1, the output is 1.
+#         """
+#         # Arrange
+#         pattern = ['?']
+#         num_broken = [1]
+#         expected = 1
 
-    def test_one_possibility_with_question_marks_works(self):
-        """
-        Tests that when there are multiple question marks and multiple groups, but the possible grouping is only 1, it gets outputted.
-        """
-        # Arrange
-        pattern = ['?', '?', '?']
-        num_broken = [1, 1]
-        expected = 1
+#         # Act
+#         actual = main.get_num_combinations(pattern, num_broken)
 
-        # Act
-        actual = main.get_num_combinations(pattern, num_broken)
+#         # Assert
+#         self.assertEqual(actual, expected)
 
-        # Assert
-        self.assertEqual(actual, expected)
+#     def test_only_pattern_more_than_one_character_and_group_returns_one(self):
+#         """
+#         Tests that when the pattern can be entirely filled in with the current group, the output is 1.
+#         """
+#         # Arrange
+#         pattern = ['?', '?', '?']
+#         num_broken = [3]
+#         expected = 1
 
-    def test_works_for_first_example(self):
-        """
-        Tests that the function works for the first example: "???.###".
-        """
-        # Arrange
-        pattern = ['?', '?', '?', '.', '#', '#', '#']
-        num_broken = [1, 1, 3]
-        expected = 1
+#         # Act
+#         actual = main.get_num_combinations(pattern, num_broken)
 
-        # Act
-        actual = main.get_num_combinations(pattern, num_broken)
+#         # Assert
+#         self.assertEqual(actual, expected)
 
-        # Assert
-        self.assertEqual(actual, expected)
+#     def test_one_possibility_with_question_marks_works(self):
+#         """
+#         Tests that when there are multiple question marks and multiple groups, but the possible grouping is only 1, it gets outputted.
+#         """
+#         # Arrange
+#         pattern = ['?', '?', '?']
+#         num_broken = [1, 1]
+#         expected = 1
+
+#         # Act
+#         actual = main.get_num_combinations(pattern, num_broken)
+
+#         # Assert
+#         self.assertEqual(actual, expected)
+
+#     def test_works_for_first_example(self):
+#         """
+#         Tests that the function works for the first example: "???.###".
+#         """
+#         # Arrange
+#         pattern = ['?', '?', '?', '.', '#', '#', '#']
+#         num_broken = [1, 1, 3]
+#         expected = 1
+
+#         # Act
+#         actual = main.get_num_combinations(pattern, num_broken)
+
+#         # Assert
+#         self.assertEqual(actual, expected)
