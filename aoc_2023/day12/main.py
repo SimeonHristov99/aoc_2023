@@ -16,14 +16,9 @@ def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
 
     def helper(idx, result):
         if idx >= len(pattern):
-            print(result, ' => ', is_working_combination(result, num_broken))
             return is_working_combination(result, num_broken)
-
         if pattern[idx] == '?':
-            s1 = helper(idx + 1, result + '.')
-            s2 = helper(idx + 1, result + '#')
-            return s1 + s2
-
+            return helper(idx + 1, result + '.') + helper(idx + 1, result + '#')
         return helper(idx + 1, result + pattern[idx])
 
     return helper(0, '')

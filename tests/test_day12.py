@@ -173,3 +173,78 @@ class TestGetNumCombinations(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+    def test_works_for_second_example(self):
+        """
+        Tests that the function works for the second example: ".??..??...?##.".
+        """
+        # Arrange
+        pattern = '.??..??...?##.'
+        num_broken = [1, 1, 3]
+        expected = 4
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_for_third_example(self):
+        """
+        Tests that the function works for the second example: "?#?#?#?#?#?#?#?".
+        """
+        # Arrange
+        pattern = '?#?#?#?#?#?#?#?'
+        num_broken = [1, 3, 1, 6]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_for_fourth_example(self):
+        """
+        Tests that the function works for the second example: "????.#...#...".
+        """
+        # Arrange
+        pattern = '????.#...#...'
+        num_broken = [4, 1, 1]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_for_fifth_example(self):
+        """
+        Tests that the function works for the second example: "????.######..#####.".
+        """
+        # Arrange
+        pattern = '????.######..#####.'
+        num_broken = [1, 6, 5]
+        expected = 4
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_for_sixth_example(self):
+        """
+        Tests that the function works for the second example: "?###????????".
+        """
+        # Arrange
+        pattern = '?###????????'
+        num_broken = [3, 2, 1]
+        expected = 10
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(actual, expected)
