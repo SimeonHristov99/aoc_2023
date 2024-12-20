@@ -92,7 +92,7 @@ The above was my initial idea, but it was really hard to implement it. Instead, 
 
 ### Submit answers for part 1
 
-- [ ] Run on input.
+- [X] Run on input.
 
 ## Part 2
 

@@ -23,5 +23,10 @@ def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
 
     return helper(0, '')
 
+
 def part1(filename: str) -> int:
-    return sum(get_num_combinations(pattern, num_broken) for pattern, num_broken in parse(filename))
+    lines = parse(filename)
+    result = 0
+    for pattern, num_broken in lines:
+        result += get_num_combinations(pattern, num_broken)
+    return result
