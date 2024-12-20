@@ -104,7 +104,7 @@ class TestGetNumCombinations(unittest.TestCase):
         Tests that when the pattern is one character and the current group is 1, the output is 1.
         """
         # Arrange
-        pattern = ['?']
+        pattern = '?'
         num_broken = [1]
         expected = 1
 
@@ -119,7 +119,7 @@ class TestGetNumCombinations(unittest.TestCase):
         Tests that when there is one unknown status and one given, the result is 1.
         """
         # Arrange
-        pattern = ['?#']
+        pattern = '?#'
         num_broken = [1]
         expected = 1
 

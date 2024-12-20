@@ -12,11 +12,11 @@ def is_working_combination(substring: str, groups: list[int]) -> bool:
     return [subgroup.count('#') for subgroup in substring.split('.') if subgroup] == groups
 
 
-def get_num_combinations(pattern: list[str], num_broken: list[int]) -> int:
+def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
 
     def helper(idx, result):
         if idx >= len(pattern):
-            print(result)
+            print(result, ' => ', is_working_combination(result, num_broken))
             return is_working_combination(result, num_broken)
 
         if pattern[idx] == '?':
