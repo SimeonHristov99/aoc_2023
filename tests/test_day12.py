@@ -244,3 +244,22 @@ class TestGetNumCombinations(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+class Part1(unittest.TestCase):
+    """
+    Class for testing the function that completes part 1.
+    """
+
+    def test_works_for_sample(self):
+        """
+        Tests that the function produces the correct output for the sample.
+        """
+        # Arrange
+        filename = 'aoc_2023/day12/sample.txt'
+        expected = 21
+
+        # Act
+        actual = main.part1(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
