@@ -13,4 +13,17 @@ def is_working_combination(substring: str, groups: list[int]) -> bool:
 
 
 def get_num_combinations(pattern: list[str], num_broken: list[int]) -> int:
-    pass
+
+    def helper(idx, result):
+        if idx >= len(pattern):
+            print(result)
+            return is_working_combination(result, num_broken)
+
+        if pattern[idx] == '?':
+            s1 = helper(idx + 1, result + '.')
+            s2 = helper(idx + 1, result + '#')
+            return s1 + s2
+
+        return helper(idx + 1, result + pattern[idx])
+
+    return helper(0, '')
