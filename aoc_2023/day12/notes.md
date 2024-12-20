@@ -23,6 +23,11 @@ In Part 1, the main goal is to create a function that can do the logic for a sin
 
 The will be several calls when all the values in the resulting string are `.`. An option to handle these is to compare the hex values of the current elements in the caching dictionary.
 
+The above was my initial idea, but it was really hard to implement it. Instead, we can use a recursive process to generate all possibilities and check every single one of them. The main difference with the above approach is that we're checking the state after generating a candidate and not building the string piece by piece. The steps would be as follows:
+
+1. If we're output of bounds, exit with 1 if the generated string is a working combination, else 0.
+2. If the current character we're sitting on is a ?, then count the possibilities when adding . and add them to the possibilities of adding #.
+
 ## Part 1
 
 ### Create a plan of attack for part 1
@@ -39,52 +44,51 @@ The will be several calls when all the values in the resulting string are `.`. A
 
 ### Make it work for the first example
 
-- [ ] Add failing tests.
-
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Make it work for the second example
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Make it work for the third example
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Make it work for the forth example
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Make it work for the fifth example
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Make it work for the sixth example
 
-- [ ] Add failing tests.
-- [ ] Make tests pass.
-- [ ] Look at the code you've written and try to identify any edge cases that are not tested.
-- [ ] `pre-push` hook passes.
-- [ ] Commit all changes.
+- [X] Add failing tests.
+- [X] Make tests pass.
+- [X] Look at the code you've written and try to identify any edge cases that are not tested.
+- [X] `pre-push` hook passes.
+- [X] Commit all changes.
 
 ### Submit answers for part 1
 
