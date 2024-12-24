@@ -33,6 +33,10 @@ def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
     return helper(0, '')
 
 
+def expand(pattern: str, num_broken: list[int], factor: int) -> tuple[str, list[int]]:
+    return ('?'.join([pattern] * factor), num_broken * factor)
+
+
 def part1(filename: str) -> int:
     lines = parse(filename)
     result = 0

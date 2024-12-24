@@ -298,6 +298,50 @@ class TestGetNumCombinations(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 
+class TestExpand(unittest.TestCase):
+    """
+    Tests the function that expands an input by unfolding it multiple times.
+    """
+
+    def test_works_for_sample(self):
+        """
+        Tests that the function returns the expected output for the cases in the sample.
+        """
+        # Arrange
+        inputs = [
+            ('???.###', [1, 1, 3]),
+            ('.??..??...?##.', [1, 1, 3]),
+        ]
+        expecteds = [('???.###????.###????.###????.###????.###',
+                      [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3]),
+                     ('.??..??...?##.?.??..??...?##.?.??..??...?##.?.??..??...?##.?.??..??...?##.',
+                      [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3])]
+        factor = 5
+
+        # Act
+        actuals = [main.expand(pattern, num_broken, factor) for pattern, num_broken in inputs]
+
+        # Assert
+        self.assertListEqual(actuals, expecteds)
+
+    def test_factor_one_leaves_unchanged(self):
+        """
+        Tests that the function returns the same input when the expanding factor is 1.
+        """
+        # Arrange
+        inputs = [
+            ('???.###', [1, 1, 3]),
+            ('.??..??...?##.', [1, 1, 3]),
+        ]
+        factor = 1
+
+        # Act
+        actuals = [main.expand(pattern, num_broken, factor) for pattern, num_broken in inputs]
+
+        # Assert
+        self.assertListEqual(actuals, inputs)
+
+
 class Part1(unittest.TestCase):
     """
     Class for testing the function that completes part 1.

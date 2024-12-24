@@ -105,7 +105,7 @@ In part 2, we should optimize the process, so as to not generate sequences that 
 ### Alter the process so that processing is faster
 
 - [X] Add a function that checks whether we should continue to generate new sequences.
-- [ ] Add the `expand` function.
+- [X] Add the `expand` function.
 - [ ] Make sure processing is fast on the sample.
 
 ### Submit answers for part 2
