@@ -90,6 +90,43 @@ class TestIsWorkingCombination(unittest.TestCase):
         self.assertListEqual(actuals, expecteds)
 
 
+class TestIsValid(unittest.TestCase):
+    """
+    Class for testing the function that can detect whether it is worth extending the possibilities.
+    """
+
+    def test_returns_false_when_beginning_does_not_match(self):
+        """
+        Tests that when the beginning does not match, the function returns False.
+        """
+        # Arrange
+        inputs = [
+            ('###.', [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3]),
+            ('#.#...#...###.####..', [5, 2, 2, 6]),
+        ]
+        expecteds = [False] * len(inputs)
+
+        # Act
+        actuals = [main.is_valid(result, num_broken) for result, num_broken in inputs]
+
+        # Assert
+        self.assertListEqual(actuals, expecteds)
+
+    def test_returns_true_when_beginning_matches(self):
+        """
+        Tests that when the beginning matches, the function returns True.
+        """
+        # Arrange
+        num_broken = [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3]
+        result = '.#.#.'
+
+        # Act
+        actual = main.is_valid(result, num_broken)
+
+        # Assert
+        self.assertTrue(actual)
+
+
 class TestGetNumCombinations(unittest.TestCase):
     """
     Class for testing the function that produces the number possibilities for broken and working springs.
@@ -244,6 +281,21 @@ class TestGetNumCombinations(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+    def test_large_example(self):
+        """
+        Tests that the function works with a large example.
+        """
+        # Arrange
+        pattern = '???.###????.###????.###????.###????.###'
+        num_broken = [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3]
+        expected = 1
+
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
+
+        # Assert
+        self.assertEqual(expected, actual)
 
 
 class Part1(unittest.TestCase):

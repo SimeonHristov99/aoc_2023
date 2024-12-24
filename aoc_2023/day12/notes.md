@@ -28,6 +28,8 @@ The above was my initial idea, but it was really hard to implement it. Instead, 
 1. If we're output of bounds, exit with 1 if the generated string is a working combination, else 0.
 2. If the current character we're sitting on is a ?, then count the possibilities when adding . and add them to the possibilities of adding #.
 
+In part 2, we should optimize the process, so as to not generate sequences that are wrong. This should be doable if we manage to implement early stopping.
+
 ## Part 1
 
 ### Create a plan of attack for part 1
@@ -98,7 +100,13 @@ The above was my initial idea, but it was really hard to implement it. Instead, 
 
 ### Create a plan of attack for part 2
 
-- [ ] Main steps outlined and vision for the end result is written down.
+- [X] Main steps outlined and vision for the end result is written down.
+
+### Alter the process so that processing is faster
+
+- [X] Add a function that checks whether we should continue to generate new sequences.
+- [ ] Add the `expand` function.
+- [ ] Make sure processing is fast on the sample.
 
 ### Submit answers for part 2
 
