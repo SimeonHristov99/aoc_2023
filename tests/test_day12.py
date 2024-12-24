@@ -342,6 +342,29 @@ class TestExpand(unittest.TestCase):
         self.assertListEqual(actuals, inputs)
 
 
+class TestTotalCombinations(unittest.TestCase):
+    """
+    Tests the function that finds the total number of combinations.
+    """
+
+    def test_works_for_sample(self):
+        """
+        Tests that the logic works for the sample.
+        """
+        # Arrange
+        lines = [('???.###', [1, 1, 3]), ('.??..??...?##.', [1, 1, 3]),
+                 ('?#?#?#?#?#?#?#?', [1, 3, 1, 6]), ('????.#...#...', [4, 1, 1]),
+                 ('????.######..#####.', [1, 6, 5]), ('?###????????', [3, 2, 1])]
+        expected = 21
+        expand_factor = 1
+
+        # Act
+        actual = main.total_combinations(lines, expand_factor)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
 class Part1(unittest.TestCase):
     """
     Class for testing the function that completes part 1.

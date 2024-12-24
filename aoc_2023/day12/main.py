@@ -37,9 +37,13 @@ def expand(pattern: str, num_broken: list[int], factor: int) -> tuple[str, list[
     return ('?'.join([pattern] * factor), num_broken * factor)
 
 
-def part1(filename: str) -> int:
-    lines = parse(filename)
+def total_combinations(lines: list[tuple[str, list[int]]], expand_factor: int) -> int:
     result = 0
     for pattern, num_broken in lines:
+        pattern, num_broken = expand(pattern, num_broken, expand_factor)
         result += get_num_combinations(pattern, num_broken)
     return result
+
+
+def part1(filename: str) -> int:
+    return total_combinations(parse(filename), 1)
