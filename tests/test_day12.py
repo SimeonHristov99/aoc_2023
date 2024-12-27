@@ -147,20 +147,20 @@ class TestGetNumCombinations(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    # def test_one_unknown_and_one_given(self):
-    #     """
-    #     Tests that when there is one unknown status and one given, the result is 1.
-    #     """
-    #     # Arrange
-    #     patterns = ['?#', '#?']
-    #     num_broken = [1]
-    #     expecteds = [1, 1]
+    def test_one_unknown_and_one_given(self):
+        """
+        Tests that when there is one unknown status and one given, the result is 1.
+        """
+        # Arrange
+        patterns = ['?#', '#?']
+        num_broken = [1]
+        expecteds = [1, 1]
 
-    #     # Act
-    #     actuals = [main.get_num_combinations(pattern, num_broken) for pattern in patterns]
+        # Act
+        actuals = [main.get_num_combinations(pattern, num_broken) for pattern in patterns]
 
-    #     # Assert
-    #     self.assertEqual(actuals, expecteds)
+        # Assert
+        self.assertEqual(actuals, expecteds)
 
     # def test_only_pattern_more_than_one_character_and_group_returns_one(self):
     #     """

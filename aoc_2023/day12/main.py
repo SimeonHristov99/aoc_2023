@@ -27,21 +27,26 @@ def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
     for pat in pattern:
         new = []
         for (gen, br_idx) in generated:
-            if len(gen.split('#')[-1]) > num_broken[br_idx]:
-                continue
-
             if pat == '?':
-                if br_idx + 1 != len(num_broken):
+                if br_idx <= len(num_broken) and len(pattern) > 1:
                     new.append((gen + '.', br_idx))
 
-                if len(gen.split('#')[-1]) + 1 == num_broken[br_idx]:
+                if '#' not in gen and num_broken[br_idx] == 1:
                     new.append((gen + '#', br_idx + 1))
-                elif len(gen.split('#')[-1]) + 1 < num_broken[br_idx]:
+                elif '#' not in gen:
+                    new.append((gen + '#', br_idx))
+                elif br_idx < len(
+                        num_broken) and (gen.split('.')[-1]).count('#') + 1 == num_broken[br_idx]:
+                    new.append((gen + '#', br_idx + 1))
+                elif br_idx < len(
+                        num_broken) and (gen.split('.')[-1]).count('#') + 1 < num_broken[br_idx]:
                     new.append((gen + '#', br_idx))
             elif pat == '#':
-                if len(gen.split('#')[-1]) + 1 == num_broken[br_idx]:
+                if br_idx < len(
+                        num_broken) and (gen.split('.')[-1]).count('#') + 1 == num_broken[br_idx]:
                     new.append((gen + '#', br_idx + 1))
-                elif len(gen.split('#')[-1]) + 1 < num_broken[br_idx]:
+                elif br_idx < len(
+                        num_broken) and (gen.split('.')[-1]).count('#') + 1 < num_broken[br_idx]:
                     new.append((gen + '#', br_idx))
 
         generated = new
