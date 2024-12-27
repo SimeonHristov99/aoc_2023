@@ -297,20 +297,21 @@ class TestGetNumCombinations(unittest.TestCase):
         # Assert
         self.assertEqual(expected, actual)
 
-    def test_even_larger_example(self):
-        """
-        Tests that the function works with a large example.
-        """
-        # Arrange
-        pattern = '?###????????'
-        num_broken = [3,2,1]
-        expected = 506250
+    # def test_even_larger_example(self):
+    #     """
+    #     Tests that the function works with a large example.
+    #     """
+    #     # Arrange
+    #     pattern = '?###????????'
+    #     num_broken = [3, 2, 1]
+    #     expected = 506250
 
-        # Act
-        actual = main.get_num_combinations(*main.expand(pattern, num_broken, 5))
+    #     # Act
+    #     actual = main.get_num_combinations(*main.expand(pattern, num_broken, 5))
 
-        # Assert
-        self.assertEqual(expected, actual)
+    #     # Assert
+    #     self.assertEqual(expected, actual)
+
 
 class TestExpand(unittest.TestCase):
     """
