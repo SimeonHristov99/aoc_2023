@@ -2,6 +2,8 @@
 
 ## What has to be done
 
+### Ideas for part 1
+
 In Part 1, the main goal is to create a function that can do the logic for a single line. Then, that function will be applied to every line. We know the length of the target string, so we have an upper limit. We could use that length and the numbers to form all possibilities and then we'll filter using what we already have. My idea is to use a recursive depth-first search with caching.
 
 1. The recursive function can have the following parameters:
@@ -28,7 +30,20 @@ The above was my initial idea, but it was really hard to implement it. Instead, 
 1. If we're output of bounds, exit with 1 if the generated string is a working combination, else 0.
 2. If the current character we're sitting on is a ?, then count the possibilities when adding . and add them to the possibilities of adding #.
 
-In part 2, we should optimize the process, so as to not generate sequences that are wrong. This should be doable if we manage to implement early stopping.
+### Ideas for part 2
+
+1. In part 2, we should optimize the process, so as to not generate sequences that are wrong. This should be doable if we manage to implement early stopping.
+   - Even with early stopping, this is still too slow. Will have to think about another solution.
+2. We should be able to use bits.
+   1. Use the length of the string with pipes to obtain the largest number in binary.
+   2. Do a `for` loop from it till `0`.
+   3. On each iteration you'll have a possibility. Run it through a filter.
+
+The plan of attack then can be as follows:
+
+1. First convert to bits and on each iteration convert to string.
+   - This still would not be most efficient (I think), but it serves as a check that the full solution space is covered.
+2. Apply bit manipulations instead of converting to string.
 
 ## Part 1
 
@@ -106,8 +121,21 @@ In part 2, we should optimize the process, so as to not generate sequences that 
 
 - [X] Add a function that checks whether we should continue to generate new sequences.
 - [X] Add the `expand` function.
-- [ ] Make sure processing is fast on the sample.
+- [X] Make sure processing is fast on the sample.
 
 ### Submit answers for part 2
+
+- [X] Run on input.
+  - It will do the job, but it's not as fast as it should.
+
+### Solve using bits and converting them to string
+
+- [ ] Make sure using bits still goes through the full space of possibilities.
+
+### Use bit manipulations to check the groups instead of converting to strings
+
+- [ ] All tests pass.
+
+### Submit answer for part 2
 
 - [ ] Run on input.
