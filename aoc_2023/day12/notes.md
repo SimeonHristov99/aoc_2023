@@ -44,6 +44,8 @@ The plan of attack then can be as follows:
 1. First convert to bits and on each iteration convert to string.
    - This still would not be most efficient (I think), but it serves as a check that the full solution space is covered.
 2. Apply bit manipulations instead of converting to string.
+   - This still produces a lot of possibilities.
+3. Let's try BFS with a list.
 
 ## Part 1
 
@@ -130,9 +132,13 @@ The plan of attack then can be as follows:
 
 ### Solve using bits and converting them to string
 
-- [ ] Make sure using bits still goes through the full space of possibilities.
+- [X] Make sure using bits still goes through the full space of possibilities.
 
 ### Use bit manipulations to check the groups instead of converting to strings
+
+- [X] All tests pass.
+
+### Try BFS with a list
 
 - [ ] All tests pass.
 

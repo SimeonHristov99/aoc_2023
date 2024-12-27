@@ -1,3 +1,6 @@
+import queue
+
+
 def parse(filename: str) -> list[tuple[str, list[int]]]:
     with open(filename, 'r') as fp:
         lines = fp.read().splitlines()
@@ -18,19 +21,32 @@ def is_valid(result: str, num_broken: list[int]) -> bool:
 
 
 def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
+    generated = []
+    generated.append(('', 0))
 
-    def helper(idx, result):
-        if idx >= len(pattern):
-            return is_working_combination(result, num_broken)
+    for pat in pattern:
+        new = []
+        for (gen, br_idx) in generated:
+            if len(gen.split('#')[-1]) > num_broken[br_idx]:
+                continue
 
-        if not is_valid(result, num_broken):
-            return 0
+            if pat == '?':
+                if br_idx + 1 != len(num_broken):
+                    new.append((gen + '.', br_idx))
 
-        if pattern[idx] == '?':
-            return helper(idx + 1, result + '.') + helper(idx + 1, result + '#')
-        return helper(idx + 1, result + pattern[idx])
+                if len(gen.split('#')[-1]) + 1 == num_broken[br_idx]:
+                    new.append((gen + '#', br_idx + 1))
+                elif len(gen.split('#')[-1]) + 1 < num_broken[br_idx]:
+                    new.append((gen + '#', br_idx))
+            elif pat == '#':
+                if len(gen.split('#')[-1]) + 1 == num_broken[br_idx]:
+                    new.append((gen + '#', br_idx + 1))
+                elif len(gen.split('#')[-1]) + 1 < num_broken[br_idx]:
+                    new.append((gen + '#', br_idx))
 
-    return helper(0, '')
+        generated = new
+
+    return len(generated)
 
 
 def expand(pattern: str, num_broken: list[int], factor: int) -> tuple[str, list[int]]:
