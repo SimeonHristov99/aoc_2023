@@ -46,6 +46,17 @@ The plan of attack then can be as follows:
 2. Apply bit manipulations instead of converting to string.
    - This still produces a lot of possibilities.
 3. Let's try BFS with a list.
+   - This yet again seems to be a brute force approach.
+4. Maybe we can count the numbers between the largest and the smallest one using again the bit logic.
+   - For example, if pattern='?###????????' and num_broken=[3,2,1], then:
+   1. Take the length of the patter. => 12
+   2. Take the length of the broken groups. => 11101101 => 8
+   3. Left-pad pattern to obtain smallest possible number. => 011100001101
+   4. Right-pad pattern to obtain highest possible number. => 011101101000
+   5. Linearly go through interval and count.
+   - Steps 3 and 4 would be tricky. I think the following can work:
+     1. Have a function `infer`. It'll take the pattern and `num_broken` and will try to fill in as much as possible groups that may exist.
+     2. Apply a minimization and maximization algorithm that will return the smallest and largest possible numbers.
 
 ## Part 1
 

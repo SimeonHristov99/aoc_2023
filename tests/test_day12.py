@@ -162,20 +162,20 @@ class TestGetNumCombinations(unittest.TestCase):
         # Assert
         self.assertEqual(actuals, expecteds)
 
-    # def test_only_pattern_more_than_one_character_and_group_returns_one(self):
-    #     """
-    #     Tests that when the pattern can be entirely filled in with the current group, the output is 1.
-    #     """
-    #     # Arrange
-    #     pattern = '???'
-    #     num_broken = [3]
-    #     expected = 1
+    def test_only_pattern_more_than_one_character_and_group_returns_one(self):
+        """
+        Tests that when the pattern can be entirely filled in with the current group, the output is 1.
+        """
+        # Arrange
+        pattern = '???'
+        num_broken = [3]
+        expected = 1
 
-    #     # Act
-    #     actual = main.get_num_combinations(pattern, num_broken)
+        # Act
+        actual = main.get_num_combinations(pattern, num_broken)
 
-    #     # Assert
-    #     self.assertEqual(actual, expected)
+        # Assert
+        self.assertEqual(actual, expected)
 
     # def test_one_possibility_with_question_marks_works(self):
     #     """
