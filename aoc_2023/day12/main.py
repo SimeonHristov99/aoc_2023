@@ -36,6 +36,35 @@ def get_num_combinations(pattern: str, num_broken: list[int]) -> int:
 def part1(filename: str) -> int:
     lines = parse(filename)
     result = 0
+    full_output_str = ''
     for pattern, num_broken in lines:
-        result += get_num_combinations(pattern, num_broken)
+        res_current = get_num_combinations(pattern, num_broken)
+        result += res_current
+
+        num_broken_as_pattern = '.'.join(['#'*num for num in num_broken])
+        bin_pattern = ''.join(['1' if pat == '#' else ('0' if pat == '.' else pat) for pat in pattern])
+        bin_minimum = ''.join(['1' if pat == '1' else '0' for pat in bin_pattern])
+        decimal_minimum = str(int(bin_minimum, 2))
+        bin_maximum = ''.join(['0' if pat == '0' else '1' for pat in bin_pattern])
+        decimal_maximum = str(int(bin_maximum, 2))
+        decimal_diff = str(int(decimal_maximum) - int(decimal_minimum))
+
+        full_output_str += '\n' + '=> '.join([
+            pattern.ljust(25),
+            num_broken_as_pattern.ljust(20),
+            bin_pattern.ljust(25),
+            bin_minimum.ljust(25),
+            decimal_minimum.ljust(10),
+            bin_maximum.ljust(25),
+            decimal_maximum.ljust(10),
+            decimal_diff.ljust(10),
+            str(res_current),
+        ])
+    
+    print()
+    print(full_output_str)
+
+    with open('input_visualized.txt', 'w') as filep:
+        filep.write(full_output_str)
+
     return result
