@@ -233,3 +233,37 @@ class Part1(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+
+class Part2(unittest.TestCase):
+    """
+    Class for testing the function that completes part 2.
+    """
+
+    def test_works_for_sample(self):
+        """
+        Tests that the function produces the correct output for the sample.
+        """
+        # Arrange
+        filename = 'aoc_2023/day12/sample.txt'
+        expected = 525152
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    # def test_works_for_input(self):
+    #     """
+    #     Tests that the function produces the correct output for the input.
+    #     """
+    #     # Arrange
+    #     filename = 'aoc_2023/day12/input.txt'
+    #     expected = 7110
+
+    #     # Act
+    #     actual = main.part2(filename)
+
+    #     # Assert
+    #     self.assertEqual(actual, expected)
