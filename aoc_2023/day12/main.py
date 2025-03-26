@@ -1,3 +1,5 @@
+import tqdm
+
 def parse(filename: str) -> list[tuple[str, list[int]]]:
     with open(filename, 'r') as fp:
         lines = fp.read().splitlines()
@@ -15,7 +17,7 @@ def get_num_combinations(pattern: str, num_broken: list[int], cache: dict | None
     if num_broken == []:
         return 0 if '#' in pattern else 1
 
-    key = (pattern, num_broken)
+    key = (pattern, tuple(num_broken))
     if cache and key in cache:
         return cache[key]
 
@@ -32,6 +34,7 @@ def get_num_combinations(pattern: str, num_broken: list[int], cache: dict | None
         count += get_num_combinations(pattern[num_broken[0] + 1:], num_broken[1:])
 
     if cache:
+        print('Found in cache!')
         cache[key] = count
     return count
 
@@ -47,9 +50,9 @@ def part1(filename: str) -> int:
 def part2(filename: str) -> int:
     lines = parse(filename)
     result = 0
-    for pattern, num_broken in lines:
+    for pattern, num_broken in tqdm.tqdm(lines):
         pattern = '?'.join([pattern for _ in range(5)])
         num_broken *= 5
-        cache = {}
+        cache = {('test', ()): -1}
         result += get_num_combinations(pattern, num_broken, cache)
     return result
