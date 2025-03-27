@@ -260,7 +260,7 @@ class Part2(unittest.TestCase):
         """
         # Arrange
         filename = 'aoc_2023/day12/input.txt'
-        expected = 7110
+        expected = 1566786613613
 
         # Act
         actual = main.part2(filename)
