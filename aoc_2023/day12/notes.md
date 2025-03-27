@@ -30,6 +30,30 @@ The above was my initial idea, but it was really hard to implement it. Instead, 
 
 In part 2, we should optimize the process, so as to not generate sequences that are wrong. This should be doable if we manage to implement early stopping.
 
+- I couldn't manage to solve this and had to look up the solution. It turned out to be *really* straightforward:
+
+Both Part 1 and Part 2 share the same logic - recursion:
+
+1. Base cases:
+   1. If there are no springs left:
+      1. And there are no pipes left, we return `1`. The reason is that we know that there is always going to be at least one consecutive group of broken pipes, i.e. in the list will never be empty. If we have an empty list, that means that we've found at least one such group, so we return `1`.
+      2. And there are broken pipes left, we return `0` as that means that we have not fulfilled the pattern.
+   2. If there are no pipes left (but the list of springs is not empty):
+      1. And there are no broken pipes in the remaining springs, we return `1` since that means that again, at some previous point we have seen at least one consecutive group of broken pipes.
+      2. And there are still some pipes in the remaining springs, we return `0` as we cannot account for them.
+2. General cases: We now know that there is at one group of broken pipes and at least one pipe. Using recursion we only handle the first group and first pipe. We treat the question mark both as a working and as a broken pipe by including it in both cases:
+   1. Treating the first pipe as a working one. If the first pipe is a dot (`.`) (working by definition) or `?` (working by assumption), we just skip over that pipe and continue, i.e. we repeat the recursion starting from the next pipe and do not change the list with broken pipes.
+   2. Treating the first pipe as a broken one. If the first pipe is a `#` (broken by definition) or `?` (broken by assumption) that this can be the first group if broken pipes, so we check for that. The conditions for recursing are:
+      1. The first pipe is a `#` or `?`.
+      2. And there are at least `num_broken[0]` pipes in `pattern`.
+      3. And none of the the first `num_broken[0]` pipes are working.
+      4. And:
+         1. `pattern[num_broken[0]]` is the end of `pattern` (there are no pipes after that).
+         2. Or `pattern[num_broken[0]]` is a working pipe (`.`).
+    If those conditions are met, then we have the first consecutive group of broken pipes, so we skip over `num_broken[0] + 1` characters in `pattern` and go over to the next group of broken pipes.
+
+Part 2 includes the addition of memoization (i.e. caching). The cache-key is the `pattern` and the `num_broken` lists. If this is present in the cache, we return it, otherwise, we add the resulting value before returning it.
+
 ## Part 1
 
 ### Create a plan of attack for part 1
@@ -105,9 +129,15 @@ In part 2, we should optimize the process, so as to not generate sequences that 
 ### Alter the process so that processing is faster
 
 - [X] Add a function that checks whether we should continue to generate new sequences.
-- [ ] Add the `expand` function.
-- [ ] Make sure processing is fast on the sample.
+- [X] Add the `expand` function.
+- [X] Make sure processing is fast on the sample.
+
+### Look up solution and add explanation
+
+- [X] Look up and understand.
+- [X] Write down an explanation.
+- [X] Confirm that it runs on the sample and input.
 
 ### Submit answers for part 2
 
-- [ ] Run on input.
+- [X] Submit, commit and push.
