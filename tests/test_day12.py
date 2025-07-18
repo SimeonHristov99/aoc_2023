@@ -30,103 +30,6 @@ class TestParse(unittest.TestCase):
         self.assertListEqual(actual, expected)
 
 
-class TestIsWorkingCombination(unittest.TestCase):
-    """
-    Class for testing the function that outputs whether a spring arrangement is compatible with a list of given groups.
-    """
-
-    def test_returns_false_if_not_compatible(self):
-        """
-        Tests that the function returns False when the substring is not compatible.
-        """
-        # Arrange
-        substring = '##'
-        groups = [3]
-
-        # Act
-        actual = main.is_working_combination(substring, groups)
-
-        # Assert
-        self.assertFalse(actual)
-
-    def test_returns_true_if_a_group(self):
-        """
-        Tests that the function returns "True" when the substring is compatible.
-        """
-        # Arrange
-        substring = '###'
-        groups = [3]
-
-        # Act
-        actual = main.is_working_combination(substring, groups)
-
-        # Assert
-        self.assertTrue(actual)
-
-    def test_returns_true_on_multiple_versions(self):
-        """
-        Tests that the function returns "True" when the substring is compatible - multiple versions with the same group.
-        """
-        # Arrange
-        substrings = [
-            '.###.##.#...',
-            '.###.##..#..',
-            '.###.##...#.',
-            '.###.##....#',
-            '.###..##.#..',
-            '.###..##..#.',
-            '.###..##...#',
-            '.###...##.#.',
-            '.###...##..#',
-            '.###....##.#',
-        ]
-        groups = [3, 2, 1]
-        expecteds = [True] * len(substrings)
-
-        # Act
-        actuals = [main.is_working_combination(substring, groups) for substring in substrings]
-
-        # Assert
-        self.assertListEqual(actuals, expecteds)
-
-
-class TestIsValid(unittest.TestCase):
-    """
-    Class for testing the function that can detect whether it is worth extending the possibilities.
-    """
-
-    def test_returns_false_when_beginning_does_not_match(self):
-        """
-        Tests that when the beginning does not match, the function returns False.
-        """
-        # Arrange
-        inputs = [
-            ('###.', [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3]),
-            ('#.#...#...###.####..', [5, 2, 2, 6]),
-        ]
-        expecteds = [False] * len(inputs)
-
-        # Act
-        actuals = [main.is_valid(result, num_broken) for result, num_broken in inputs]
-
-        # Assert
-        self.assertListEqual(actuals, expecteds)
-
-    def test_returns_true_when_beginning_matches(self):
-        """
-        Tests that when the beginning matches, the function returns True.
-        """
-        # Arrange
-        num_broken = [1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3]
-        result = '.#.#.'
-
-        # Act
-        actual = main.is_valid(result, num_broken)
-
-        # Assert
-        self.assertTrue(actual)
-
-
 class TestGetNumCombinations(unittest.TestCase):
     """
     Class for testing the function that produces the number possibilities for broken and working springs.
@@ -327,6 +230,40 @@ class Part1(unittest.TestCase):
 
         # Act
         actual = main.part1(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
+class Part2(unittest.TestCase):
+    """
+    Class for testing the function that completes part 2.
+    """
+
+    def test_works_for_sample(self):
+        """
+        Tests that the function produces the correct output for the sample.
+        """
+        # Arrange
+        filename = 'aoc_2023/day12/sample.txt'
+        expected = 525152
+
+        # Act
+        actual = main.part2(filename)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_works_for_input(self):
+        """
+        Tests that the function produces the correct output for the input.
+        """
+        # Arrange
+        filename = 'aoc_2023/day12/input.txt'
+        expected = 1566786613613
+
+        # Act
+        actual = main.part2(filename)
 
         # Assert
         self.assertEqual(actual, expected)
