@@ -42,18 +42,18 @@ class Summarizer:
         lines_horizontal = {}
         lines_vertical = {}
 
-        for i in range(num_cols):
+        for i in range(num_rows + 1):
             ii = i
             jj = i + 1
             possibilities = []
-            while ii >= 0 and jj < num_cols:
+            while ii >= 0 and jj < num_rows:
                 possibilities.append((ii, jj))
                 ii -= 1
                 jj += 1
             if len(possibilities) > 0:
                 lines_horizontal[i] = possibilities
 
-        for i in range(num_rows + 1):
+        for i in range(num_cols):
             ii = i
             jj = i + 1
             possibilities = []
