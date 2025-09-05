@@ -92,8 +92,8 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
         actual = summarizer.create_reflection_maps()
 
         # Assert
-        self.assertDictEqual(actual[0], expected[0], f'\n{actual[0]=}\n{expected[0]=}\n')
-        self.assertDictEqual(actual[1], expected[1], f'\n{actual[1]=}\n{expected[1]=}\n')
+        self.assertDictEqual(actual[0], expected[0])
+        self.assertDictEqual(actual[1], expected[1])
 
     def test_when_nonequal_rows_and_columns_then_returns_nonequal_rows_and_cols_indices(self):
         # Arrange
@@ -123,8 +123,8 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
         actual = summarizer.create_reflection_maps()
 
         # Assert
-        self.assertDictEqual(actual[0], expected[0], f'\n{actual[0]=}\n{expected[0]=}\n')
-        self.assertDictEqual(actual[1], expected[1], f'\n{actual[1]=}\n{expected[1]=}\n')
+        self.assertDictEqual(actual[0], expected[0])
+        self.assertDictEqual(actual[1], expected[1])
 
 
 class TestSummarizerSummarizeDirection(unittest.TestCase):
