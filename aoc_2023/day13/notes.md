@@ -19,6 +19,13 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Define the method of initializing the class `Summarizer`
 
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] Ensure that all newly added functions have docstrings.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Push.
+
 ### Define a proxy method `summarize` and use it in the function `part1`
 
 ### Define proxy methods `create_reflection_maps` and `summarize_direction` and use them in `summarize`
