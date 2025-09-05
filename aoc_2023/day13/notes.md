@@ -4,6 +4,9 @@
 
 Find the line of reflection in each of the patterns and summarize the pattern notes.
 
+- In part 1, a reflection is defined as perfectly equal lines.
+- In part 2, a reflection is defined as lines that can have at most one different element.
+
 ## Part 1
 
 ### Define the function for parsing the input
@@ -82,3 +85,22 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 - [X] Push.
 
 ## Part 2
+
+### Refactor out the logic for checking reflecting lines in `summarize_column` in a new method: `forms_reflection_column(self, with_smudge: bool=False)`
+
+- [ ] Add failing tests.
+- [ ] Make the failing tests pass.
+- [ ] If the part with `Arrange` logic becomes too big, consider breaking down into functions.
+- [ ] Identify edge cases in the written code and write tests for them.
+- [ ] If the new code creates a function that is bigger than a single screen height, break it down into smaller functions.
+- [ ] Ensure that all newly added functions have docstrings.
+- [ ] Ensure `git-hook` passes.
+- [ ] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [ ] Push.
+- [ ] Run on input.
+
+### Refactor out the logic for checking reflecting lines in `summarize_row` in a new method: `forms_reflection_row(self, with_smudge: bool=False)`
+
+### Modify `forms_reflection_column` to work with smudges
+
+### Modify `forms_reflection_row` to work with smudges
