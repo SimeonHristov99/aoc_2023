@@ -20,6 +20,12 @@ class Summarizer:
         """
         self.pattern = pattern
 
+    def summarize(self) -> int:
+        """
+        Create a summary of the saved pattern.
+        :returns int: The number of columns to the left of each vertical line of reflection + 100 multiplied by the number of rows above each horizontal line of reflection
+        """
+        return 0
 
 def part1(filename: str) -> int:
     """
