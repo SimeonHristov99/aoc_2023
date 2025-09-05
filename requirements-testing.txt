@@ -4,3 +4,4 @@ isort
 yapf
 coverage
 pytest
+joblib-stubs

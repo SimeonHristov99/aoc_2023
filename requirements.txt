@@ -19,3 +19,4 @@ zipp
 coverage
 isort
 attrs
+joblib

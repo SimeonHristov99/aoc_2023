@@ -1,3 +1,6 @@
+from joblib import Parallel, delayed
+
+
 def parse_input(filename: str) -> list[list[str]]:
     """
     Parse the puzzle input file into a list of patterns.
@@ -27,13 +30,18 @@ class Summarizer:
         """
         return 0
 
+
 def part1(filename: str) -> int:
     """
     Compute the summary of the notes.
     :param filename str: Path to the input file.
     :returns int: The summary of the notes.
     """
-    return 42
+    patterns = parse_input(filename)
+    summarizers = [Summarizer(pattern) for pattern in patterns]
+    summary = sum(
+        Parallel(n_jobs=-1, verbose=15)(delayed(summarizer.summarize)() for summarizer in summarizers))
+    return summary
 
 
 def main() -> None:
