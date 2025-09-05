@@ -57,7 +57,8 @@ class Summarizer:
 
         return (lines_horizontal, lines_vertical)
 
-    def forms_reflection_column(self, columns_to_check: list[tuple[int, int]], with_smudge: bool) -> bool:
+    def forms_reflection_column(self, columns_to_check: list[tuple[int, int]],
+                                with_smudge: bool) -> bool:
         """
         Returns whether a collection of columns form a reflection (with or without a smudge).
         :param list[tuple[int, int]] columns_to_check: The indices of the columns to check for reflection.
