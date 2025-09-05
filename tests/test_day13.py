@@ -127,6 +127,26 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
         self.assertDictEqual(actual[1], expected[1])
 
 
+class TestSummarizerSummarizeColumn(unittest.TestCase):
+
+    def test_when_called_then_return_zero(self):
+        # Arrange
+        expected = 0
+        pattern = [
+            '#...##..#',
+            '#....#..#',
+            '..##..###',
+            '#....#..#',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.summarize_column(0)
+    
+        # Assert
+        self.assertEqual(actual, expected)
+
+
 class TestSummarizerSummarizeDirection(unittest.TestCase):
 
     def test_when_called_on_rows_then_returns_zero(self):
