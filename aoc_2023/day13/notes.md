@@ -41,10 +41,17 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 - [X] Ensure that all newly added functions have docstrings.
 - [X] Ensure `git-hook` passes.
 - [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
-- [X] Run on input.
 - [X] Push.
 
 ### Define the method `create_reflection_maps`
+
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] Identify edge cases in the written code and write tests for them.
+- [X] Ensure that all newly added functions have docstrings.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Push.
 
 ### Define proxy methods `summarize_column` and `summarize_row` and use them in `summarize_direction`
 
