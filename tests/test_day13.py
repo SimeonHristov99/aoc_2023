@@ -173,6 +173,24 @@ class TestSummarizerFormsReflectionColumn(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_when_not_reflecting_with_smudge_then_returns_false(self):
+        # Arrange
+        expected = False
+        with_smudge = True
+        columns_to_check = [(1, 2), (0, 3)]
+        pattern = [
+            '#...#',
+            '....#',
+            '#..#.',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.forms_reflection_column(columns_to_check, with_smudge=with_smudge)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
 
 class TestSummarizerFormsReflectionRow(unittest.TestCase):
 
