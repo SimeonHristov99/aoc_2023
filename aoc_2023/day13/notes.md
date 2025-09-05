@@ -28,6 +28,12 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Define a proxy method `summarize` and use it in the function `part1`
 
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Push.
+
 ### Define proxy methods `create_reflection_maps` and `summarize_direction` and use them in `summarize`
 
 ### Define the method `create_reflection_maps`
@@ -63,8 +69,8 @@ class Summarizer:
         return sum(Parallel(n_jobs=-1, prefer="threads")(summarize_column[line] for line in range(len(pattern[0]))))
 
     def summarize(self) -> int:
-        # create all possible col and row reflections as maps/dicts: store them in self
-        lines_horizontal, lines_vertical = create_reflection_maps()
+        # create all possible col and row reflections as maps/dicts
+        self.lines_horizontal, self.lines_vertical = create_reflection_maps()
 
         # run parallel processes that will try out every horizontal and vertical line and return the summary
         return sum(Parallel(n_jobs=2)([summarize_direction(direction) for direction in ['rows', 'cols']]))
