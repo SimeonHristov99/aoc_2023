@@ -64,11 +64,9 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
             0: [(0, 1)],
             1: [(1, 2), (0, 3)],
             2: [(2, 3), (1, 4), (0, 5)],
-            3: [(3, 4), (2, 5), (1, 6), (0, 7)],
-            4: [(4, 5), (3, 6), (2, 7), (1, 8)],
-            5: [(5, 6), (4, 7), (3, 8)],
-            6: [(6, 7), (5, 8)],
-            7: [(7, 8)]
+            3: [(3, 4), (2, 5), (1, 6)],
+            4: [(4, 5), (3, 6)],
+            5: [(5, 6)]
         }, {
             0: [(0, 1)],
             1: [(1, 2), (0, 3)],
@@ -94,7 +92,39 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
         actual = summarizer.create_reflection_maps()
 
         # Assert
-        self.assertTupleEqual(actual, expected, f'\n{actual=}\n{expected=}\n')
+        self.assertDictEqual(actual[0], expected[0], f'\n{actual[0]=}\n{expected[0]=}\n')
+        self.assertDictEqual(actual[1], expected[1], f'\n{actual[1]=}\n{expected[1]=}\n')
+
+    def test_when_nonequal_rows_and_columns_then_returns_nonequal_rows_and_cols_indices(self):
+        # Arrange
+        expected = ({
+            0: [(0, 1)],
+            1: [(1, 2), (0, 3)],
+            2: [(2, 3)],
+        }, {
+            0: [(0, 1)],
+            1: [(1, 2), (0, 3)],
+            2: [(2, 3), (1, 4), (0, 5)],
+            3: [(3, 4), (2, 5), (1, 6), (0, 7)],
+            4: [(4, 5), (3, 6), (2, 7), (1, 8)],
+            5: [(5, 6), (4, 7), (3, 8)],
+            6: [(6, 7), (5, 8)],
+            7: [(7, 8)]
+        })
+        pattern = [
+            '#...##..#',
+            '#....#..#',
+            '..##..###',
+            '#....#..#',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.create_reflection_maps()
+
+        # Assert
+        self.assertDictEqual(actual[0], expected[0], f'\n{actual[0]=}\n{expected[0]=}\n')
+        self.assertDictEqual(actual[1], expected[1], f'\n{actual[1]=}\n{expected[1]=}\n')
 
 
 class TestSummarizerSummarizeDirection(unittest.TestCase):
