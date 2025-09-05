@@ -133,15 +133,11 @@ class TestSummarizerFormsReflectionColumn(unittest.TestCase):
         # Arrange
         expected = False
         with_smudge = False
-        columns_to_check = [(0, 1)]
+        columns_to_check = [(1, 2), (0, 3)]
         pattern = [
-            '#.##..##.',
-            '..#.##.#.',
-            '##......#',
-            '##......#',
-            '..#.##.#.',
-            '..##..##.',
-            '#.#.##.#.',
+            '#...#',
+            '....#',
+            '#..#.',
         ]
         summarizer = main.Summarizer(pattern)
 
@@ -216,7 +212,7 @@ class TestSummarizerFormsReflectionRow(unittest.TestCase):
         # Arrange
         expected = False
         with_smudge = False
-        rows_to_check = [(2, 3), (1, 4), (0, 5)]
+        rows_to_check = [(0, 1)]
         pattern = [
             '#...##..#',
             '#....#..#',
@@ -278,6 +274,27 @@ class TestSummarizerFormsReflectionRow(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_when_reflecting_with_smudge_then_returns_true(self):
+        # Arrange
+        expected = True
+        with_smudge = True
+        rows_to_check = [(0, 1)]
+        pattern = [
+            '#...##..#',
+            '#....#..#',
+            '..##..###',
+            '#####.##.',
+            '#####.##.',
+            '..##..###',
+            '#....#..#',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.forms_reflection_row(rows_to_check, with_smudge=with_smudge)
+
+        # Assert
+        self.assertEqual(actual, expected)
 
 
 class TestSummarizerSummarizeColumn(unittest.TestCase):
