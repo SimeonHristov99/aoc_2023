@@ -36,7 +36,8 @@ def part1(filename: str) -> int:
                 digit2 = character
                 break
 
-        numbers.append(int(digit1 + digit2))
+        if digit1 is not None and digit2 is not None:
+            numbers.append(int(digit1 + digit2))
 
     return sum(numbers)
 
@@ -50,8 +51,8 @@ def parse(line: str) -> int:
             digits.append(int(line[i]))
         else:
             for letter in DIGIT_LETTERS_MAP:
-                if line[i:].startswith(letter):
-                    digits.append(DIGIT_LETTERS_MAP.get(letter))
+                if line[i:].startswith(letter) and letter in DIGIT_LETTERS_MAP:
+                    digits.append(DIGIT_LETTERS_MAP[letter])
                     break
 
         i += 1
