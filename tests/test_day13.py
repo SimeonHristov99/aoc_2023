@@ -58,9 +58,27 @@ class TestSummarizerInit(unittest.TestCase):
 
 class TestSummarizerCreateReflectionMaps(unittest.TestCase):
 
-    def test_when_called_then_returns_tuple_with_empty_lists(self):
+    def test_when_equal_rows_and_columns_then_returns_equal_rows_and_cols_indices(self):
         # Arrange
-        expected = ([], [])
+        expected = ({
+            0: [(0, 1)],
+            1: [(1, 2), (0, 3)],
+            2: [(2, 3), (1, 4), (0, 5)],
+            3: [(3, 4), (2, 5), (1, 6), (0, 7)],
+            4: [(4, 5), (3, 6), (2, 7), (1, 8)],
+            5: [(5, 6), (4, 7), (3, 8)],
+            6: [(6, 7), (5, 8)],
+            7: [(7, 8)]
+        }, {
+            0: [(0, 1)],
+            1: [(1, 2), (0, 3)],
+            2: [(2, 3), (1, 4), (0, 5)],
+            3: [(3, 4), (2, 5), (1, 6), (0, 7)],
+            4: [(4, 5), (3, 6), (2, 7), (1, 8)],
+            5: [(5, 6), (4, 7), (3, 8)],
+            6: [(6, 7), (5, 8)],
+            7: [(7, 8)]
+        })
         pattern = [
             '#.##..##.',
             '..#.##.#.',
@@ -76,7 +94,7 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
         actual = summarizer.create_reflection_maps()
 
         # Assert
-        self.assertTupleEqual(actual, expected)
+        self.assertTupleEqual(actual, expected, f'\n{actual=}\n{expected=}\n')
 
 
 class TestSummarizerSummarizeDirection(unittest.TestCase):
