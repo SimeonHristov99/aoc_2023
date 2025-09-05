@@ -1,5 +1,5 @@
+import enum
 from joblib import Parallel, delayed
-from typing import Literal
 
 
 def parse_input(filename: str) -> list[list[str]]:
@@ -14,6 +14,11 @@ def parse_input(filename: str) -> list[list[str]]:
         patterns = fp.read()
     result = [pattern.split() for pattern in patterns.split('\n\n')]
     return result
+
+
+class Direction(enum.Enum):
+    ROWS = 1
+    COLS = 2
 
 
 class Summarizer:
@@ -31,10 +36,10 @@ class Summarizer:
         """
         return ([], [])
 
-    def summarize_direction(self, direction: Literal['rows', 'cols']) -> int:
+    def summarize_direction(self, direction: Direction) -> int:
         """
         Creates a summary either by columns or by rows.
-        :param direction Literal['rows', 'cols']: Dictates which axis is summarized.
+        :param direction Direction: Dictates which axis is summarized.
         :returns int: When direction='rows', then returns 100 multiplied by the number of rows above the horizontal line of reflection. Else, the number of columns to the left of the vertical line of reflection.
         """
         return 0
@@ -44,7 +49,10 @@ class Summarizer:
         Create a summary of the saved pattern.
         :returns int: The number of columns to the left of each vertical line of reflection + 100 multiplied by the number of rows above each horizontal line of reflection
         """
-        return 0
+        self.lines_horizontal, self.lines_vertical = self.create_reflection_maps()
+        return sum(
+            Parallel(n_jobs=2)(delayed(self.summarize_direction)(getattr(Direction, direction))
+                               for direction in ['ROWS', 'COLS']))
 
 
 def part1(filename: str) -> int:
