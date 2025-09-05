@@ -30,12 +30,41 @@ class Summarizer:
         """
         self.pattern = pattern
 
-    def create_reflection_maps(self) -> tuple[list[tuple[int, int]], list[tuple[int, int]]]:
+    def create_reflection_maps(
+            self) -> tuple[dict[int, list[tuple[int, int]]], dict[int, list[tuple[int, int]]]]:
         """
         Creates all the possible rows and columns to check for each possible line.
-        :returns tuple[list[tuple[int, int]], list[tuple[int, int]]]: A tuple with the horizontal and vertical indices to check.
+        :returns tuple[dict[int, list[tuple[int, int]]], dict[int, list[tuple[int, int]]]]: A tuple with the horizontal and vertical indices to check.
         """
-        return ([], [])
+        num_rows = len(self.pattern)
+        num_cols = len(self.pattern[0])
+
+        lines_horizontal = {}
+        lines_vertical = {}
+
+        for i in range(num_cols):
+            ii = i
+            jj = i + 1
+            possibilities = []
+            while ii >= 0 and jj < num_cols:
+                possibilities.append((ii, jj))
+                ii -= 1
+                jj += 1
+            if len(possibilities) > 0:
+                lines_horizontal[i] = possibilities
+
+        for i in range(num_rows + 1):
+            ii = i
+            jj = i + 1
+            possibilities = []
+            while ii >= 0 and jj < num_cols:
+                possibilities.append((ii, jj))
+                ii -= 1
+                jj += 1
+            if len(possibilities) > 0:
+                lines_vertical[i] = possibilities
+
+        return (lines_horizontal, lines_vertical)
 
     def summarize_direction(self, direction: Direction) -> int:
         """
