@@ -65,9 +65,13 @@ class Summarizer:
         :param bool with_smudge: Whether to compare the columns allowing for one smudge.
         :returns bool: Whether the columns form a reflection.
         """
+        one_mismatch = False
         for left, right in columns_to_check:
             for i in range(len(self.pattern)):
                 if self.pattern[i][left] != self.pattern[i][right]:
+                    if with_smudge and not one_mismatch:
+                        one_mismatch = True
+                        continue
                     return False
         return True
 
