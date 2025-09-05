@@ -39,30 +39,21 @@ class Summarizer:
         num_rows = len(self.pattern)
         num_cols = len(self.pattern[0])
 
-        lines_horizontal = {}
-        lines_vertical = {}
+        lines_horizontal: dict[int, list[tuple[int, int]]] = {}
+        lines_vertical: dict[int, list[tuple[int, int]]] = {}
 
-        for i in range(num_rows + 1):
-            ii = i
-            jj = i + 1
-            possibilities = []
-            while ii >= 0 and jj < num_rows:
-                possibilities.append((ii, jj))
-                ii -= 1
-                jj += 1
-            if len(possibilities) > 0:
-                lines_horizontal[i] = possibilities
-
-        for i in range(num_cols):
-            ii = i
-            jj = i + 1
-            possibilities = []
-            while ii >= 0 and jj < num_cols:
-                possibilities.append((ii, jj))
-                ii -= 1
-                jj += 1
-            if len(possibilities) > 0:
-                lines_vertical[i] = possibilities
+        for line_container, num_lines in [(lines_horizontal, num_rows),
+                                          (lines_vertical, num_cols)]:
+            for i in range(num_lines):
+                ii = i
+                jj = i + 1
+                possibilities = []
+                while ii >= 0 and jj < num_lines:
+                    possibilities.append((ii, jj))
+                    ii -= 1
+                    jj += 1
+                if len(possibilities) > 0:
+                    line_container[i] = possibilities
 
         return (lines_horizontal, lines_vertical)
 
