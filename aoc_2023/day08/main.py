@@ -1,7 +1,7 @@
 import math
 
 
-def parse_input(filename: str) -> tuple[str, dict[str, tuple[str, str]]]:
+def parse_input(filename: str) -> tuple[str, dict[str, tuple[str, ...]]]:
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
     directions = lines[0]
@@ -13,7 +13,7 @@ def parse_input(filename: str) -> tuple[str, dict[str, tuple[str, str]]]:
     return directions, map_
 
 
-def num_steps(directions: str, map_: dict[str, tuple[str, str]]) -> int:
+def num_steps(directions: str, map_: dict[str, tuple[str, ...]]) -> int:
     pos = 'AAA'
     directions_idxs = [0 if direction == 'L' else 1 for direction in directions]
     len_directions_idxs = len(directions_idxs)
@@ -31,7 +31,7 @@ def part1(filename: str) -> int:
     return num_steps(directions, map_)
 
 
-def num_repetitions(directions: str, map_: dict[str, tuple[str, str]], start_node: str) -> int:
+def num_repetitions(directions: str, map_: dict[str, tuple[str, ...]], start_node: str) -> int:
     num_repetitions = 0
     directions_idxs = [0 if direction == 'L' else 1 for direction in directions]
     len_directions_idxs = len(directions_idxs)

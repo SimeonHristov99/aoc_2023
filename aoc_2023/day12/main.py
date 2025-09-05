@@ -47,7 +47,7 @@ def part1(filename: str) -> int:
 def part2(filename: str) -> int:
     lines = parse(filename)
     result = 0
-    cache = {}
+    cache: dict[tuple[str, tuple[int]], int] = {}
     for pattern, num_broken in lines:
         pattern = '?'.join([pattern for _ in range(5)])
         num_broken *= 5

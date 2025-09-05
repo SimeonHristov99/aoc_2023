@@ -9,7 +9,7 @@ def parse_input(filename: str) -> list[tuple[int, int]]:
     return list(zip(times, distances))
 
 
-def parse_input_part2(filename: str) -> list[tuple[int, int]]:
+def parse_input_part2(filename: str) -> tuple[int, int]:
     with open(filename, 'r') as f:
         lines = f.readlines()
     time = int(''.join(lines[0].split(': ')[1].split()))
