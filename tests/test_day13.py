@@ -90,3 +90,13 @@ class TestPart1(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual, expected)
+
+    def test_when_called_on_input_then_returns_zero(self):
+        # Arrange
+        expected = 0
+
+        # Act
+        actual = main.part1('aoc_2023/day13/input.txt')
+
+        # Assert
+        self.assertEqual(actual, expected)
