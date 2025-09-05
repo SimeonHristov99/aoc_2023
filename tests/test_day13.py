@@ -314,7 +314,7 @@ class TestSummarizerSummarizeDirection(unittest.TestCase):
 
 class TestSummarizerSummarize(unittest.TestCase):
 
-    def test_when_called_then_returns_summary(self):
+    def test_when_called_then_returns_rows_summary(self):
         # Arrange
         expected = 5
         pattern = [
@@ -337,9 +337,9 @@ class TestSummarizerSummarize(unittest.TestCase):
 
 class TestPart1(unittest.TestCase):
 
-    def test_when_called_on_sample_then_returns_5(self):
+    def test_when_called_on_sample_then_returns_rows_and_columns_summary(self):
         # Arrange
-        expected = 5
+        expected = 405
 
         # Act
         actual = main.part1('aoc_2023/day13/sample.txt')
@@ -347,9 +347,9 @@ class TestPart1(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_when_called_on_input_then_returns_342(self):
+    def test_when_called_on_input_then_returns_rows_and_columns_summary(self):
         # Arrange
-        expected = 342
+        expected = 27742
 
         # Act
         actual = main.part1('aoc_2023/day13/input.txt')
