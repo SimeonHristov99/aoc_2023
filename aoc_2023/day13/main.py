@@ -57,6 +57,14 @@ class Summarizer:
 
         return (lines_horizontal, lines_vertical)
 
+    def summarize_column(self, line_number: int) -> int:
+        """
+        Checks whether the line forms a reflection and, if it does, returns a summary.
+        :param int line_number: The line that is to be checked.
+        :returns int: Zero if the line does not form a reflection, otherwise the number of columns to the left of the line.
+        """
+        return 0
+    
     def summarize_direction(self, direction: Direction) -> int:
         """
         Creates a summary either by columns or by rows.
@@ -92,8 +100,8 @@ def part1(filename: str) -> int:
 
 def main() -> None:
     """Executes part 1 on both the sample and actual input files, printing the results to standard output."""
-    print(f'Part 1, Sample: {part1("aoc_2023/day_template/sample.txt")}')
-    print(f'Part 1, Input: {part1("aoc_2023/day_template/input.txt")}')
+    print(f'Part 1, Sample: {part1("aoc_2023/day13/sample.txt")}')
+    print(f'Part 1, Input: {part1("aoc_2023/day13/input.txt")}')
 
 
 if __name__ == '__main__':
