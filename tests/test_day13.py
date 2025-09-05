@@ -142,7 +142,27 @@ class TestSummarizerSummarizeColumn(unittest.TestCase):
 
         # Act
         actual = summarizer.summarize_column(0)
-    
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
+class TestSummarizerSummarizeRow(unittest.TestCase):
+
+    def test_when_called_then_return_zero(self):
+        # Arrange
+        expected = 0
+        pattern = [
+            '#...##..#',
+            '#....#..#',
+            '..##..###',
+            '#....#..#',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.summarize_row(3)
+
         # Assert
         self.assertEqual(actual, expected)
 
