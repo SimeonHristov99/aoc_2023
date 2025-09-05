@@ -127,6 +127,30 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
         self.assertDictEqual(actual[1], expected[1])
 
 
+class TestSummarizerFormsReflectionColumn(unittest.TestCase):
+
+    def test_when_not_reflecting_without_smudge_then_returns_false(self):
+        # Arrange
+        expected = False
+        columns_to_check = [(0, 1)]
+        pattern = [
+            '#.##..##.',
+            '..#.##.#.',
+            '##......#',
+            '##......#',
+            '..#.##.#.',
+            '..##..##.',
+            '#.#.##.#.',
+        ]
+        summarizer = main.Summarizer(pattern)
+        
+        # Act
+        actual = summarizer.forms_reflection_column(columns_to_check, with_smudge=False)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
 class TestSummarizerSummarizeColumn(unittest.TestCase):
 
     def test_when_line_is_not_reflection_then_return_zero(self):
