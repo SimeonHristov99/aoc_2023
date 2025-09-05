@@ -71,6 +71,16 @@ class Summarizer:
                     return False
         return True
 
+    def forms_reflection_row(self, rows_to_check: list[tuple[int, int]],
+                             with_smudge: bool) -> bool:
+        """
+        Returns whether a collection of rows form a reflection (with or without a smudge).
+        :param list[tuple[int, int]] rows_to_check: The indices of the rows to check for reflection.
+        :param bool with_smudge: Whether to compare the rows allowing for one smudge.
+        :returns bool: Whether the rows form a reflection.
+        """
+        return all(self.pattern[left] == self.pattern[right] for left, right in rows_to_check)
+
     def summarize_column(self, line_number: int) -> int:
         """
         Checks whether the line forms a reflection and, if it does, returns a summary.
@@ -89,7 +99,7 @@ class Summarizer:
         :returns int: Zero if the line does not form a reflection, otherwise 100 multiplied by the number of rows above the reflection.
         """
         rows_to_check = self.lines_horizontal[line_number]
-        if any(self.pattern[left] != self.pattern[right] for left, right in rows_to_check):
+        if not self.forms_reflection_row(rows_to_check, with_smudge=False):
             return 0
         return (line_number + 1) * 100
 
