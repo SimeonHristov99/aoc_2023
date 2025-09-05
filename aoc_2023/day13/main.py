@@ -64,7 +64,11 @@ class Summarizer:
         :param bool with_smudge: Whether to compare the columns allowing for one smudge.
         :returns bool: Whether the columns form a reflection.
         """
-        return False
+        for left, right in columns_to_check:
+            for i in range(len(self.pattern)):
+                if self.pattern[i][left] != self.pattern[i][right]:
+                    return False
+        return True
 
     def summarize_column(self, line_number: int) -> int:
         """
@@ -73,12 +77,8 @@ class Summarizer:
         :returns int: Zero if the line does not form a reflection, otherwise the number of columns to the left of the line.
         """
         columns_to_check = self.lines_vertical[line_number]
-
-        for left, right in columns_to_check:
-            for i in range(len(self.pattern)):
-                if self.pattern[i][left] != self.pattern[i][right]:
-                    return 0
-
+        if not self.forms_reflection_column(columns_to_check, with_smudge=False):
+            return 0
         return line_number + 1
 
     def summarize_row(self, line_number: int) -> int:
