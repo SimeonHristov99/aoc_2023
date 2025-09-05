@@ -24,11 +24,14 @@ class Direction(enum.Enum):
 
 class Summarizer:
 
-    def __init__(self, pattern: list[str]) -> None:
+    def __init__(self, pattern: list[str], with_smudge: bool) -> None:
         """
         Instantiate an object and save a pattern in its state.
+        :param list[str] pattern: The pattern which is to be summarized.
+        :param bool with_smudge: Whether to compare the axis allowing for one smudge.
         """
         self.pattern = pattern
+        self.with_smudge = with_smudge
 
     def create_reflection_maps(
             self) -> tuple[dict[int, list[tuple[int, int]]], dict[int, list[tuple[int, int]]]]:
@@ -57,37 +60,24 @@ class Summarizer:
 
         return (lines_horizontal, lines_vertical)
 
-    def forms_reflection_column(self, columns_to_check: list[tuple[int, int]],
-                                with_smudge: bool) -> bool:
+    def forms_reflection(self, axis_to_check: list[tuple[int, int]], direction: Direction) -> bool:
         """
-        Returns whether a collection of columns form a reflection (with or without a smudge).
-        :param list[tuple[int, int]] columns_to_check: The indices of the columns to check for reflection.
-        :param bool with_smudge: Whether to compare the columns allowing for one smudge.
-        :returns bool: Whether the columns form a reflection.
-        """
-        one_mismatch = False
-        for left, right in columns_to_check:
-            for i in range(len(self.pattern)):
-                if self.pattern[i][left] != self.pattern[i][right]:
-                    if with_smudge and not one_mismatch:
-                        one_mismatch = True
-                        continue
-                    return False
-        return True
-
-    def forms_reflection_row(self, rows_to_check: list[tuple[int, int]],
-                             with_smudge: bool) -> bool:
-        """
-        Returns whether a collection of rows form a reflection (with or without a smudge).
-        :param list[tuple[int, int]] rows_to_check: The indices of the rows to check for reflection.
-        :param bool with_smudge: Whether to compare the rows allowing for one smudge.
-        :returns bool: Whether the rows form a reflection.
+        Returns whether an axis forms a reflection (with or without a smudge).
+        :param list[tuple[int, int]] axis_to_check: The indices of the axis to check for reflection.
+        :param direction Direction: Dictates which axis is checked for reflection.
+        :returns bool: Whether the axis forms a reflection.
         """
         one_mismatch = False
-        for left, right in rows_to_check:
-            for j in range(len(self.pattern[0])):
-                if self.pattern[left][j] != self.pattern[right][j]:
-                    if with_smudge and not one_mismatch:
+        limit = len(self.pattern) if direction == Direction.COLS else len(self.pattern[0])
+        for left, right in axis_to_check:
+            for i in range(limit):
+                i_left, j_left = left, i
+                i_right, j_right = right, i
+                if direction == Direction.COLS:
+                    i_left, j_left = i, left
+                    i_right, j_right = i, right
+                if self.pattern[i_left][j_left] != self.pattern[i_right][j_right]:
+                    if self.with_smudge and not one_mismatch:
                         one_mismatch = True
                         continue
                     return False
@@ -100,7 +90,7 @@ class Summarizer:
         :returns int: Zero if the line does not form a reflection, otherwise the number of columns to the left of the line.
         """
         columns_to_check = self.lines_vertical[line_number]
-        if not self.forms_reflection_column(columns_to_check, with_smudge=False):
+        if not self.forms_reflection(columns_to_check, Direction.COLS):
             return 0
         return line_number + 1
 
@@ -111,7 +101,7 @@ class Summarizer:
         :returns int: Zero if the line does not form a reflection, otherwise 100 multiplied by the number of rows above the reflection.
         """
         rows_to_check = self.lines_horizontal[line_number]
-        if not self.forms_reflection_row(rows_to_check, with_smudge=False):
+        if not self.forms_reflection(rows_to_check, Direction.ROWS):
             return 0
         return (line_number + 1) * 100
 
@@ -141,14 +131,15 @@ class Summarizer:
                                for direction in ['ROWS', 'COLS']))
 
 
-def part1(filename: str) -> int:
+def process(filename: str, with_smudge: bool) -> int:
     """
     Compute the summary of the notes.
     :param filename str: Path to the input file.
+    :param bool with_smudge: Whether to compare the axis allowing for one smudge.
     :returns int: The summary of the notes.
     """
     patterns = parse_input(filename)
-    summarizers = [Summarizer(pattern) for pattern in patterns]
+    summarizers = [Summarizer(pattern, with_smudge) for pattern in patterns]
     summary = sum(
         Parallel(n_jobs=-1)(delayed(summarizer.summarize)() for summarizer in summarizers))
     return summary
@@ -156,8 +147,8 @@ def part1(filename: str) -> int:
 
 def main() -> None:
     """Executes part 1 on both the sample and actual input files, printing the results to standard output."""
-    print(f'Part 1, Sample: {part1("aoc_2023/day13/sample.txt")}')
-    print(f'Part 1, Input: {part1("aoc_2023/day13/input.txt")}')
+    print(f'Part 1, Sample: {process("aoc_2023/day13/sample.txt", False)}')
+    print(f'Part 1, Input: {process("aoc_2023/day13/input.txt", False)}')
 
 
 if __name__ == '__main__':
