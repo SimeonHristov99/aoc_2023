@@ -78,7 +78,10 @@ class Summarizer:
         :param int line_number: The line that is to be checked.
         :returns int: Zero if the line does not form a reflection, otherwise 100 multiplied by the number of rows above the reflection.
         """
-        return 0
+        rows_to_check = self.lines_horizontal[line_number]
+        if any(self.pattern[left] != self.pattern[right] for left, right in rows_to_check):
+            return 0
+        return (line_number + 1) * 100
 
     def summarize_direction(self, direction: Direction) -> int:
         """
