@@ -64,7 +64,15 @@ class Summarizer:
         :returns int: Zero if the line does not form a reflection, otherwise the number of columns to the left of the line.
         """
         return 0
-    
+
+    def summarize_row(self, line_number: int) -> int:
+        """
+        Checks whether the line forms a reflection and, if it does, returns a summary.
+        :param int line_number: The line that is to be checked.
+        :returns int: Zero if the line does not form a reflection, otherwise 100 multiplied by the number of rows above the reflection.
+        """
+        return 0
+
     def summarize_direction(self, direction: Direction) -> int:
         """
         Creates a summary either by columns or by rows.
