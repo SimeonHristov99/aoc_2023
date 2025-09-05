@@ -84,7 +84,7 @@ class TestSummarizerSummarizeDirection(unittest.TestCase):
     def test_when_called_on_rows_then_returns_zero(self):
         # Arrange
         expected = 0
-        direction = 'rows'
+        direction = main.Direction.ROWS
         pattern = [
             '#.##..##.',
             '..#.##.#.',
