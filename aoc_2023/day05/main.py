@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+Range = tuple[int, int]
+
 
 def get_lines(filename: str) -> list[str]:
     """
@@ -21,11 +23,17 @@ def parse_numbers(inp: str) -> list[int]:
     return [int(n) for n in inp.split()]
 
 
-def get_seeds_and_maps(lines: list[str]):
+def get_seeds_and_maps(lines: list[str], ) -> tuple[list[int], list[dict[int, Range]]]:
+    """
+    Returns:
+        seeds: list of integers
+        maps: list of mapping dictionaries, where
+              each dict maps destination_start -> (source_start, length)
+    """
     seeds = parse_numbers(lines[0].split(': ')[-1])
 
-    maps = []
-    current_map = {}
+    maps: list[dict[int, Range]] = []
+    current_map: dict[int, Range] = {}
     for line in lines[2:]:
         if 'map' in line:
             continue
@@ -33,15 +41,16 @@ def get_seeds_and_maps(lines: list[str]):
             destination_start, source_start, length = parse_numbers(line)
             current_map[destination_start] = (source_start, length)
         elif len(line) == 0:
-            current_map = dict(current_map.items())
             maps.append(current_map)
             current_map = {}
+
+    if current_map:
+        maps.append(current_map)
 
     return seeds, maps
 
 
-def move(destination: tuple[int, int], mapping: tuple[int, int],
-         line: tuple[int, int]) -> tuple[tuple[int, int] | None, list[tuple[int, int]]]:
+def move(destination: Range, mapping: Range, line: Range) -> tuple[Range | None, list[Range]]:
     (map_start, map_end) = mapping
     (destination_start, destination_end) = destination
     (line_start, line_end) = line
@@ -75,29 +84,36 @@ def move(destination: tuple[int, int], mapping: tuple[int, int],
             return done, []
 
         if line_start == map_start:
-            return done, leftover[1]
-
+            return done, [leftover[1]]
         if map_end == line_end:
-            return done, leftover[0]
-
+            return done, [leftover[0]]
         return done, leftover
 
     if map_start <= line_start <= line_end <= map_end:
         # map contains line
-        done = (destination_start + line_start - map_start, destination_end - (map_end - line_end))
+        done = (
+            destination_start + line_start - map_start,
+            destination_end - (map_end - line_end),
+        )
         return done, []
 
     # no overlap
     return None, [(line_start, line_end)]
 
 
-def apply_map(map_: dict[int, tuple[int, int]], line: tuple[int, int]) -> set[tuple[int, int]]:
-    dones = set()
-    to_processs = [line]
-    seen = set()
+def apply_map(map_: dict[int, Range], line: Range) -> set[Range]:
+    """
+    Applies one map to a range.
+
+    map_: destination_start -> (source_start, length)
+    line: (line_start, line_end)
+    """
+    dones: set[Range] = set()
+    to_processs: list[Range] = [line]
+    seen: set[Range] = set()
 
     for destination_start, (map_start, map_length) in map_.items():
-        leftovers = []
+        leftovers: list[Range] = []
         for to_process in to_processs:
             destination = (destination_start, destination_start + map_length - 1)
             mapping = (map_start, map_start + map_length - 1)
@@ -116,12 +132,12 @@ def apply_map(map_: dict[int, tuple[int, int]], line: tuple[int, int]) -> set[tu
     return dones
 
 
-def almanac(maps: list[dict[int, tuple[int, int]]], line: tuple[int, int]) -> set[tuple[int, int]]:
-    done = set()
+def almanac(maps: list[dict[int, Range]], line: Range) -> set[Range]:
+    done: set[Range] = set()
     num_maps = len(maps)
-    lines = {line}
+    lines: set[Range] = {line}
     for idx, map_ in enumerate(maps):
-        new_ranges = set()
+        new_ranges: set[Range] = set()
         for range_ in lines:
             new_ranges |= apply_map(map_, range_)
             if idx + 1 == num_maps:
