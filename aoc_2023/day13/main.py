@@ -118,8 +118,7 @@ def part1(filename: str) -> int:
     patterns = parse_input(filename)
     summarizers = [Summarizer(pattern) for pattern in patterns]
     summary = sum(
-        Parallel(n_jobs=-1,
-                 verbose=15)(delayed(summarizer.summarize)() for summarizer in summarizers))
+        Parallel(n_jobs=-1)(delayed(summarizer.summarize)() for summarizer in summarizers))
     return summary
 
 
