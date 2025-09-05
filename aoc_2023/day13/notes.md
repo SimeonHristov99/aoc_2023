@@ -8,15 +8,14 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Define the function for parsing the input
 
-- [ ] Add failing tests.
-- [ ] Make the failing tests pass.
-- [ ] If the part with `Arrange` logic becomes too big, consider breaking down into functions.
-- [ ] Identify edge cases in the written code and write tests for them.
-- [ ] If the new code creates a function that is bigger than a single screen height, break it down into smaller functions.
-- [ ] Ensure that all newly added functions have docstrings.
-- [ ] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
-- [ ] Ensure `git-hook` passes.
-- [ ] Push.
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] If the part with `Arrange` logic becomes too big, consider breaking down into functions.
+- [X] Identify edge cases in the written code and write tests for them.
+- [X] Ensure that all newly added functions have docstrings.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Push.
 
 ### Define the method of initializing the class `Summarizer`
 
