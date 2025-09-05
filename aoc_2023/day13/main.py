@@ -79,7 +79,14 @@ class Summarizer:
         :param direction Direction: Dictates which axis is summarized.
         :returns int: When direction='rows', then returns 100 multiplied by the number of rows above the horizontal line of reflection. Else, the number of columns to the left of the vertical line of reflection.
         """
-        return 0
+        if direction == Direction.ROWS:
+            return sum(
+                Parallel(n_jobs=-1,
+                         prefer="threads")(delayed(self.summarize_row)(line)
+                                           for line in range(len(self.lines_horizontal))))
+        return sum(
+            Parallel(n_jobs=-1, prefer="threads")(delayed(self.summarize_column)(line)
+                                                  for line in range(len(self.lines_vertical))))
 
     def summarize(self) -> int:
         """
