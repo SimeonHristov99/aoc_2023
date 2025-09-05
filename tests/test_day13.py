@@ -35,6 +35,27 @@ class TestParseInput(unittest.TestCase):
         self.assertListEqual(actual, expected, f'\n{actual=}\n{expected=}\n')
 
 
+class TestSummarizerInit(unittest.TestCase):
+
+    def test_when_created_then_user_can_pass_pattern(self):
+        # Arrange
+        expected = [
+            '#.##..##.',
+            '..#.##.#.',
+            '##......#',
+            '##......#',
+            '..#.##.#.',
+            '..##..##.',
+            '#.#.##.#.',
+        ]
+
+        # Act
+        actual = main.Summarizer(expected).pattern
+
+        # Assert
+        self.assertListEqual(actual, expected)
+
+
 class TestPart1(unittest.TestCase):
 
     def test_when_called_then_return_forty_two(self):
