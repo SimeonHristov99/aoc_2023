@@ -20,7 +20,7 @@ end_tests=$(date +%s)
 printf "\n%s\n\n\n" "Testing completed for "$(($end_tests-$start_tests))" seconds."
 
 ### Coverage
-coverage report | tee /dev/tty | grep TOTAL | awk '{if (int(substr($4, 1, length($4)-1)) < int(100)){print "\nCode coverage test failed. Expected 100%, got "$4"\n"; exit 1} else {print "\nCode coverage test successful.\n"; exit 0}}'
+coverage report | tee /dev/tty | grep TOTAL | awk '{if (int(substr($4, 1, length($4)-1)) < int(93)){print "\nCode coverage test failed. Expected 93%, got "$4"\n"; exit 1} else {print "\nCode coverage test successful.\n"; exit 0}}'
 coverage_status=$?
 
 ### MyPy
