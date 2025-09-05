@@ -16,8 +16,8 @@
 - [ ] Identify edge cases in the written code and write tests for them.
 - [ ] If the new code creates a function that is bigger than a single screen height, break it down into smaller functions.
 - [ ] Ensure that all newly added functions have docstrings.
-- [ ] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
 - [ ] Ensure `git-hook` passes.
+- [ ] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
 - [ ] Push.
 - [ ] Run on input.
 
