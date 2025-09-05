@@ -56,6 +56,29 @@ class TestSummarizerInit(unittest.TestCase):
         self.assertListEqual(actual, expected)
 
 
+class TestSummarizerCreateReflectionMaps(unittest.TestCase):
+
+    def test_when_called_then_returns_tuple_with_empty_lists(self):
+        # Arrange
+        expected = ([], [])
+        pattern = [
+            '#.##..##.',
+            '..#.##.#.',
+            '##......#',
+            '##......#',
+            '..#.##.#.',
+            '..##..##.',
+            '#.#.##.#.',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.create_reflection_maps()
+
+        # Assert
+        self.assertTupleEqual(actual, expected)
+
+
 class TestSummarizerSummarize(unittest.TestCase):
 
     def test_when_called_then_return_zero(self):
