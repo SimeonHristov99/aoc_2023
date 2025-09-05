@@ -64,7 +64,21 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Define the method `summarize_column`
 
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] Ensure that all newly added functions have docstrings.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Push.
+
 ### Define the method `summarize_row`
+
+- [ ] Add failing tests.
+- [ ] Make the failing tests pass.
+- [ ] Ensure that all newly added functions have docstrings.
+- [ ] Ensure `git-hook` passes.
+- [ ] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [ ] Push.
 
 ```python
 class Summarizer:
