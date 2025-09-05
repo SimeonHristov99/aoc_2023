@@ -192,16 +192,55 @@ class TestSummarizerSummarizeColumn(unittest.TestCase):
 
 class TestSummarizerSummarizeRow(unittest.TestCase):
 
-    def test_when_called_then_return_zero(self):
+    def test_when_line_is_not_reflection_then_return_zero(self):
         # Arrange
         expected = 0
         pattern = [
             '#...##..#',
             '#....#..#',
             '..##..###',
+            '#####.##.',
+            '#####.##.',
+            '..##..###',
             '#....#..#',
         ]
         summarizer = main.Summarizer(pattern)
+        summarizer.lines_horizontal = {
+            0: [(0, 1)],
+            1: [(1, 2), (0, 3)],
+            2: [(2, 3), (1, 4), (0, 5)],
+            3: [(3, 4), (2, 5), (1, 6)],
+            4: [(4, 5), (3, 6)],
+            5: [(5, 6)]
+        }
+
+        # Act
+        actual = summarizer.summarize_row(0)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_when_line_is_reflection_then_return_summary(self):
+        # Arrange
+        expected = 400
+        pattern = [
+            '#...##..#',
+            '#....#..#',
+            '..##..###',
+            '#####.##.',
+            '#####.##.',
+            '..##..###',
+            '#....#..#',
+        ]
+        summarizer = main.Summarizer(pattern)
+        summarizer.lines_horizontal = {
+            0: [(0, 1)],
+            1: [(1, 2), (0, 3)],
+            2: [(2, 3), (1, 4), (0, 5)],
+            3: [(3, 4), (2, 5), (1, 6)],
+            4: [(4, 5), (3, 6)],
+            5: [(5, 6)]
+        }
 
         # Act
         actual = summarizer.summarize_row(3)
