@@ -125,3 +125,9 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 - [X] Ensure `git-hook` passes.
 - [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
 - [X] Push.
+
+### Pass parameter from main function
+
+- [ ] Make tests fail.
+- [ ] Make them pass.
+- [ ] Submit part 2.
