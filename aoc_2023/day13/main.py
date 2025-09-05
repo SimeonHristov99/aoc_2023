@@ -63,7 +63,14 @@ class Summarizer:
         :param int line_number: The line that is to be checked.
         :returns int: Zero if the line does not form a reflection, otherwise the number of columns to the left of the line.
         """
-        return 0
+        columns_to_check = self.lines_vertical[line_number]
+
+        for left, right in columns_to_check:
+            for i in range(len(self.pattern)):
+                if self.pattern[i][left] != self.pattern[i][right]:
+                    return 0
+
+        return line_number + 1
 
     def summarize_row(self, line_number: int) -> int:
         """
