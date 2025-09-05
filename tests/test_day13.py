@@ -56,6 +56,29 @@ class TestSummarizerInit(unittest.TestCase):
         self.assertListEqual(actual, expected)
 
 
+class TestSummarizerSummarize(unittest.TestCase):
+
+    def test_when_called_then_return_zero(self):
+        # Arrange
+        expected = 0
+        pattern = [
+            '#.##..##.',
+            '..#.##.#.',
+            '##......#',
+            '##......#',
+            '..#.##.#.',
+            '..##..##.',
+            '#.#.##.#.',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.summarize()
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
 class TestPart1(unittest.TestCase):
 
     def test_when_called_then_return_forty_two(self):
