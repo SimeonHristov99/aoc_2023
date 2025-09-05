@@ -256,6 +256,29 @@ class TestSummarizerFormsReflectionRow(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_when_not_reflecting_with_smudge_then_returns_false(self):
+        # Arrange
+        expected = False
+        with_smudge = True
+        rows_to_check = [(4, 5), (3, 6)]
+        pattern = [
+            '#...##..#',
+            '#....#..#',
+            '..##..###',
+            '#####.##.',
+            '#####.##.',
+            '..##..###',
+            '#....#..#',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.forms_reflection_row(rows_to_check, with_smudge=with_smudge)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+
 
 class TestSummarizerSummarizeColumn(unittest.TestCase):
 
