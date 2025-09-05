@@ -4,11 +4,12 @@ def parse_input(filename: str) -> list[list[str]]:
     :param filename str: Path to the input file.
     :returns list[list[str]]: A list of patterns, where each pattern is represented as a list of strings.
     """
-    patterns = []
+    result = []
+    patterns = ''
     with open(filename, 'r') as fp:
         patterns = fp.read()
-    patterns = [pattern.split() for pattern in patterns.split('\n\n')]
-    return patterns
+    result = [pattern.split() for pattern in patterns.split('\n\n')]
+    return result
 
 
 def part1(filename: str) -> int:
