@@ -505,14 +505,15 @@ class TestSummarizerSummarize(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 
-class TestPart1(unittest.TestCase):
+class TestProcess(unittest.TestCase):
 
     def test_when_called_on_sample_then_returns_rows_and_columns_summary(self):
         # Arrange
         expected = 405
+        with_smudge= False
 
         # Act
-        actual = main.part1('aoc_2023/day13/sample.txt')
+        actual = main.process('aoc_2023/day13/sample.txt', with_smudge=with_smudge)
 
         # Assert
         self.assertEqual(actual, expected)
@@ -520,9 +521,10 @@ class TestPart1(unittest.TestCase):
     def test_when_called_on_input_then_returns_rows_and_columns_summary(self):
         # Arrange
         expected = 27742
+        with_smudge= False
 
         # Act
-        actual = main.part1('aoc_2023/day13/input.txt')
+        actual = main.process('aoc_2023/day13/input.txt', with_smudge=with_smudge)
 
         # Assert
         self.assertEqual(actual, expected)
