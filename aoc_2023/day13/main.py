@@ -12,6 +12,15 @@ def parse_input(filename: str) -> list[list[str]]:
     return result
 
 
+class Summarizer:
+
+    def __init__(self, pattern: list[str]) -> None:
+        """
+        Instantiate an object and save a pattern in its state.
+        """
+        self.pattern = pattern
+
+
 def part1(filename: str) -> int:
     """
     Compute the summary of the notes.
