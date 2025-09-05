@@ -102,6 +102,27 @@ class TestSummarizerSummarizeDirection(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
+    def test_when_called_on_columns_then_returns_zero(self):
+        # Arrange
+        expected = 0
+        direction = main.Direction.COLS
+        pattern = [
+            '#.##..##.',
+            '..#.##.#.',
+            '##......#',
+            '##......#',
+            '..#.##.#.',
+            '..##..##.',
+            '#.#.##.#.',
+        ]
+        summarizer = main.Summarizer(pattern)
+
+        # Act
+        actual = summarizer.summarize_direction(direction)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
 
 class TestSummarizerSummarize(unittest.TestCase):
 
