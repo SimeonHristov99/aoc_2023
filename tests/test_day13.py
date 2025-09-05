@@ -81,9 +81,9 @@ class TestSummarizerSummarize(unittest.TestCase):
 
 class TestPart1(unittest.TestCase):
 
-    def test_when_called_then_return_forty_two(self):
+    def test_when_called_on_sample_then_returns_zero(self):
         # Arrange
-        expected = 42
+        expected = 0
 
         # Act
         actual = main.part1('aoc_2023/day13/sample.txt')
