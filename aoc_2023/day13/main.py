@@ -1,4 +1,5 @@
 from joblib import Parallel, delayed
+from typing import Literal
 
 
 def parse_input(filename: str) -> list[list[str]]:
@@ -22,6 +23,13 @@ class Summarizer:
         Instantiate an object and save a pattern in its state.
         """
         self.pattern = pattern
+
+    def create_reflection_maps(self) -> tuple[list[tuple[int, int]], list[tuple[int, int]]]:
+        """
+        Creates all the possible rows and columns to check for each possible line.
+        :returns tuple[list[tuple[int, int]], list[tuple[int, int]]]: A tuple with the horizontal and vertical indices to check.
+        """
+        return ([], [])
 
     def summarize(self) -> int:
         """
