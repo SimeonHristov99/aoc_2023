@@ -1,3 +1,11 @@
+def parse_input(filename: str) -> list[list[str]]:
+    patterns = []
+    with open(filename, 'r') as fp:
+        patterns = fp.read()
+    patterns = [pattern.split() for pattern in patterns.split('\n\n')]
+    return patterns
+
+
 def part1(filename: str) -> int:
     return 42
 
