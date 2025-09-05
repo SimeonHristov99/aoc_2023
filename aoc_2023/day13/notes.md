@@ -98,6 +98,14 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Refactor out the logic for checking reflecting lines in `summarize_row` in a new method: `forms_reflection_row(self, with_smudge: bool=False)`
 
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] Identify edge cases in the written code and write tests for them.
+- [X] Ensure that all newly added functions have docstrings.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Push.
+
 ### Modify `forms_reflection_column` to work with smudges
 
 ### Modify `forms_reflection_row` to work with smudges
