@@ -31,6 +31,14 @@ class Summarizer:
         """
         return ([], [])
 
+    def summarize_direction(self, direction: Literal['rows', 'cols']) -> int:
+        """
+        Creates a summary either by columns or by rows.
+        :param direction Literal['rows', 'cols']: Dictates which axis is summarized.
+        :returns int: When direction='rows', then returns 100 multiplied by the number of rows above the horizontal line of reflection. Else, the number of columns to the left of the vertical line of reflection.
+        """
+        return 0
+
     def summarize(self) -> int:
         """
         Create a summary of the saved pattern.
