@@ -36,6 +36,14 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Define proxy methods `create_reflection_maps` and `summarize_direction` and use them in `summarize`
 
+- [X] Add failing tests.
+- [X] Make the failing tests pass.
+- [X] Ensure that all newly added functions have docstrings.
+- [X] Ensure `git-hook` passes.
+- [X] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [X] Run on input.
+- [X] Push.
+
 ### Define the method `create_reflection_maps`
 
 ### Define proxy methods `summarize_column` and `summarize_row` and use them in `summarize_direction`
