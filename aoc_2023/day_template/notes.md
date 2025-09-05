@@ -10,6 +10,15 @@
 
 ### Submit answers for part 1
 
+- [ ] Add failing tests.
+- [ ] Make the failing tests pass.
+- [ ] If the part with `Arrange` logic becomes too big, consider breaking down into functions.
+- [ ] Identify edge cases in the written code and write tests for them.
+- [ ] If the new code creates a function that is bigger than a single screen height, break it down into smaller functions.
+- [ ] Ensure that all newly added functions have docstrings.
+- [ ] Create your commits. Ensure that each failed test is its own commit and make sure to write the name of the test in the commit message.
+- [ ] Ensure `git-hook` passes.
+- [ ] Push.
 - [ ] Run on input.
 
 ## Part 2
