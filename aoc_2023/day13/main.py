@@ -83,7 +83,15 @@ class Summarizer:
         :param bool with_smudge: Whether to compare the rows allowing for one smudge.
         :returns bool: Whether the rows form a reflection.
         """
-        return all(self.pattern[left] == self.pattern[right] for left, right in rows_to_check)
+        one_mismatch = False
+        for left, right in rows_to_check:
+            for j in range(len(self.pattern[0])):
+                if self.pattern[left][j] != self.pattern[right][j]:
+                    if with_smudge and not one_mismatch:
+                        one_mismatch = True
+                        continue
+                    return False
+        return True
 
     def summarize_column(self, line_number: int) -> int:
         """
