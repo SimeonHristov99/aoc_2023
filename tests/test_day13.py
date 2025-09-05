@@ -129,14 +129,17 @@ class TestSummarizerCreateReflectionMaps(unittest.TestCase):
 
 class TestSummarizerSummarizeColumn(unittest.TestCase):
 
-    def test_when_called_then_return_zero(self):
+    def test_when_line_is_not_reflection_then_return_zero(self):
         # Arrange
         expected = 0
         pattern = [
-            '#...##..#',
-            '#....#..#',
-            '..##..###',
-            '#....#..#',
+            '#.##..##.',
+            '..#.##.#.',
+            '##......#',
+            '##......#',
+            '..#.##.#.',
+            '..##..##.',
+            '#.#.##.#.',
         ]
         summarizer = main.Summarizer(pattern)
 
