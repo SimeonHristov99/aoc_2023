@@ -152,3 +152,7 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+# real	0m1.849s
+# user	0m8.361s
+# sys	0m1.237s
