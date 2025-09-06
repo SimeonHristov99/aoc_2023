@@ -128,6 +128,6 @@ Find the line of reflection in each of the patterns and summarize the pattern no
 
 ### Pass parameter from main function
 
-- [ ] Make tests fail.
-- [ ] Make them pass.
-- [ ] Submit part 2.
+- [X] Make tests fail.
+- [X] Make them pass.
+- [X] Submit part 2.
