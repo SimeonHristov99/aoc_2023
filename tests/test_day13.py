@@ -516,7 +516,7 @@ class TestSummarizerSummarize(unittest.TestCase):
 
 class TestProcess(unittest.TestCase):
 
-    def test_when_called_on_sample_then_returns_rows_and_columns_summary(self):
+    def test_when_without_smudge_on_sample_then_returns_rows_and_columns_summary(self):
         # Arrange
         expected = 405
         with_smudge = False
@@ -527,10 +527,32 @@ class TestProcess(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_when_called_on_input_then_returns_rows_and_columns_summary(self):
+    def test_when_without_smudge_on_input_then_returns_rows_and_columns_summary(self):
         # Arrange
         expected = 27742
         with_smudge = False
+
+        # Act
+        actual = main.process('aoc_2023/day13/input.txt', with_smudge)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_when_with_smudge_on_sample_then_returns_rows_and_columns_summary(self):
+        # Arrange
+        expected = 400
+        with_smudge = True
+
+        # Act
+        actual = main.process('aoc_2023/day13/sample.txt', with_smudge)
+
+        # Assert
+        self.assertEqual(actual, expected)
+
+    def test_when_with_smudge_on_input_then_returns_rows_and_columns_summary(self):
+        # Arrange
+        expected = 32728
+        with_smudge = True
 
         # Act
         actual = main.process('aoc_2023/day13/input.txt', with_smudge)
