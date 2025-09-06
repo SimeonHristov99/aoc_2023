@@ -67,7 +67,7 @@ class Summarizer:
         :param direction Direction: Dictates which axis is checked for reflection.
         :returns bool: Whether the axis forms a reflection.
         """
-        one_mismatch = False
+        num_mismatches = 0
         limit = len(self.pattern) if direction == Direction.COLS else len(self.pattern[0])
         for left, right in axis_to_check:
             for i in range(limit):
@@ -77,11 +77,8 @@ class Summarizer:
                     i_left, j_left = i, left
                     i_right, j_right = i, right
                 if self.pattern[i_left][j_left] != self.pattern[i_right][j_right]:
-                    if self.with_smudge and not one_mismatch:
-                        one_mismatch = True
-                        continue
-                    return False
-        return True
+                    num_mismatches += 1
+        return self.with_smudge and num_mismatches == 1 or not self.with_smudge and num_mismatches == 0
 
     def summarize_column(self, line_number: int) -> int:
         """
@@ -149,6 +146,8 @@ def main() -> None:
     """Executes part 1 on both the sample and actual input files, printing the results to standard output."""
     print(f'Part 1, Sample: {process("aoc_2023/day13/sample.txt", False)}')
     print(f'Part 1, Input: {process("aoc_2023/day13/input.txt", False)}')
+    print(f'Part 2, Sample: {process("aoc_2023/day13/sample.txt", True)}')
+    print(f'Part 2, Input: {process("aoc_2023/day13/input.txt", True)}')
 
 
 if __name__ == '__main__':
